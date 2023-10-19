@@ -1,5 +1,5 @@
 package View.DietExerciseDataUI;
-import Control.DataLoggingHandler.DietLoggingController;
+import Controller.DataLoggingHandler.DietLoggingController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
@@ -234,7 +233,7 @@ public class DietLoggingPage extends JFrame implements ActionListener {
             foods.put(inputFood2, inputQty2);
             foods.put(inputFood3, inputQty3);
 
-            DietLoggingController c = new DietLoggingController();
+            DietLoggingController c = DietLoggingController.getInstance();
             String nutrientInfo = c.logDiet(inputDate,inputMeal,foods);
             resultHeading.setVisible(true);
             result.setText("<html>" + nutrientInfo.replaceAll("\n", "<br>"));

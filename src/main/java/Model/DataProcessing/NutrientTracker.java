@@ -1,5 +1,7 @@
 package Model.DataProcessing;
 
+import Model.Diet.Nutrient;
+
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package Control.DataLoggingHandler;
+package Controller.DataLoggingHandler;
 
 import Model.DataProcessing.NutrientsCalculator;
 import Model.Diet.Diet;
@@ -11,6 +11,18 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DietLoggingController {
+    private static DietLoggingController instance = null;
+    private DietLoggingController(){
+
+    }
+
+    public static DietLoggingController getInstance(){
+        if (instance == null){
+            instance = new DietLoggingController();
+        }
+        return instance;
+    }
+
     public String logDiet(Date date, String meal, Map<String,Double> foods){
         MealType mealType = MealType.valueOf(meal.toUpperCase());
         Diet diet = new Diet(date,mealType);

@@ -1,8 +1,9 @@
-package profile;
+package View.ProfileUI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import Model.Profile.UserProfile;
 
 public class ProfileCreationPage extends JFrame{
 	private UserProfile userProfile;

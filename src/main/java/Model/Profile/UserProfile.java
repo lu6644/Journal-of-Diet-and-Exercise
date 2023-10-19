@@ -1,4 +1,4 @@
-package profile;
+package Model.Profile;
 
 public class UserProfile {
 	private String username;
