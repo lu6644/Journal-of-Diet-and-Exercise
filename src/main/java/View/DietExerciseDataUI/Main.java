@@ -1,4 +1,4 @@
-package View;
+package View.DietExerciseDataUI;
 
 import View.DietExerciseDataUI.DietLoggingPage;
 

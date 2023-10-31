@@ -11,7 +11,7 @@ public class UserProfile {
 	private double weight;
 	private String specialPeriod;
 	private boolean hasWeightScale;
-	
+
 	public UserProfile(String username, String password, String firstName, String lastName, int age, String gender,
 			double height, double weight, String specialPeriod, boolean hasWeightScale) {
 		super();
@@ -106,7 +106,11 @@ public class UserProfile {
 	public void setHasWeightScale(boolean hasWeightScale) {
 		this.hasWeightScale = hasWeightScale;
 	}
-	
-	
-	
+
+	public double calculateBMR() {
+		return gender.equals("male") ? (10 * weight + 6.25 * height - 5 * age + 5)
+				: (10 * weight + 6.25 * height - 5 * age - 161);
+		// The equation of Mifflin-St.Jeor
+	}
+
 }
