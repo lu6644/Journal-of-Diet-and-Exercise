@@ -212,7 +212,7 @@ public class ExerciseLoggingUI extends JFrame implements ActionListener {
 
 	}
 
-	public static void main(String[] args) {
+	public static void launch() {
 		// Only for test
 		UserProfile user = new UserProfile("test1", "test2", "Test", "Test", 20, "male", 180.0, 75, "", false);
 		new ExerciseLoggingUI(user);
