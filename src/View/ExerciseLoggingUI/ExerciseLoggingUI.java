@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import Controller.ExerciseLoggingController.ExerciseLogging;
+import Controller.DataLoggingHandler.ExerciseLogging;
 import Model.Profile.UserProfile;
 
 public class ExerciseLoggingUI extends JFrame implements ActionListener {

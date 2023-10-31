@@ -1,4 +1,4 @@
-package Controller.ExerciseLoggingController;
+package Controller.DataLoggingHandler;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
