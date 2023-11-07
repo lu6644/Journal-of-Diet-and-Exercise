@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Model.DataProcessing.NutrientsCalculator;
+import Model.DatabaseInteraction.DietDAO;
 import Model.Diet.Diet;
 import Model.Diet.Food;
 import Model.Diet.MealType;
@@ -36,7 +37,7 @@ public class DietLoggingController {
 		}
 		NutrientsCalculator.getNutrientsValue(diet);
 		// TODO: invoke adding diet info to DB when DB setup is complete
-
+		DietDAO.getInstance().addDiet2Db(diet);
 		// return nutrients information to frontend page
 		return nutrientsValueToString(diet.getNutrientsValue());
 	}
