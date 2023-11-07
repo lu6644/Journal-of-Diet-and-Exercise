@@ -69,7 +69,7 @@ public class NutrientsDAO {
 				String nutrientUnit = r.getString("nutrient_unit");
 				Nutrient nutrient = new Nutrient(nutrientId,nutrientName,nutrientUnit);
 				nutrientsUnitValue.put(nutrient, valuePer100G);
-				System.out.println(nutrient.toString() + "\n");
+				System.out.println(nutrient.toString() + "\tunitValue:" + valuePer100G + "\n");
 			}
 			System.out.println("\n");
 		} catch (SQLException e){
