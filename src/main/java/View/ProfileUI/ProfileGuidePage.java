@@ -1,4 +1,4 @@
-package profile;
+package View.ProfileUI;
 
 import javax.swing.*;
 import java.awt.*;
