@@ -1,5 +1,7 @@
 package Model.Diet;
 
+import Model.DatabaseInteraction.FoodDAO;
+
 import java.util.Objects;
 
 public class Food {
@@ -17,8 +19,8 @@ public class Food {
     }
 
     public int queryId(String name){
-        //TODO: get food id from database given food name
-        return 0;
+        FoodDAO foodDAO =FoodDAO.getInstance();
+        return foodDAO.queryId(name);
     }
 
     public int getId() {
@@ -40,5 +42,13 @@ public class Food {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    @Override
+    public String toString() {
+        return "Food{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }
