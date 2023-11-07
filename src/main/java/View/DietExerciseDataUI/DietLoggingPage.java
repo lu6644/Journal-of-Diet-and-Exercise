@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class DietLoggingPage extends JFrame implements ActionListener {
+    private int accountId=1;
     private Container c;
     private JLabel title;
     private JLabel date;
@@ -234,7 +235,7 @@ public class DietLoggingPage extends JFrame implements ActionListener {
             foods.put(inputFood3, inputQty3);
 
             DietLoggingController c = DietLoggingController.getInstance();
-            String nutrientInfo = c.logDiet(inputDate,inputMeal,foods);
+            String nutrientInfo = c.logDiet(accountId, inputDate,inputMeal,foods);
             resultHeading.setVisible(true);
             result.setText("<html>" + nutrientInfo.replaceAll("\n", "<br>"));
         }
