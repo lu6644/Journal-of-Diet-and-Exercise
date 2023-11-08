@@ -1,25 +1,31 @@
+package Model.DataProcessing;
+
+import Model.Diet.Diet;
+import Model.Diet.Food;
+import Model.Diet.MealType;
+
+import java.util.Date;
+
 public class Main {
     public static void main(String[] args) {
         
-        DailyNutrientIntake intake1 = new DailyNutrientIntake(1, 50.0, 200.0, 30.0);
-        DailyNutrientIntake intake2 = new DailyNutrientIntake(2, 60.0, 180.0, 25.0);
+        Food chicken = new Food(10086, "Chicken");
+        Food rice = new Food(10087, "Rice");
+
+       
+        Diet diet = new Diet(1, new Date(), MealType.LUNCH);
 
         
-        Diet diet = new Diet();
-        Food food1 = new Food("10086", "Chicken");
-        Food food2 = new Food("10087", "Rice");
-        diet.addIngredient(food1, 150.0);
-        diet.addIngredient(food2, 300.0);
+        diet.addIngredient(chicken, 150.0);
+        diet.addIngredient(rice, 300.0);
 
         
-        NutrientsCalculator.getNutrientsValue(diet);
-        
-        NutrientTracker nutrientTracker = new NutrientTracker();
-        nutrientTracker.addDailyIntake(intake1);
-        nutrientTracker.addDailyIntake(intake2);
+        System.out.println("Diet Information:");
+        System.out.println("Date: " + diet.getDate());
+        System.out.println("Meal Type: " + diet.getMeal());
+        System.out.println("Ingredients: " + diet.getIngredients());
 
-        
-        nutrientTracker.printSummary();
-        nutrientTracker.calculatePercentages();
+       
     }
 }
+
