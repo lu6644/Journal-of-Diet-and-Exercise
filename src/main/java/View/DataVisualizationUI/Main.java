@@ -1,8 +1,11 @@
-package Model.DataProcessing;
+package View.DataVisualizationUI;
+
+import Model.DataProcessing.DailyNutrientIntake;
+import Model.DataProcessing.NutrientTracker;
 
 import java.util.Scanner;
 
-public class NutrientIntakeTracker {
+public class Main {
 
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
