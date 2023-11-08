@@ -6,8 +6,8 @@ public class Main {
 
         
         Diet diet = new Diet();
-        Food food1 = new Food("Chicken");
-        Food food2 = new Food("Rice");
+        Food food1 = new Food("10086", "Chicken");
+        Food food2 = new Food("10087", "Rice");
         diet.addIngredient(food1, 150.0);
         diet.addIngredient(food2, 300.0);
 
