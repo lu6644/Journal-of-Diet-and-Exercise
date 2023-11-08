@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class Diet {
+    int id;
+    int accountId;
     Date date;
     MealType meal;
 
@@ -11,7 +13,8 @@ public class Diet {
 
     HashMap<Nutrient,Double> nutrientsValue = new HashMap<>();
 
-    public Diet(Date date, MealType meal){
+    public Diet(int accountId, Date date, MealType meal){
+        this.accountId = accountId;
         this.date = date;
         this.meal = meal;
     }
@@ -51,4 +54,19 @@ public class Diet {
         return true;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(int accountId) {
+        this.accountId = accountId;
+    }
 }

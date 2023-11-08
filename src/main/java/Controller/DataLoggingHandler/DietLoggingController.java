@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import Model.DataProcessing.NutrientsCalculator;
+import Model.DatabaseInteraction.DietDAO;
 import Model.Diet.Diet;
 import Model.Diet.Food;
 import Model.Diet.MealType;
@@ -24,11 +25,11 @@ public class DietLoggingController {
 		return instance;
 	}
 
-	public String logDiet(Date date, String meal, Map<String, Double> foods) {
+	public String logDiet(int accountId, Date date, String meal, Map<String, Double> foods) {
 		MealType mealType = MealType.valueOf(meal.toUpperCase());
-		Diet diet = new Diet(date, mealType);
+		Diet diet = new Diet(accountId, date, mealType);
 		for (Map.Entry<String, Double> entry : foods.entrySet()) {
-			if (entry.getKey() != null) {
+			if (!entry.getKey().isEmpty()) {
 				Food f = new Food(entry.getKey());
 				Double qty = entry.getValue();
 				diet.addIngredient(f, qty);
@@ -36,7 +37,7 @@ public class DietLoggingController {
 		}
 		NutrientsCalculator.getNutrientsValue(diet);
 		// TODO: invoke adding diet info to DB when DB setup is complete
-
+		DietDAO.getInstance().addDiet2Db(diet);
 		// return nutrients information to frontend page
 		return nutrientsValueToString(diet.getNutrientsValue());
 	}
