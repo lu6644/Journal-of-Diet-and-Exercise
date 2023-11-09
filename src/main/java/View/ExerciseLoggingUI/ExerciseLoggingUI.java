@@ -206,7 +206,7 @@ public class ExerciseLoggingUI extends JFrame implements ActionListener {
 			info.setStrategy(info.new BasketballStrategy());
 		}
 
-		String res = String.format("%.2f", info.calcualteCalories(user.calculateBMR()));
+		String res = String.format("%.2f", info.calcualteCalories());
 
 		JOptionPane.showMessageDialog(this, "This exercise burned " + res + " calories.");
 

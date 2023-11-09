@@ -1,4 +1,4 @@
-package BMRTest;
+package test.java.BMRTest;
 
 import Model.Profile.UserProfile;
 import org.junit.Test;
