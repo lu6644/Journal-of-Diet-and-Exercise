@@ -12,6 +12,10 @@ public class UserProfile {
 	private String specialPeriod;
 	private boolean hasWeightScale;
 
+	public UserProfile() {
+		
+	}
+	
 	public UserProfile(String username, String password, String firstName, String lastName, int age, String gender,
 			double height, double weight, String specialPeriod, boolean hasWeightScale) {
 		super();

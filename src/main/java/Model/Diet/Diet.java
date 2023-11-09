@@ -13,6 +13,18 @@ public class Diet {
 
     HashMap<Nutrient,Double> nutrientsValue = new HashMap<>();
 
+    @Override
+    public String toString() {
+        return "Diet{" +
+                "id=" + id +
+                ", accountId=" + accountId +
+                ", date=" + date +
+                ", meal=" + meal.name() +
+                ", ingredients=" + ingredients.toString() +
+                ", nutrientsValue=" + nutrientsValue.toString() +
+                '}';
+    }
+
     public Diet(int accountId, Date date, MealType meal){
         this.accountId = accountId;
         this.date = date;

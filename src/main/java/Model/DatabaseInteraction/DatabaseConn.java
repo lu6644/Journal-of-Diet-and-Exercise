@@ -18,16 +18,6 @@ public class DatabaseConn {
     }
     public static Connection getDatabaseConn(){
         return con;
-
-			/*
-			String stm = "show tables";
-			PreparedStatement p = con.prepareStatement(stm);
-			ResultSet r = p.executeQuery();
-			while (r.next()){
-				System.out.println(r.getString(1));
-			}
-
-			 */
         }
 
 
