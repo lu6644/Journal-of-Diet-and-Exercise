@@ -114,7 +114,8 @@ public class DietDAO {
         List<Diet> dietsHistory= new LinkedList<Diet>();
         int caloryId = 208;
         String sql = "SELECT d.id, d.account_id, d.date, d.mealtype, nd.Nutrient_ID, nd.Value FROM fitnessjournal.diet d " +
-                "join fitnessjournal.nutrient_in_diet nd on d.id = nd.Diet_ID where nd.Nutrient_ID=? and d.account_id=?;";
+                "join fitnessjournal.nutrient_in_diet nd on d.id = nd.Diet_ID where nd.Nutrient_ID=? and d.account_id=? " +
+                "order by d.date desc;";
         try {
             PreparedStatement preparedStatement = con.prepareStatement(sql);
             preparedStatement.setInt(1, caloryId);

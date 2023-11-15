@@ -246,6 +246,18 @@ public class DietLoggingPage extends JFrame implements ActionListener {
         caloriesInfo.setVisible(true);
         c.add(caloriesInfo);
 
+        JButton viewHistoryDiets = new JButton("View Diets History");
+        viewHistoryDiets.setFont(new Font("Arial", Font.PLAIN, 15));
+        viewHistoryDiets.setSize(180, 30);
+        viewHistoryDiets.setLocation(500, 650);
+        viewHistoryDiets.setActionCommand("viewDietsHistory");
+        viewHistoryDiets.addActionListener(this);
+        c.add(viewHistoryDiets);
+
+        setVisible(true);
+
+
+
         setVisible(true);
     }
 
@@ -284,6 +296,8 @@ public class DietLoggingPage extends JFrame implements ActionListener {
             resultHeading.setVisible(true);
             result.setText(nutrientInfo);
             //result.setText("<html>" + nutrientInfo.replaceAll("\n", "<br>"));
+        } else if (comm.equals("viewDietsHistory")) {
+            DietJournalPage.launch(accountId);
         }
     }
 
