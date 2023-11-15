@@ -47,6 +47,7 @@ public class DietLoggingPage extends JFrame implements ActionListener {
     private JTextArea resadd;
     private JLabel resultHeading;
     private JTextArea result;
+    private JLabel caloriesInfo;
 
     private String meals[]
             = {"breakfast", "lunch", "dinner", "snack"};
@@ -216,7 +217,7 @@ public class DietLoggingPage extends JFrame implements ActionListener {
         reset.addActionListener(this);
         c.add(reset);
 
-        resultHeading = new JLabel("Your nutrient intake for this meal:");
+        resultHeading = new JLabel("Your nutrients intake for this meal:");
         resultHeading.setFont(new Font("Arial", Font.BOLD, 18));
         resultHeading.setForeground(Color.GREEN);
         resultHeading.setSize(600, 30);
@@ -227,15 +228,23 @@ public class DietLoggingPage extends JFrame implements ActionListener {
         result = new JTextArea("");
         result.setFont(new Font("Arial", Font.ITALIC, 15));
         result.setForeground(Color.GREEN);
-        result.setSize(850, 200);
+        result.setSize(850, 150);
         result.setLocation(100, 450);
         result.setEditable(false);
 
         JScrollPane scroll = new JScrollPane (result);
         scroll.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
-        scroll.setBounds(100, 450, 850, 200); // Set the bounds for the scroll pane, not the text area.
+        scroll.setBounds(100, 450, 850, 150); // Set the bounds for the scroll pane, not the text area.
         //c.add(result);
         c.add(scroll);
+
+        caloriesInfo = new JLabel("");
+        caloriesInfo.setFont(new Font("Arial", Font.BOLD, 16));
+        caloriesInfo.setForeground(Color.ORANGE);
+        caloriesInfo.setSize(600, 30);
+        caloriesInfo.setLocation(100, 610);
+        caloriesInfo.setVisible(true);
+        c.add(caloriesInfo);
 
         setVisible(true);
     }
@@ -268,7 +277,10 @@ public class DietLoggingPage extends JFrame implements ActionListener {
                 foods.put(inputFood3, inputQty3);
             }
             DietLoggingController c = DietLoggingController.getInstance();
-            String nutrientInfo = c.logDiet(accountId, inputDate,inputMeal,foods);
+            String[] nutrientsDataPack= c.logDiet(accountId, inputDate,inputMeal,foods);
+            String nutrientInfo = nutrientsDataPack[0];
+            String calories = nutrientsDataPack[1];
+            caloriesInfo.setText("Calories: " + calories);
             resultHeading.setVisible(true);
             result.setText(nutrientInfo);
             //result.setText("<html>" + nutrientInfo.replaceAll("\n", "<br>"));

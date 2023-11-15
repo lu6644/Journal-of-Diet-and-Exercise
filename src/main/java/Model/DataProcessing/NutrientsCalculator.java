@@ -20,6 +20,7 @@ public class NutrientsCalculator {
                 diet.addToNutrient(nutrient, nutrientAmount);
             }
         }
+        diet.findCalories();
     }
 
 

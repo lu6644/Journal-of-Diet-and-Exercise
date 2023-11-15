@@ -26,7 +26,7 @@ public class Main {
 		Map<String, Double> foods = new HashMap<>();
 		foods.put("Butter, unsalted", 25.0);
 		foods.put("Beef, ground, regular", 150.0);
-		String nutrientsSummary = dietLoggingController.logDiet(1, new Date(123, 9, 29),"LUNCH",foods);
+		String nutrientsSummary = dietLoggingController.logDiet(1, new Date(123, 9, 29),"LUNCH",foods)[0];
 		System.out.println(String.format("A Summary of Nutrients Intake for added meal is:\n%s", nutrientsSummary));
 	}
 }
