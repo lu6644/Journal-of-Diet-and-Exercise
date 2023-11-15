@@ -34,6 +34,7 @@ public class Diet {
                 ", meal=" + meal.name() +
                 ", ingredients=" + ingredients.toString() +
                 ", nutrientsValue=" + nutrientsValue.toString() +
+                ", calories=" + calories +
                 '}';
     }
 
