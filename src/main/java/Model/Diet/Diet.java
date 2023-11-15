@@ -2,6 +2,7 @@ package Model.Diet;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Diet {
     int id;
@@ -12,6 +13,17 @@ public class Diet {
     HashMap<Food,Double> ingredients = new HashMap<>();
 
     HashMap<Nutrient,Double> nutrientsValue = new HashMap<>();
+    Double calories = 0.0;
+
+    public Double getCalories() {
+        return calories;
+    }
+
+    public void setCalories(Double calories) {
+        this.calories = calories;
+    }
+
+
 
     @Override
     public String toString() {
@@ -22,6 +34,7 @@ public class Diet {
                 ", meal=" + meal.name() +
                 ", ingredients=" + ingredients.toString() +
                 ", nutrientsValue=" + nutrientsValue.toString() +
+                ", calories=" + calories +
                 '}';
     }
 
@@ -43,6 +56,13 @@ public class Diet {
         else {
             nutrientsValue.put(nutrient, amount);
         }
+    }
+
+    public void findCalories(){
+        calories = nutrientsValue.entrySet().stream()
+                .filter(entry -> entry.getKey().getName().equals("ENERGY (KILOCALORIES)"))
+                .map(Map.Entry::getValue)
+                .findFirst().orElse(0.0);
     }
 
     public Date getDate() {
