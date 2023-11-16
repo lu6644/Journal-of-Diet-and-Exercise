@@ -2,6 +2,7 @@ package Controller.DataRequestHandler;
 
 import Model.DatabaseInteraction.DietDAO;
 import Model.Diet.Diet;
+import Model.Diet.Nutrient;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,6 +30,12 @@ public class DietsQueryController {
         return DietsHistoryUIMapper(dietsHistory);
     }
 
+    public Map<String,String> requestNutrientsDetail(int dietId){
+        Diet diet = DietDAO.getInstance().queryDietNutrientsDetail(dietId);
+        Map<Nutrient,Double> nutrientsValue = diet.getNutrientsValue();
+        return NutrientsUIMapper(nutrientsValue);
+    }
+
     private List<Map<String,String>> DietsHistoryUIMapper(List<Diet> diets){
         return diets.stream().map(diet -> Map.of(
                 "id",String.valueOf(diet.getId()),
@@ -41,5 +48,11 @@ public class DietsQueryController {
     private String Date2Str(Date date){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         return dateFormat.format(date);
+    }
+
+    private Map<String,String> NutrientsUIMapper(Map<Nutrient, Double> nutrientsValue){
+        return nutrientsValue.entrySet().stream().collect(Collectors.toMap(
+                entry -> entry.getKey().getName(),
+                entry -> entry.getValue() + entry.getKey().getUnit()));
     }
 }
