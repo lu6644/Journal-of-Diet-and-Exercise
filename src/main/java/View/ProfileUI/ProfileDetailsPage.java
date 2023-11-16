@@ -1,4 +1,6 @@
 package profile;
+import Model.Profile.UserProfile;
+
 import javax.swing.*;
 import java.awt.*;
 

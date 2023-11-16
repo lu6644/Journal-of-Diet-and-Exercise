@@ -4,14 +4,18 @@ import Controller.DataRequestHandler.DietsQueryController;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.Map;
 
-public class DietJournalPage extends JFrame {
+public class DietJournalPage extends JFrame implements ActionListener {
 
     private List<Map<String,String>> dietsHistory;
-    private int profileId = 1; // Private attribute
+    private int profileId = 1;
+    private JTable dietsHistoryTable;
 
     public DietJournalPage(int profileId) {
         this.profileId = profileId; // Store the profileId as an instance variable
@@ -19,7 +23,7 @@ public class DietJournalPage extends JFrame {
         // Set up the JFrame
         setTitle("Diet History Table");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(800, 400);
+        //setSize(800, 400);
 
         // Call the queryDietsHistory method to get nutrient data
         dietsHistory = DietsQueryController.getInstance().requestDietsHistory(profileId);
@@ -34,19 +38,55 @@ public class DietJournalPage extends JFrame {
         }
 
         // Create the JTable
-        JTable nutrientTable = new JTable(tableModel);
+        dietsHistoryTable = new JTable(tableModel);
+        JTableHeader header = dietsHistoryTable.getTableHeader();
+        header.setFont(new Font("Arial", Font.BOLD, 16));
 
         // Add the table to a scroll pane
-        JScrollPane scrollPane = new JScrollPane(nutrientTable);
+        JScrollPane scrollPane = new JScrollPane(dietsHistoryTable);
+        scrollPane.setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
 
         // Add the scroll pane to the frame
         add(scrollPane, BorderLayout.CENTER);
 
-        JButton refreshButton = new JButton("View Nutrients Breakdown");
+        JButton viewNutrientsBreakdown = new JButton("View Nutrients Breakdown");
+        viewNutrientsBreakdown.setActionCommand("viewBreakdown");
+        viewNutrientsBreakdown.addActionListener(this);
         JPanel buttonPanel = new JPanel();
-        buttonPanel.add(refreshButton);
+        buttonPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        buttonPanel.add(viewNutrientsBreakdown);
+
+        JButton backButton = new JButton("Back");
+        backButton.setActionCommand("back");
+        backButton.addActionListener(this);
+        buttonPanel.add(backButton);
+
         add(buttonPanel, BorderLayout.SOUTH);
 
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String comm = e.getActionCommand();
+        if (comm.equals("viewBreakdown")){
+            //Handles viewing nutrients breakdown
+            int selectedRow = dietsHistoryTable.getSelectedRow();
+
+            if (selectedRow != -1) { // Check if a row is selected
+                DefaultTableModel model = (DefaultTableModel) dietsHistoryTable.getModel();
+                String dietId = (String) model.getValueAt(selectedRow, 0);
+                String date = (String) model.getValueAt(selectedRow, 1);
+                String mealType = (String) model.getValueAt(selectedRow, 2);
+                DietDetailPage.launch(dietId,date,mealType);
+            } else {
+                // No row is selected
+                JOptionPane.showMessageDialog(this, "No row selected.", "Information", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+        else if (comm.equals("back")){
+            // Handle back button click
+            this.dispose();
+        }
     }
 
     public static void launch(int profileId){
