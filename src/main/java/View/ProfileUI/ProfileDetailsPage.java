@@ -1,4 +1,4 @@
-package profile;
+package View.ProfileUI;
 import Model.Profile.UserProfile;
 
 import javax.swing.*;

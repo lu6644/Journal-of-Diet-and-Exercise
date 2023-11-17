@@ -1,23 +1,19 @@
 package View.ProfileUI;
 
+import Controller.DataLoggingHandler.ProfileAddingController;
+
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-
-import Model.Profile.UserProfile;
+import javax.swing.*;
 
 public class ProfileCreationPage extends JFrame {
-	private UserProfile userProfile;
-	private JTextField usernameField, passwordField, firstNameField, lastNameField, ageField, genderField, heightField,
+	private int profileId;
+	private JTextField usernameField, passwordField, firstNameField, lastNameField, ageField, heightField,
 			weightField, specialPeriodField;
 	private JCheckBox hasWeightScaleCheckBox;
+	private JComboBox cGender;
 
 	public ProfileCreationPage() {
 		createComponents();
@@ -34,7 +30,9 @@ public class ProfileCreationPage extends JFrame {
 		firstNameField = new JTextField();
 		lastNameField = new JTextField();
 		ageField = new JTextField();
-		genderField = new JTextField();
+		String[] genders = {"male", "female"};
+		cGender = new JComboBox(genders);
+		cGender.setSelectedIndex(-1);
 		heightField = new JTextField();
 		weightField = new JTextField();
 		specialPeriodField = new JTextField();
@@ -59,7 +57,7 @@ public class ProfileCreationPage extends JFrame {
 		add(new JLabel("Age:"));
 		add(ageField);
 		add(new JLabel("Gender:"));
-		add(genderField);
+		add(cGender);
 		add(new JLabel("Height(cm):"));
 		add(heightField);
 		add(new JLabel("Weight(kg):"));
@@ -78,16 +76,17 @@ public class ProfileCreationPage extends JFrame {
 		String firstName = firstNameField.getText();
 		String lastName = firstNameField.getText();
 		int age = Integer.parseInt(ageField.getText());
-		String gender = genderField.getText();
+		String gender = cGender.getSelectedItem().toString();
 		double height = Double.parseDouble(heightField.getText());
 		double weight = Double.parseDouble(weightField.getText());
 		String specialPeriod = specialPeriodField.getText();
 		boolean hasWeightScale = hasWeightScaleCheckBox.isSelected();
 
-		userProfile = new UserProfile(username, password, firstName, lastName, age, gender, height, weight,
-				specialPeriod, hasWeightScale);
+		profileId = ProfileAddingController.getInstance().addNewProfile(username,password,firstName,lastName,age,
+				gender,height,weight,specialPeriod,hasWeightScale);
 
 		System.out.println(username + ": Your profile has been created ");
+		System.out.println("profileId generated: " + profileId);
 	}
 
 	public static void launch() {

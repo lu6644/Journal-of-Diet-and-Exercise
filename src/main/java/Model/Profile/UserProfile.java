@@ -1,8 +1,9 @@
 package Model.Profile;
 
 public class UserProfile {
-	private String username;
-	private String password;
+	private int id = -1;
+	private String username = "";
+	private String password = "";
 	private String firstName;
 	private String lastName;
 	private int age;
@@ -29,6 +30,26 @@ public class UserProfile {
 		this.weight = weight;
 		this.specialPeriod = specialPeriod;
 		this.hasWeightScale = hasWeightScale;
+	}
+
+	public UserProfile(String firstName, String lastName, int age, String gender, double height,
+					   double weight, String specialPeriod, boolean hasWeightScale){
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.gender = gender;
+		this.height = height;
+		this.weight = weight;
+		this.specialPeriod = specialPeriod;
+		this.hasWeightScale = hasWeightScale;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -117,4 +138,20 @@ public class UserProfile {
 		// The equation of Mifflin-St.Jeor
 	}
 
+	@Override
+	public String toString() {
+		return "UserProfile{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", age=" + age +
+				", gender='" + gender + '\'' +
+				", height=" + height +
+				", weight=" + weight +
+				", specialPeriod='" + specialPeriod + '\'' +
+				", hasWeightScale=" + hasWeightScale +
+				'}';
+	}
 }

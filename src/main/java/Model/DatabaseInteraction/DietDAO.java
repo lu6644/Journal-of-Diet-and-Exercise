@@ -47,14 +47,14 @@ public class DietDAO {
             p1.setString(3,diet.getMeal().name());
             int affectedRows = p1.executeUpdate();
             if (affectedRows == 0) {
-                throw new SQLException("Creating user failed, no rows affected.");
+                throw new SQLException("Creating diet failed, no rows affected.");
             }
             try (ResultSet generatedKeys = p1.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                      diet.setId(generatedKeys.getInt(1));
                 }
                 else {
-                    throw new SQLException("Creating user failed, no ID obtained.");
+                    throw new SQLException("Creating diet failed, no ID obtained.");
                 }
             }
         } catch (SQLException e) {
