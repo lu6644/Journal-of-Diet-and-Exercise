@@ -8,7 +8,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Model class for managing nutrient intake data.
+ */
 public class NutrientIntakeModel {
+    /**
+     * Retrieves a list of NutrientIntake objects representing the protein intake for each date in a specified period.
+     * @param startDate The start date of the period.
+     * @param endDate The end date of the period.
+     * @return A list of NutrientIntake objects.
+     */
     public List<NutrientIntake> getNutrientIntakeForPeriod(java.sql.Date startDate, java.sql.Date endDate) {
         List<NutrientIntake> nutrientIntakes = new ArrayList<>();
         String sql = "SELECT d.date, SUM(nid.Value) AS ProteinIntake " +
@@ -28,13 +37,14 @@ public class NutrientIntakeModel {
                 while (rs.next()) {
                     java.sql.Date date = rs.getDate("date");
                     double proteinIntake = rs.getDouble("ProteinIntake");
+                    // Adds a new NutrientIntake object for each date in the result set
                     nutrientIntakes.add(new NutrientIntake(date, proteinIntake));
                 }
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            e.printStackTrace(); // Handles any SQL exceptions
         }
 
-        return nutrientIntakes;
+        return nutrientIntakes; // Returns the list of nutrient intakes
     }
 }

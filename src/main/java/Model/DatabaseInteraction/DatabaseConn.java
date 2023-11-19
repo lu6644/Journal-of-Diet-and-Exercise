@@ -6,6 +6,8 @@ public class DatabaseConn {
     private static final String url = "jdbc:mysql://localhost:3306/fitnessjournal?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     private static final String username = "root";
     private static final String password = "Wuhuan0515.";
+    
+
     private static Connection con = null;
 
     static {
