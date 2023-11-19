@@ -208,13 +208,13 @@ public class ExerciseLoggingUI extends JFrame implements ActionListener {
 
 		String res = String.format("%.2f", info.calcualteCalories());
 
-		JOptionPane.showMessageDialog(this, "This exercise burned " + res + " calories.");
+		JOptionPane.showMessageDialog(this, "Exercise Log Successfully!\nThis exercise burned " + res + " calories.");
 
 	}
 
 	public static void launch() {
 		// Only for test
-		UserProfile user = new UserProfile("test1", "test2", "Test", "Test", 20, "male", 180.0, 75, "", false);
-		new ExerciseLoggingUI(user);
+//		UserProfile user = new UserProfile("test1", "test2", "Test", "Test", 20, "male", 180.0, 75, "", false);
+//		new ExerciseLoggingUI(user);
 	}
 }

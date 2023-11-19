@@ -20,7 +20,9 @@ public class ExerciseLogging {
 		sdf.applyPattern("yyyy-MM-dd HH:mm:ss");
 		String date_time = date + " " + time + ":00";
 		try {
-			exercise.setDate(sdf.parse(date_time));
+			java.util.Date utilDate = sdf.parse(date_time);
+			java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+			exercise.setDate(sqlDate);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

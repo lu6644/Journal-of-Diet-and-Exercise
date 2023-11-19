@@ -1,14 +1,19 @@
 package Model.Profile;
 
 public class UserProfile {
-	private String username;
-	private String password;
+	private int id = -1;
+	private String username = "";
+	private String password = "";
 	private String firstName;
 	private String lastName;
 	private int age;
 	private String gender;
 	private double height;
+
+	private String heightUnit;
 	private double weight;
+
+	private String weightUnit;
 	private String specialPeriod;
 	private boolean hasWeightScale;
 
@@ -17,10 +22,23 @@ public class UserProfile {
 	}
 	
 	public UserProfile(String username, String password, String firstName, String lastName, int age, String gender,
-			double height, double weight, String specialPeriod, boolean hasWeightScale) {
-		super();
+			double height,String heightUnit, double weight,String weightUnit, String specialPeriod, boolean hasWeightScale) {
 		this.username = username;
 		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.age = age;
+		this.gender = gender;
+		this.height = height;
+		this.heightUnit = heightUnit;
+		this.weightUnit = weightUnit;
+		this.weight = weight;
+		this.specialPeriod = specialPeriod;
+		this.hasWeightScale = hasWeightScale;
+	}
+
+	public UserProfile(String firstName, String lastName, int age, String gender, double height,
+					   double weight, String specialPeriod, boolean hasWeightScale){
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.age = age;
@@ -29,6 +47,14 @@ public class UserProfile {
 		this.weight = weight;
 		this.specialPeriod = specialPeriod;
 		this.hasWeightScale = hasWeightScale;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -83,18 +109,30 @@ public class UserProfile {
 		return height;
 	}
 
+	public String getHeightUnit(){return heightUnit;}
+
 	public void setHeight(double height) {
 		this.height = height;
+	}
+
+	public void setHeightUnit(String heightUnit){
+		this.heightUnit = heightUnit;
 	}
 
 	public double getWeight() {
 		return weight;
 	}
 
+	public String getWeightUnit() {
+		return weightUnit;
+	}
+
 	public void setWeight(double weight) {
 		this.weight = weight;
 	}
-
+	public void setWeightUnit(String weightUnit){
+		this.weightUnit = weightUnit;
+	}
 	public String getSpecialPeriod() {
 		return specialPeriod;
 	}
@@ -117,4 +155,20 @@ public class UserProfile {
 		// The equation of Mifflin-St.Jeor
 	}
 
+	@Override
+	public String toString() {
+		return "UserProfile{" +
+				"id=" + id +
+				", username='" + username + '\'' +
+				", password='" + password + '\'' +
+				", firstName='" + firstName + '\'' +
+				", lastName='" + lastName + '\'' +
+				", age=" + age +
+				", gender='" + gender + '\'' +
+				", height=" + height +
+				", weight=" + weight +
+				", specialPeriod='" + specialPeriod + '\'' +
+				", hasWeightScale=" + hasWeightScale +
+				'}';
+	}
 }

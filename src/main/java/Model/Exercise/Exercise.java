@@ -1,6 +1,6 @@
 package Model.Exercise;
 
-import java.util.Date;
+import java.sql.Date;
 
 import Model.Profile.UserProfile;
 

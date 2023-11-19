@@ -29,57 +29,46 @@ public class ExerciseDAO {
 
     }
 
+    public int searchExercises(int id){
+        String sql = "select * from fitnessjournal.exercise_log where account_id = ?;";
+        int counter = 0;
+        try{
+            PreparedStatement p = con.prepareStatement(sql);
+            ResultSet rs = p.executeQuery();
+
+            while(rs.next()){
+                counter++;
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return counter;
+    }
+
     public void insertExercise(Exercise ex) {
         String insertSQL = "insert into fitnessjournal.exercise_log (account_id, exercise_id, exercise_date, exercise_type, intensity, duration) values (?, ?, ?, ?, ?, ?)";
         try{
-            PreparedStatement p1 = con.prepareStatement(insertSQL, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement p = con.prepareStatement(insertSQL);
+            p.setInt(1, ex.getUser().getId());
+            p.setInt(2, searchExercises(ex.getUser().getId())+1);
+            p.setDate(3, ex.getDate());
+            p.setString(4, ex.getExerciseType());
+            p.setString(5, ex.getIntensity());
+            p.setDouble(6,ex.getDuration());
+
+            int affectedRows = p.executeUpdate();
+            if(affectedRows == 0){
+                System.out.println("Exercise insert failed");
+            }
+            else{
+                System.out.println("Exercise insert successfully");
+            }
+
         }catch (Exception e){
             e.printStackTrace();
         }
 
     }
-
-    static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/fitnessjournal?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
-
-    static final String USER = "root";
-    static final String PASS = "Wuhuan0515.";
-
-    public static void main(String args[]){
-        Connection conn = null;
-        Statement stmt = null;
-
-        try{
-            Class.forName(JDBC_DRIVER);
-
-            System.out.println("连接数据库。。。");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-            System.out.println(("....."));
-            stmt = conn.createStatement();
-            String sql;
-            sql = "select * from fitnessJournal.exercise";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            while(rs.next()){
-                System.out.println("exercise_type: "+ rs.getString("exercise_type"));
-                System.out.println("intensity: "+ rs.getString("intensity"));
-                System.out.println("met_valiue: " + rs.getString("met_value"));
-                System.out.println("\n");
-            }
-            rs.close();
-            stmt.close();
-            conn.close();
-
-
-
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-
 
 }

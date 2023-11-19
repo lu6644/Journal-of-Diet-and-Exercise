@@ -25,7 +25,7 @@ public class DietLoggingController {
 		return instance;
 	}
 
-	public String logDiet(int accountId, Date date, String meal, Map<String, Double> foods) {
+	public String[] logDiet(int accountId, Date date, String meal, Map<String, Double> foods) {
 		MealType mealType = MealType.valueOf(meal.toUpperCase());
 		Diet diet = new Diet(accountId, date, mealType);
 		for (Map.Entry<String, Double> entry : foods.entrySet()) {
@@ -36,10 +36,11 @@ public class DietLoggingController {
 			}
 		}
 		NutrientsCalculator.getNutrientsValue(diet);
-		// TODO: invoke adding diet info to DB when DB setup is complete
 		DietDAO.getInstance().addDiet2Db(diet);
-		// return nutrients information to frontend page
-		return nutrientsValueToString(diet.getNutrientsValue());
+		// return nutrients information and calories intake to frontend page
+		return new String[]
+				{nutrientsValueToString(diet.getNutrientsValue()),
+				diet.getCalories()+"kCal"};
 	}
 
 	private String nutrientsValueToString(HashMap<Nutrient, Double> nutrientsValue) {
