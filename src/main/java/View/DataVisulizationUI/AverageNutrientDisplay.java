@@ -5,6 +5,7 @@ import javax.swing.*;
 import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.DatabaseInteraction.DatabaseConnector;
 import View.ExerciseLoggingUI.ExerciseLoggingUI;
+import View.MainUI.NavigateUI;
 import View.ProfileUI.ProfileUIData;
 
 import java.awt.*;
@@ -23,15 +24,23 @@ public class AverageNutrientDisplay extends JFrame {
         this.user = user;
 
         setTitle("Nutrient Intake and Notification");
-        setSize(1200, 800);
+        setSize(1200, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         NutrientPieChartPanel pieChartPanel = new NutrientPieChartPanel();
         NutrientNotificationPanel notificationPanel = new NutrientNotificationPanel();
 
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            this.dispose();
+            NavigateUI.launch(user);
+        });
+
+        notificationPanel.add(backButton);
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(pieChartPanel, BorderLayout.CENTER);
         getContentPane().add(notificationPanel, BorderLayout.SOUTH);
+
     }
 
     private class NutrientPieChartPanel extends JPanel {

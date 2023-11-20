@@ -7,6 +7,7 @@ import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.DataProcessing.NutrientIntake;
 import Model.DatabaseInteraction.NutrientIntakeModel;
 import View.ExerciseLoggingUI.ExerciseLoggingUI;
+import View.MainUI.NavigateUI;
 import View.ProfileUI.ProfileUIData;
 
 import java.util.Calendar;
@@ -28,7 +29,16 @@ public class NutrientChartDisplay extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         NutrientPanel panel = new NutrientPanel();
-        setContentPane(panel);
+        Container c = getContentPane();
+        c.setLayout(new BorderLayout());
+        c.add(panel,BorderLayout.CENTER);
+
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            this.dispose();
+            NavigateUI.launch(user);
+        });
+        c.add(backButton,BorderLayout.SOUTH);
     }
 
     /**
