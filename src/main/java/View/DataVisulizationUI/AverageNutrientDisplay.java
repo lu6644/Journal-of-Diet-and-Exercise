@@ -1,8 +1,9 @@
-package View.DietExerciseDataUI;
+package View.DataVisulizationUI;
 
 import javax.swing.*;
 
 import Model.DatabaseInteraction.DatabaseConnector;
+import View.ProfileUI.ProfileUIData;
 
 import java.awt.*;
 import java.sql.Connection;
@@ -14,10 +15,10 @@ import java.sql.Date;
 
 public class AverageNutrientDisplay extends JFrame {
 
-    private int accountId;
+    private ProfileUIData user;
 
-    public AverageNutrientDisplay(int accountId) {
-        this.accountId = accountId;
+    public AverageNutrientDisplay(ProfileUIData user) {
+        this.user = user;
 
         setTitle("Nutrient Intake and Notification");
         setSize(1200, 800);
@@ -138,7 +139,7 @@ public class AverageNutrientDisplay extends JFrame {
             String sql = "SELECT weight FROM account WHERE account_id = ?";
             try (Connection conn = DatabaseConnector.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setInt(1, accountId);
+                pstmt.setInt(1, user.getId());
                 ResultSet rs = pstmt.executeQuery();
                 if (rs.next()) {
                     return rs.getDouble("weight");
@@ -158,7 +159,7 @@ public class AverageNutrientDisplay extends JFrame {
             try (Connection conn = DatabaseConnector.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, nutrientName);
-                pstmt.setInt(2, accountId);
+                pstmt.setInt(2, user.getId());
                 ResultSet rs = pstmt.executeQuery();
                 if (rs.next()) {
                     return rs.getDouble("AverageValue");
@@ -197,11 +198,16 @@ public class AverageNutrientDisplay extends JFrame {
         }
     }
 
+    public static void launch(ProfileUIData user){
+        AverageNutrientDisplay frame = new AverageNutrientDisplay(user);
+        frame.setVisible(true);
+    }
+
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             int accountId = 1;
-            AverageNutrientDisplay frame = new AverageNutrientDisplay(accountId);
-            frame.setVisible(true);
+            //AverageNutrientDisplay frame = new AverageNutrientDisplay(accountId);
+            //frame.setVisible(true);
         });
     }
 }

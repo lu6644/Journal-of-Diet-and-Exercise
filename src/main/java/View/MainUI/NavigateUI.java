@@ -1,6 +1,6 @@
 package View.MainUI;
 
-import View.DataVisulizationUI.CFGComparisionPage;
+import View.DataVisulizationUI.*;
 import View.DietExerciseDataUI.DietJournalPage;
 import View.DietExerciseDataUI.DietLoggingPage;
 import View.ExerciseLoggingUI.ExerciseLoggingUI;
@@ -58,6 +58,26 @@ public class NavigateUI extends JFrame {
         CFGCompareButton.addActionListener(e -> CFGCompareAction());
         add(CFGCompareButton);
 
+        JButton energyExpenditureButton = new JButton("Energy Expenditure Trend");
+        energyExpenditureButton.setBounds(labelX, startY + 7 * ySpacing, 400, 40);
+        energyExpenditureButton.addActionListener(e -> energyExpenditureAction());
+        add(energyExpenditureButton);
+
+        JButton caloryIntakeButton = new JButton("Calory Intake Trend");
+        caloryIntakeButton.setBounds(labelX, startY + 8 * ySpacing, 400, 40);
+        caloryIntakeButton.addActionListener(e -> caloryIntakeAction());
+        add(caloryIntakeButton);
+
+        JButton averageNutrientButton = new JButton("Average Nutrient Portions");
+        averageNutrientButton.setBounds(labelX, startY + 9 * ySpacing, 400, 40);
+        averageNutrientButton.addActionListener(e -> averageNutrientAction());
+        add(averageNutrientButton);
+
+        JButton topNutrientsButton = new JButton("Top 10 Nutrients Intake");
+        topNutrientsButton.setBounds(labelX, startY + 10 * ySpacing, 400, 40);
+        topNutrientsButton.addActionListener(e -> topNutrientAction());
+        add(topNutrientsButton);
+
         setVisible(true);
     }
 
@@ -84,6 +104,26 @@ public class NavigateUI extends JFrame {
     public void CFGCompareAction() {
         this.dispose();
         CFGComparisionPage.launch(user.getId());
+    }
+
+    public void energyExpenditureAction(){
+        this.dispose();
+        CalorieBurnChartDisplay.launch(user);
+    }
+
+    public void caloryIntakeAction(){
+        this.dispose();
+        NutrientChartDisplay.launch(user);
+    }
+
+    public void averageNutrientAction(){
+        this.dispose();
+        AverageNutrientDisplay.launch(user);
+    }
+
+    public void topNutrientAction(){
+        this.dispose();
+        CalorieChartDisplay.launch(user);
     }
 
     public static void launch(ProfileUIData user) {

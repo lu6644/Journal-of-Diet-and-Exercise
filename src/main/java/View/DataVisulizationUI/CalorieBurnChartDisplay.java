@@ -1,4 +1,4 @@
-package View.DietExerciseDataUI;
+package View.DataVisulizationUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,13 +10,16 @@ import java.util.*;
 import java.sql.Date;
 import java.util.stream.Collectors;
 import Model.DatabaseInteraction.DatabaseConnector;
+import View.ProfileUI.ProfileUIData;
 
-public class CalorieBurnChartApplication extends JPanel {
+public class CalorieBurnChartDisplay extends JPanel {
     private List<DataPoint> dataPoints = new ArrayList<>();
+    private ProfileUIData user;
 
-    public CalorieBurnChartApplication() {
+    public CalorieBurnChartDisplay(ProfileUIData user) {
         // Load data from the database when the application starts
         loadDataFromDatabase();
+        this.user = user;
     }
 
     private void loadDataFromDatabase() {
@@ -119,12 +122,20 @@ public class CalorieBurnChartApplication extends JPanel {
         }
     }
 
+    public static void launch(ProfileUIData user){
+        JFrame frame = new JFrame("Calorie Burn Chart");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(new CalorieBurnChartDisplay(user));
+        frame.setSize(800, 600);
+        frame.setVisible(true);
+    }
+
     public static void main(String[] args) {
         // Setting up the frame for the application
         JFrame frame = new JFrame("Calorie Burn Chart");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new CalorieBurnChartApplication());
-        frame.setSize(800, 600);
-        frame.setVisible(true);
+        //frame.add(new CalorieBurnChartDisplay());
+        //frame.setSize(800, 600);
+        //frame.setVisible(true);
     }
 }
