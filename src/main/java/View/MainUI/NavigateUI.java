@@ -1,6 +1,7 @@
 package View.MainUI;
 
 import View.DataVisulizationUI.CFGComparisionPage;
+import View.DietExerciseDataUI.DietJournalPage;
 import View.DietExerciseDataUI.DietLoggingPage;
 import View.ExerciseLoggingUI.ExerciseLoggingUI;
 import View.ProfileUI.ProfileDetailsPage;
@@ -43,7 +44,13 @@ public class NavigateUI extends JFrame {
 
         JButton dietLoggingButton = new JButton("Diet Logging");
         dietLoggingButton.setBounds(labelX, startY + 4 * ySpacing, 400, 40);
+        dietLoggingButton.addActionListener(e -> dietloggingAction());
         add(dietLoggingButton);
+
+        JButton dietHistoryButton = new JButton("Diet History");
+        dietHistoryButton.setBounds(labelX, startY + 4 * ySpacing, 400, 40);
+        dietHistoryButton.addActionListener(e -> dietHistoryAction());
+        add(dietHistoryButton);
 
         JButton CFGCompareButton = new JButton("Compare My Food Intake With CFG Recommendations");
         CFGCompareButton.setBounds(labelX, startY + 5 * ySpacing, 400, 40);
@@ -56,7 +63,7 @@ public class NavigateUI extends JFrame {
 
     public void dietloggingAction(){
         this.dispose();
-        DietLoggingPage.launch();
+        DietLoggingPage.launch(user);
     }
     public void infoAction(){
         this.dispose();
@@ -66,6 +73,11 @@ public class NavigateUI extends JFrame {
     public void exLoggingAction(){
         this.dispose();
         ExerciseLoggingUI.launch(user.getId());
+    }
+
+    public void dietHistoryAction(){
+        this.dispose();
+        DietJournalPage.launch(user.getId());
     }
 
     public void CFGCompareAction() {

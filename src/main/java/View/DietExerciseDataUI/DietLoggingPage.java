@@ -1,5 +1,6 @@
 package View.DietExerciseDataUI;
 import Controller.DataLoggingHandler.DietLoggingController;
+import View.ProfileUI.ProfileUIData;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class DietLoggingPage extends JFrame implements ActionListener {
-    private int accountId=1;
+    private ProfileUIData user;
     private Container c;
     private JLabel title;
     private JLabel date;
@@ -77,14 +78,15 @@ public class DietLoggingPage extends JFrame implements ActionListener {
             "Bread, whole grain (whole-wheat), commercial" ,
             "Apple, Fuji, raw, with skin"};
 
-    public static void launch(){
-        DietLoggingPage dlp = new DietLoggingPage();
+    public static void launch(ProfileUIData user){
+        DietLoggingPage dlp = new DietLoggingPage(user);
         dlp.setSize(1280,720);
         dlp.setVisible(true);
     }
 
-    public DietLoggingPage()
+    public DietLoggingPage(ProfileUIData user)
     {
+        this.user = user;
         setTitle("Log Your Diet");
         setBounds(300, 90, 900, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -289,7 +291,7 @@ public class DietLoggingPage extends JFrame implements ActionListener {
                 foods.put(inputFood3, inputQty3);
             }
             DietLoggingController c = DietLoggingController.getInstance();
-            String[] nutrientsDataPack= c.logDiet(accountId, inputDate,inputMeal,foods);
+            String[] nutrientsDataPack= c.logDiet(user.getId(), inputDate,inputMeal,foods);
             String nutrientInfo = nutrientsDataPack[0];
             String calories = nutrientsDataPack[1];
             caloriesInfo.setText("Calories: " + calories);
@@ -297,7 +299,7 @@ public class DietLoggingPage extends JFrame implements ActionListener {
             result.setText(nutrientInfo);
             //result.setText("<html>" + nutrientInfo.replaceAll("\n", "<br>"));
         } else if (comm.equals("viewDietsHistory")) {
-            DietJournalPage.launch(accountId);
+            DietJournalPage.launch(user.getId());
         }
     }
 
