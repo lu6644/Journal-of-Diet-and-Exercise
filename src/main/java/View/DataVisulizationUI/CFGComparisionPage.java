@@ -1,6 +1,8 @@
 package View.DataVisulizationUI;
 
 import Controller.DataRequestHandler.FoodsQueryController;
+import Controller.DataRequestHandler.ProfilesQueryController;
+import View.MainUI.NavigateUI;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -10,11 +12,15 @@ import org.jfree.data.general.DefaultPieDataset;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Map;
 
 public class CFGComparisionPage extends JFrame {
 
+    int pid;
     public CFGComparisionPage(int profileId) {
+        this.pid = profileId;
         setTitle("Compare Your Food Intake with CFG Recommendations");
 
         FoodsQueryController foodsQueryController = FoodsQueryController.getInstance();
@@ -37,7 +43,15 @@ public class CFGComparisionPage extends JFrame {
         JPanel panel = new JPanel(new GridLayout(1, 2));
         panel.add(new ChartPanel(chart1));
         panel.add(new ChartPanel(chart2));
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                backAction();
+            }
+        });
 
+        panel.add(backButton);
         // Add the panel to the frame
         setContentPane(panel);
     }
@@ -63,6 +77,12 @@ public class CFGComparisionPage extends JFrame {
         plot.setLabelFont(new Font("SansSerif", Font.BOLD, 12));
 
         return chart;
+    }
+
+    public void backAction(){
+        this.dispose();
+
+        NavigateUI.launch(ProfilesQueryController.getInstance().getProfile(pid));
     }
 
     public static void launch(int profileId) {

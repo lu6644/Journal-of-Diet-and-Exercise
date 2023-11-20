@@ -2,19 +2,23 @@ package View.MainUI;
 
 import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.Profile.UserProfile;
+
 import View.DataVisulizationUI.CFGComparisionPage;
+import View.DietExerciseDataUI.DietJournalPage;
 import View.DietExerciseDataUI.DietLoggingPage;
 import View.ExerciseLoggingUI.ExerciseLoggingUI;
 import View.ProfileUI.ProfileDetailsPage;
+import View.ProfileUI.ProfileUIData;
 
 import javax.swing.*;
 
 public class NavigateUI extends JFrame {
 
-    private int account_id;
 
-    public NavigateUI(int account_id) {
-        this.account_id = account_id;
+    private ProfileUIData user;
+
+    public NavigateUI(ProfileUIData user) {
+        this.user = user;
         createComponents();
     }
 
@@ -28,7 +32,7 @@ public class NavigateUI extends JFrame {
         int startY = 50;
         int ySpacing = 50;
 
-        JLabel l = new JLabel("Welcome! " + ProfilesQueryController.getInstance().getUsername(account_id));
+        JLabel l = new JLabel("Welcome! " + ProfilesQueryController.getInstance().getUsername(user.getId()));
         l.setBounds(labelX+130, startY, 200, 40);
         add(l);
 
@@ -44,7 +48,13 @@ public class NavigateUI extends JFrame {
 
         JButton dietLoggingButton = new JButton("Diet Logging");
         dietLoggingButton.setBounds(labelX, startY + 4 * ySpacing, 400, 40);
+        dietLoggingButton.addActionListener(e -> dietloggingAction());
         add(dietLoggingButton);
+
+        JButton dietHistoryButton = new JButton("Diet History");
+        dietHistoryButton.setBounds(labelX, startY + 4 * ySpacing, 400, 40);
+        dietHistoryButton.addActionListener(e -> dietHistoryAction());
+        add(dietHistoryButton);
 
         JButton CFGCompareButton = new JButton("Compare My Food Intake With CFG Recommendations");
         CFGCompareButton.setBounds(labelX, startY + 5 * ySpacing, 400, 40);
@@ -57,24 +67,32 @@ public class NavigateUI extends JFrame {
 
     public void dietloggingAction(){
         this.dispose();
-        DietLoggingPage.launch(account_id);
+
+        DietLoggingPage.launch(user);
     }
     public void infoAction(){
         this.dispose();
-        ProfileDetailsPage.launch(account_id);
+        ProfileDetailsPage.launch(user);
     }
 
     public void exLoggingAction(){
         this.dispose();
-        ExerciseLoggingUI.launch(account_id);
+        ExerciseLoggingUI.launch(user);
+    }
+
+    public void dietHistoryAction(){
+        this.dispose();
+        DietJournalPage.launch(user.getId());
     }
 
     public void CFGCompareAction() {
         this.dispose();
-        CFGComparisionPage.launch(account_id);
+        CFGComparisionPage.launch(user.getId());
     }
 
-    public static void launch(int account_id) {
-        new NavigateUI(account_id);
+
+    public static void launch(ProfileUIData user) {
+        new NavigateUI(user);
+
     }
 }
