@@ -1,4 +1,4 @@
-package Model.DataProcessing;
+package Model.DatabaseInteraction;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import Model.DataProcessing.NutrientIntake;
 
 /**
  * Model class for managing nutrient intake data.

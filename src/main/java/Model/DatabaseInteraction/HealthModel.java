@@ -1,4 +1,4 @@
-package Model.DataProcessing;
+package Model.DatabaseInteraction;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import Model.DataProcessing.CalorieExerciseData;
 
 /**
  * Class responsible for managing health-related data.

@@ -1,9 +1,11 @@
 package View.MainUI;
 
+
 import Controller.DataRequestHandler.ProfilesQueryController;
-import Model.Profile.UserProfile;
+
 
 import View.DataVisulizationUI.CFGComparisionPage;
+import View.DataVisulizationUI.*;
 import View.DietExerciseDataUI.DietJournalPage;
 import View.DietExerciseDataUI.DietLoggingPage;
 import View.ExerciseLoggingUI.ExerciseLoggingUI;
@@ -43,7 +45,9 @@ public class NavigateUI extends JFrame {
 
         JButton exLoggingButton = new JButton("Exercise Logging");
         exLoggingButton.setBounds(labelX, startY + 3 * ySpacing, 400, 40);
+
         exLoggingButton.addActionListener(e->exLoggingAction());
+
         add(exLoggingButton);
 
         JButton dietLoggingButton = new JButton("Diet Logging");
@@ -52,14 +56,34 @@ public class NavigateUI extends JFrame {
         add(dietLoggingButton);
 
         JButton dietHistoryButton = new JButton("Diet History");
-        dietHistoryButton.setBounds(labelX, startY + 4 * ySpacing, 400, 40);
+        dietHistoryButton.setBounds(labelX, startY + 5 * ySpacing, 400, 40);
         dietHistoryButton.addActionListener(e -> dietHistoryAction());
         add(dietHistoryButton);
 
         JButton CFGCompareButton = new JButton("Compare My Food Intake With CFG Recommendations");
-        CFGCompareButton.setBounds(labelX, startY + 5 * ySpacing, 400, 40);
+        CFGCompareButton.setBounds(labelX, startY + 6 * ySpacing, 400, 40);
         CFGCompareButton.addActionListener(e -> CFGCompareAction());
         add(CFGCompareButton);
+
+        JButton energyExpenditureButton = new JButton("Energy Expenditure Trend");
+        energyExpenditureButton.setBounds(labelX, startY + 7 * ySpacing, 400, 40);
+        energyExpenditureButton.addActionListener(e -> energyExpenditureAction());
+        add(energyExpenditureButton);
+
+        JButton caloryIntakeButton = new JButton("Calory Intake Trend");
+        caloryIntakeButton.setBounds(labelX, startY + 8 * ySpacing, 400, 40);
+        caloryIntakeButton.addActionListener(e -> caloryIntakeAction());
+        add(caloryIntakeButton);
+
+        JButton averageNutrientButton = new JButton("Average Nutrient Portions");
+        averageNutrientButton.setBounds(labelX, startY + 9 * ySpacing, 400, 40);
+        averageNutrientButton.addActionListener(e -> averageNutrientAction());
+        add(averageNutrientButton);
+
+        JButton topNutrientsButton = new JButton("Top 10 Nutrients Intake");
+        topNutrientsButton.setBounds(labelX, startY + 10 * ySpacing, 400, 40);
+        topNutrientsButton.addActionListener(e -> topNutrientAction());
+        add(topNutrientsButton);
 
         setVisible(true);
     }
@@ -82,7 +106,7 @@ public class NavigateUI extends JFrame {
 
     public void dietHistoryAction(){
         this.dispose();
-        DietJournalPage.launch(user.getId());
+        DietJournalPage.launch(user);
     }
 
     public void CFGCompareAction() {
@@ -90,6 +114,26 @@ public class NavigateUI extends JFrame {
         CFGComparisionPage.launch(user.getId());
     }
 
+
+    public void energyExpenditureAction(){
+        this.dispose();
+        CalorieBurnChartDisplay.launch(user);
+    }
+
+    public void caloryIntakeAction(){
+        this.dispose();
+        NutrientChartDisplay.launch(user);
+    }
+
+    public void averageNutrientAction(){
+        this.dispose();
+        AverageNutrientDisplay.launch(user);
+    }
+
+    public void topNutrientAction(){
+        this.dispose();
+        CalorieChartDisplay.launch(user);
+    }
 
     public static void launch(ProfileUIData user) {
         new NavigateUI(user);
