@@ -1,6 +1,7 @@
 package View.ProfileUI;
 
 import Controller.DataLoggingHandler.ProfileAddingController;
+import View.MainUI.MainUI;
 import View.MainUI.NavigateUI;
 
 import java.awt.GridLayout;
@@ -112,6 +113,16 @@ public class ProfileCreationPage extends JFrame {
         });
         add(submitButton);
 
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(labelX + 150, startY + 10 *ySpacing, 100, 30);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                backAction();
+            }
+        });
+        add(backButton);
+
         setVisible(true);
     }
 
@@ -148,8 +159,16 @@ public class ProfileCreationPage extends JFrame {
 
         ProfileUIData user = new ProfileUIData(username, password, firstName, lastName, age, gender, height, heightUnit,weight,weightUnit,specialPeriod, hasWeightScale);
         user.setId(profileId);
+
         NavigateUI.launch(user);
 
+
+    }
+
+    public void backAction(){
+        this.dispose();
+
+        MainUI.launch();
     }
 
     public static void launch() {

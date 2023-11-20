@@ -241,11 +241,25 @@ public class ProfileDAO {
             else{
                 return 0;
             }
-
-
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public String getUsername(int id){
+        String sql = "select username from fitnessjournal.user where account_id = ?;";
+        String username ="";
+        try{
+            PreparedStatement p = con.prepareStatement(sql);
+            p.setInt(1, id);
+
+            ResultSet rs = p.executeQuery();
+            while(rs.next()){
+                username = rs.getString("username");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return username;
     }
 }

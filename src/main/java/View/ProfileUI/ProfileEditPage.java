@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 public class ProfileEditPage extends JFrame {
 
+
     private ProfileUIData user;
     private JTextField usernameField, passwordField, firstNameField, lastNameField, ageField, heightField,
             weightField, specialPeriodField;
@@ -22,6 +23,7 @@ public class ProfileEditPage extends JFrame {
 
     public ProfileEditPage(ProfileUIData user) {
         this.user = user;
+
         createComponents();
     }
 
@@ -130,14 +132,29 @@ public class ProfileEditPage extends JFrame {
             }
         });
 
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(labelX + 150, startY + 10 * ySpacing, 100, 30);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                backAction();
+            }
+        });
+        add(backButton);
+
         add(saveButton);
 
         setVisible(true);
     }
 
+    public void backAction() {
+        this.dispose();
+
+        ProfileDetailsPage.launch(user);
+    }
+
     public void saveAction() {
-        String username = usernameField.getText();
-        String password = new String(((JPasswordField) passwordField).getPassword());
+
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         int age = Integer.parseInt(ageField.getText());
@@ -155,9 +172,8 @@ public class ProfileEditPage extends JFrame {
 
         this.dispose();
 
+
         NavigateUI.launch(ProfilesQueryController.getInstance().getProfile(user.getId()));
-
-
     }
 
     private void addField(String label, JTextField field, int labelX, int textFieldX, int y, int ySpacing) {
@@ -173,5 +189,6 @@ public class ProfileEditPage extends JFrame {
 
     public static void launch(ProfileUIData user) {
         new ProfileEditPage(user);
+
     }
 }

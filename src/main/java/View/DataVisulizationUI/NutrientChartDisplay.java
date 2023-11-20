@@ -1,34 +1,44 @@
-package View.DietExerciseDataUI;
+package View.DataVisulizationUI;
 
 import java.awt.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.swing.*;
 
+import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.DataProcessing.NutrientIntake;
 import Model.DatabaseInteraction.NutrientIntakeModel;
+import View.ExerciseLoggingUI.ExerciseLoggingUI;
+import View.MainUI.NavigateUI;
+import View.ProfileUI.ProfileUIData;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 /**
  * Application for displaying a chart of nutrient intake.
  */
-public class NutrientChartApplication extends JFrame {
+public class NutrientChartDisplay extends JFrame {
 
     /**
      * Constructor to initialize the nutrient chart application.
      */
-    public NutrientChartApplication() {
+    private ProfileUIData user;
+    public NutrientChartDisplay(ProfileUIData user) {
+        this.user = user;
         setTitle("Nutrient Intake Chart");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         NutrientPanel panel = new NutrientPanel();
-        setContentPane(panel);
+        Container c = getContentPane();
+        c.setLayout(new BorderLayout());
+        c.add(panel,BorderLayout.CENTER);
+
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            this.dispose();
+            NavigateUI.launch(user);
+        });
+        c.add(backButton,BorderLayout.SOUTH);
     }
 
     /**
@@ -109,8 +119,13 @@ public class NutrientChartApplication extends JFrame {
      */
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            NutrientChartApplication frame = new NutrientChartApplication();
-            frame.setVisible(true);
+            ProfileUIData user = ProfilesQueryController.getInstance().getProfile(1);
+            NutrientChartDisplay.launch(user);
         });
+    }
+
+    public static void launch(ProfileUIData user){
+        NutrientChartDisplay frame = new NutrientChartDisplay(user);
+        frame.setVisible(true);
     }
 }

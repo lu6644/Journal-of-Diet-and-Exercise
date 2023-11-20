@@ -1,9 +1,13 @@
-package View.DietExerciseDataUI;
+package View.DataVisulizationUI;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.DatabaseInteraction.DatabaseConnector;
+import View.ExerciseLoggingUI.ExerciseLoggingUI;
+import View.MainUI.NavigateUI;
+import View.ProfileUI.ProfileUIData;
 
 import java.awt.*;
 import java.sql.*;
@@ -11,18 +15,19 @@ import java.sql.Date;
 import java.util.*;
 import java.util.List;
 
-public class CalorieChartApplication extends JFrame {
+public class CalorieChartDisplay extends JFrame {
 
     private JPanel contentPane;
     private JTextField daysInputField;
     private BarPanel barPanel;
+    private ProfileUIData user;
 
     // Main method to run the application
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
-                CalorieChartApplication frame = new CalorieChartApplication();
-                frame.setVisible(true); // Make the frame visible
+                ProfileUIData user = ProfilesQueryController.getInstance().getProfile(1);
+                CalorieChartDisplay.launch(user);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -30,7 +35,8 @@ public class CalorieChartApplication extends JFrame {
     }
 
     // Constructor to set up the application frame
-    public CalorieChartApplication() {
+    public CalorieChartDisplay(ProfileUIData user) {
+        this.user = user;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Set the default close operation
         setBounds(600, 100, 800, 600); // Set the size and position of the frame
         contentPane = new JPanel(new BorderLayout()); // Create a content pane with BorderLayout
@@ -52,6 +58,13 @@ public class CalorieChartApplication extends JFrame {
 
         barPanel = new BarPanel(); // Create a panel for the bar chart
         contentPane.add(barPanel, BorderLayout.CENTER); // Add the bar panel to the content pane
+
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            this.dispose();
+            NavigateUI.launch(user);
+        });
+        contentPane.add(backButton,BorderLayout.SOUTH);
     }
 
     // Method to load data based on the input days
@@ -149,5 +162,10 @@ public class CalorieChartApplication extends JFrame {
 
             return averageNutrientIntakes; // Return the map of average nutrient intakes
         }
+    }
+
+    public static void launch(ProfileUIData user){
+        CalorieChartDisplay frame = new CalorieChartDisplay(user);
+        frame.setVisible(true);
     }
 }

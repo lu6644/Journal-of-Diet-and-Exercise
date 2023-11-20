@@ -18,14 +18,19 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import Controller.DataLoggingHandler.ExerciseLogging;
-import Model.Profile.UserProfile;
+
+import View.MainUI.NavigateUI;
+
+import View.ProfileUI.ProfileUIData;
 
 import java.text.SimpleDateFormat;
 
 public class ExerciseLoggingUI extends JFrame {
 	JComboBox<String> exerciseComboBox;
 	JComboBox<String> intensityComboBox;
-	int account_id;
+
+	ProfileUIData user;
+
 	JLabel exerciseTypeInput;
 	JLabel intensityInput;
 	JLabel durationInput;
@@ -41,11 +46,11 @@ public class ExerciseLoggingUI extends JFrame {
 	JTextField durationField;
 	JTextField dateInput;
 
-	ExerciseLoggingUI(int account_id) {
-		this.account_id = account_id;
-		accountInfo = new JLabel("AccountID: "+account_id);
+	ExerciseLoggingUI(ProfileUIData user) {
+		this.user = user;
+		accountInfo = new JLabel("AccountID: " + user.getId());
 		head = new JLabel("Excercise Logging System");
-		String[] exerciseOptions = { "Swimming", "Running", "Biking", "Walking", "Calisthenics", "Basketball" };
+		String[] exerciseOptions = {"Swimming", "Running", "Biking", "Walking", "Calisthenics", "Basketball"};
 		notice = new JLabel("*Please select exercise type first");
 		exerciseComboBox = new JComboBox<>(exerciseOptions);
 		exerciseComboBox.setSelectedIndex(-1);
@@ -59,24 +64,24 @@ public class ExerciseLoggingUI extends JFrame {
 					notice.setVisible(false);
 					if (selectedOption.equals("Swimming")) {
 						// Take freestyle swimming as an example.
-						String[] intensityOptions = { "vigorous effort", "light or moderate effort" };
+						String[] intensityOptions = {"vigorous effort", "light or moderate effort"};
 						intensityComboBox.setModel(new DefaultComboBoxModel<>(intensityOptions));
 					} else if (selectedOption.equals("Running")) {
-						String[] intensityOptions = { "5 mph (12 min/mile)", "7 mph (8.5 min/mile)",
-								"10 mph (6 min/mile)" };
+						String[] intensityOptions = {"5 mph (12 min/mile)", "7 mph (8.5 min/mile)",
+								"10 mph (6 min/mile)"};
 						intensityComboBox.setModel(new DefaultComboBoxModel<>(intensityOptions));
 					} else if (selectedOption.equals("Biking")) {
-						String[] intensityOptions = { "for pleasure", "light effort", "moderate effort",
-								"racing or vigorous effort" };
+						String[] intensityOptions = {"for pleasure", "light effort", "moderate effort",
+								"racing or vigorous effort"};
 						intensityComboBox.setModel(new DefaultComboBoxModel<>(intensityOptions));
 					} else if (selectedOption.equals("Walking")) {
-						String[] intensityOptions = { "moderate pace", "for exercise", "very brisk pace" };
+						String[] intensityOptions = {"moderate pace", "for exercise", "very brisk pace"};
 						intensityComboBox.setModel(new DefaultComboBoxModel<>(intensityOptions));
 					} else if (selectedOption.equals("Calisthenics")) {
-						String[] intensityOptions = { "light effort", "moderate effort", "vigorous effort" };
+						String[] intensityOptions = {"light effort", "moderate effort", "vigorous effort"};
 						intensityComboBox.setModel(new DefaultComboBoxModel<>(intensityOptions));
 					} else if (selectedOption.equals("Basketball")) {
-						String[] intensityOptions = { "game", "general", "shooting baskets" };
+						String[] intensityOptions = {"game", "general", "shooting baskets"};
 						intensityComboBox.setModel(new DefaultComboBoxModel<>(intensityOptions));
 					}
 				}
@@ -90,13 +95,24 @@ public class ExerciseLoggingUI extends JFrame {
 		durationField = new JTextField();
 
 		b = new JButton("Submit");
-		b.setBounds(350, 700, 150, 50);
+		b.setBounds(450, 600, 150, 50);
 		b.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				action();
 			}
 		});
+
+		JButton backButton = new JButton("Back");
+		backButton.setBounds(700, 600, 150, 50);
+		backButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				backAction();
+			}
+		});
+		add(backButton);
+
 		date = new JLabel("Date: ");
 		dateExample = new JLabel("*Date input example: YYYY-MM-DD");
 		dateInput = new JTextField();
@@ -105,22 +121,22 @@ public class ExerciseLoggingUI extends JFrame {
 		timeNotice = new JLabel("*Please enter time (HH:mm) with 24-hour clock");
 		timeInput = new JTextField();
 
-		setSize(1000, 1000);
-		head.setBounds(350, 10, 500, 100);
-		accountInfo.setBounds(750, 100, 250, 40);
-		date.setBounds(25, 150, 100, 40);
-		dateInput.setBounds(150, 150, 150, 40);
-		dateExample.setBounds(350, 150, 200, 40);
-		time.setBounds(25, 250, 100, 40);
-		timeInput.setBounds(150, 250, 150, 40);
-		timeNotice.setBounds(350, 250, 300, 40);
-		exerciseTypeInput.setBounds(25, 350, 100, 40);
-		exerciseComboBox.setBounds(150, 350, 150, 40);
-		intensityInput.setBounds(25, 450, 100, 40);
-		intensityComboBox.setBounds(150, 450, 150, 40);
-		notice.setBounds(350, 450, 200, 40);
-		durationInput.setBounds(25, 550, 150, 40);
-		durationField.setBounds(150, 550, 150, 40);
+		setSize(1280, 720);
+		head.setBounds(450, 10, 500, 100);
+		accountInfo.setBounds(850, 100, 250, 40);
+		date.setBounds(125, 150, 100, 40);
+		dateInput.setBounds(250, 150, 150, 40);
+		dateExample.setBounds(450, 150, 200, 40);
+		time.setBounds(125, 250, 100, 40);
+		timeInput.setBounds(250, 250, 150, 40);
+		timeNotice.setBounds(450, 250, 300, 40);
+		exerciseTypeInput.setBounds(125, 350, 100, 40);
+		exerciseComboBox.setBounds(250, 350, 150, 40);
+		intensityInput.setBounds(125, 450, 100, 40);
+		intensityComboBox.setBounds(250, 450, 150, 40);
+		notice.setBounds(450, 450, 200, 40);
+		durationInput.setBounds(125, 550, 150, 40);
+		durationField.setBounds(250, 550, 150, 40);
 
 		add(date);
 		add(dateInput);
@@ -146,11 +162,14 @@ public class ExerciseLoggingUI extends JFrame {
 
 	}
 
+	public void backAction() {
+		this.dispose();
+		NavigateUI.launch(user);
+	}
+
 
 	public void action() {
-		// TODO Auto-generated method stub
 
-		// Exception handle
 
 		String selectedOption = (String) exerciseComboBox.getSelectedItem();
 		String intensity = (String) intensityComboBox.getSelectedItem();
@@ -199,7 +218,7 @@ public class ExerciseLoggingUI extends JFrame {
 
 		double duration = Double.parseDouble(durationField.getText());
 
-        double caloriesBurnt = ExerciseLogging.getInstance().logExercise(account_id, selectedOption, convertToSqlDate(enteredDate,enteredTime), intensity, duration);
+		double caloriesBurnt = ExerciseLogging.getInstance().logExercise(user.getId(), selectedOption, convertToSqlDate(enteredDate, enteredTime), intensity, duration);
 
 
 		String res = String.format("%.2f", caloriesBurnt);
@@ -208,7 +227,7 @@ public class ExerciseLoggingUI extends JFrame {
 
 	}
 
-	public Date convertToSqlDate(String date, String time){
+	public Date convertToSqlDate(String date, String time) {
 		SimpleDateFormat sdf = new SimpleDateFormat();
 		sdf.applyPattern("yyyy-MM-dd HH:mm:ss");
 		String date_time = date + " " + time + ":00";
@@ -221,11 +240,8 @@ public class ExerciseLoggingUI extends JFrame {
 			throw new RuntimeException(ex);
 		}
 	}
-	public static void launch(int account_id) {
-		new ExerciseLoggingUI(account_id);
-	}
 
-	public static void main(String args[]){
-		launch(1);
+	public static void launch(ProfileUIData user) {
+		new ExerciseLoggingUI(user);
 	}
 }

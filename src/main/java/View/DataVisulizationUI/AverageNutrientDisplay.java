@@ -1,8 +1,12 @@
-package View.DietExerciseDataUI;
+package View.DataVisulizationUI;
 
 import javax.swing.*;
 
+import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.DatabaseInteraction.DatabaseConnector;
+import View.ExerciseLoggingUI.ExerciseLoggingUI;
+import View.MainUI.NavigateUI;
+import View.ProfileUI.ProfileUIData;
 
 import java.awt.*;
 import java.sql.Connection;
@@ -14,21 +18,29 @@ import java.sql.Date;
 
 public class AverageNutrientDisplay extends JFrame {
 
-    private int accountId;
+    private ProfileUIData user;
 
-    public AverageNutrientDisplay(int accountId) {
-        this.accountId = accountId;
+    public AverageNutrientDisplay(ProfileUIData user) {
+        this.user = user;
 
         setTitle("Nutrient Intake and Notification");
-        setSize(1200, 800);
+        setSize(1200, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         NutrientPieChartPanel pieChartPanel = new NutrientPieChartPanel();
         NutrientNotificationPanel notificationPanel = new NutrientNotificationPanel();
 
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            this.dispose();
+            NavigateUI.launch(user);
+        });
+
+        notificationPanel.add(backButton);
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(pieChartPanel, BorderLayout.CENTER);
         getContentPane().add(notificationPanel, BorderLayout.SOUTH);
+
     }
 
     private class NutrientPieChartPanel extends JPanel {
@@ -155,7 +167,7 @@ public class AverageNutrientDisplay extends JFrame {
             String sql = "SELECT weight FROM account WHERE account_id = ?";
             try (Connection conn = DatabaseConnector.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
-                pstmt.setInt(1, accountId);
+                pstmt.setInt(1, user.getId());
                 ResultSet rs = pstmt.executeQuery();
                 if (rs.next()) {
                     return rs.getDouble("weight");
@@ -175,7 +187,7 @@ public class AverageNutrientDisplay extends JFrame {
             try (Connection conn = DatabaseConnector.getConnection();
                  PreparedStatement pstmt = conn.prepareStatement(sql)) {
                 pstmt.setString(1, nutrientName);
-                pstmt.setInt(2, accountId);
+                pstmt.setInt(2, user.getId());
                 ResultSet rs = pstmt.executeQuery();
                 if (rs.next()) {
                     return rs.getDouble("AverageValue");
@@ -214,11 +226,15 @@ public class AverageNutrientDisplay extends JFrame {
         }
     }
 
+    public static void launch(ProfileUIData user){
+        AverageNutrientDisplay frame = new AverageNutrientDisplay(user);
+        frame.setVisible(true);
+    }
+
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            int accountId = 1;
-            AverageNutrientDisplay frame = new AverageNutrientDisplay(accountId);
-            frame.setVisible(true);
+            ProfileUIData user = ProfilesQueryController.getInstance().getProfile(1);
+            AverageNutrientDisplay.launch(user);
         });
     }
 }

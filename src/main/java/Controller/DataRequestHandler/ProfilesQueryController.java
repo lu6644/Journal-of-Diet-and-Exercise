@@ -55,4 +55,6 @@ public class ProfilesQueryController {
     }
 
     public int verifyPassword(String username, String password){return ProfileDAO.getInstance().verifyPassword(username, password);}
+
+    public String getUsername(int accountID){return ProfileDAO.getInstance().getUsername(accountID);}
 }

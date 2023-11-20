@@ -1,5 +1,6 @@
 package View.DietExerciseDataUI;
 import Controller.DataLoggingHandler.DietLoggingController;
+import View.MainUI.NavigateUI;
 import View.ProfileUI.ProfileUIData;
 
 import javax.swing.*;
@@ -13,7 +14,9 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class DietLoggingPage extends JFrame implements ActionListener {
+
     private ProfileUIData user;
+
     private Container c;
     private JLabel title;
     private JLabel date;
@@ -78,6 +81,7 @@ public class DietLoggingPage extends JFrame implements ActionListener {
             "Bread, whole grain (whole-wheat), commercial" ,
             "Apple, Fuji, raw, with skin"};
 
+
     public static void launch(ProfileUIData user){
         DietLoggingPage dlp = new DietLoggingPage(user);
         dlp.setSize(1280,720);
@@ -87,6 +91,7 @@ public class DietLoggingPage extends JFrame implements ActionListener {
     public DietLoggingPage(ProfileUIData user)
     {
         this.user = user;
+
         setTitle("Log Your Diet");
         setBounds(300, 90, 900, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -251,16 +256,29 @@ public class DietLoggingPage extends JFrame implements ActionListener {
         JButton viewHistoryDiets = new JButton("View Diets History");
         viewHistoryDiets.setFont(new Font("Arial", Font.PLAIN, 15));
         viewHistoryDiets.setSize(180, 30);
-        viewHistoryDiets.setLocation(500, 650);
+        viewHistoryDiets.setLocation(300, 650);
         viewHistoryDiets.setActionCommand("viewDietsHistory");
         viewHistoryDiets.addActionListener(this);
         c.add(viewHistoryDiets);
 
+        JButton backButton = new JButton("Back");
+        backButton.setBounds(500, 650, 180, 30);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                backAction();
+            }
+        });
+
+        add(backButton);
+
         setVisible(true);
 
+    }
 
-
-        setVisible(true);
+    public void backAction(){
+        this.dispose();
+        NavigateUI.launch(user);
     }
 
     public void actionPerformed(ActionEvent e){
@@ -299,7 +317,8 @@ public class DietLoggingPage extends JFrame implements ActionListener {
             result.setText(nutrientInfo);
             //result.setText("<html>" + nutrientInfo.replaceAll("\n", "<br>"));
         } else if (comm.equals("viewDietsHistory")) {
-            DietJournalPage.launch(user.getId());
+            this.dispose();
+            DietJournalPage.launch(user);
         }
     }
 

@@ -1,4 +1,4 @@
-package View.DietExerciseDataUI;
+package View.DataVisulizationUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,14 +9,21 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.sql.Date;
 import java.util.stream.Collectors;
+
+import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.DatabaseInteraction.DatabaseConnector;
+import View.ExerciseLoggingUI.ExerciseLoggingUI;
+import View.MainUI.NavigateUI;
+import View.ProfileUI.ProfileUIData;
 
-public class CalorieBurnChartApplication extends JPanel {
+public class CalorieBurnChartDisplay extends JPanel {
     private List<DataPoint> dataPoints = new ArrayList<>();
+    private ProfileUIData user;
 
-    public CalorieBurnChartApplication() {
+    public CalorieBurnChartDisplay(ProfileUIData user) {
         // Load data from the database when the application starts
         loadDataFromDatabase();
+        this.user = user;
     }
 
     private void loadDataFromDatabase() {
@@ -55,6 +62,7 @@ public class CalorieBurnChartApplication extends JPanel {
         super.paintComponent(g);
         // Draw the graph
         drawGraph(g);
+
     }
 
     private void drawGraph(Graphics g) {
@@ -108,6 +116,8 @@ public class CalorieBurnChartApplication extends JPanel {
         }
     }
 
+
+
     // Inner class to represent data points
     private static class DataPoint {
         Date date;
@@ -119,11 +129,28 @@ public class CalorieBurnChartApplication extends JPanel {
         }
     }
 
+    public static void launch(ProfileUIData user){
+        JFrame frame = new JFrame("Calorie Burn Chart");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        Container c = frame.getContentPane();
+        c.setLayout(new BorderLayout());
+        c.add(new CalorieBurnChartDisplay(user),BorderLayout.CENTER);
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            frame.dispose();
+            NavigateUI.launch(user);
+        });
+        frame.add(backButton,BorderLayout.SOUTH);
+        frame.setSize(1280, 720);
+        frame.setVisible(true);
+    }
+
     public static void main(String[] args) {
         // Setting up the frame for the application
         JFrame frame = new JFrame("Calorie Burn Chart");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new CalorieBurnChartApplication());
+        ProfileUIData user = ProfilesQueryController.getInstance().getProfile(1);
+        frame.add(new CalorieBurnChartDisplay(user));
         frame.setSize(800, 600);
         frame.setVisible(true);
     }
