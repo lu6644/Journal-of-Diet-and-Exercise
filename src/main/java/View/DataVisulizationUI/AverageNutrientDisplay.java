@@ -2,7 +2,9 @@ package View.DataVisulizationUI;
 
 import javax.swing.*;
 
+import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.DatabaseInteraction.DatabaseConnector;
+import View.ExerciseLoggingUI.ExerciseLoggingUI;
 import View.ProfileUI.ProfileUIData;
 
 import java.awt.*;
@@ -205,9 +207,8 @@ public class AverageNutrientDisplay extends JFrame {
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            int accountId = 1;
-            //AverageNutrientDisplay frame = new AverageNutrientDisplay(accountId);
-            //frame.setVisible(true);
+            ProfileUIData user = ProfilesQueryController.getInstance().getProfile(1);
+            AverageNutrientDisplay.launch(user);
         });
     }
 }

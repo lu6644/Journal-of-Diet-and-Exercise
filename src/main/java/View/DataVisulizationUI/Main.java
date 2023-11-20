@@ -1,9 +1,12 @@
 package View.DataVisulizationUI;
 
-import Model.DataProcessing.CfgCalculator;
+import Controller.DataRequestHandler.ProfilesQueryController;
+import View.ExerciseLoggingUI.ExerciseLoggingUI;
+import View.ProfileUI.ProfileUIData;
 
 public class Main {
     public static void main(String[] args){
-        //CFGComparisionPage.launch(1);
+        ProfileUIData user = ProfilesQueryController.getInstance().getProfile(1);
+        CFGComparisionPage.launch(user);
     }
 }

@@ -3,8 +3,10 @@ package View.DataVisulizationUI;
 import java.awt.*;
 import javax.swing.*;
 
+import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.DataProcessing.NutrientIntake;
 import Model.DatabaseInteraction.NutrientIntakeModel;
+import View.ExerciseLoggingUI.ExerciseLoggingUI;
 import View.ProfileUI.ProfileUIData;
 
 import java.util.Calendar;
@@ -111,8 +113,8 @@ public class NutrientChartDisplay extends JFrame {
      */
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            //NutrientChartDisplay frame = new NutrientChartDisplay();
-            //frame.setVisible(true);
+            ProfileUIData user = ProfilesQueryController.getInstance().getProfile(1);
+            NutrientChartDisplay.launch(user);
         });
     }
 

@@ -9,7 +9,10 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.sql.Date;
 import java.util.stream.Collectors;
+
+import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.DatabaseInteraction.DatabaseConnector;
+import View.ExerciseLoggingUI.ExerciseLoggingUI;
 import View.ProfileUI.ProfileUIData;
 
 public class CalorieBurnChartDisplay extends JPanel {
@@ -134,8 +137,9 @@ public class CalorieBurnChartDisplay extends JPanel {
         // Setting up the frame for the application
         JFrame frame = new JFrame("Calorie Burn Chart");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.add(new CalorieBurnChartDisplay());
-        //frame.setSize(800, 600);
-        //frame.setVisible(true);
+        ProfileUIData user = ProfilesQueryController.getInstance().getProfile(1);
+        frame.add(new CalorieBurnChartDisplay(user));
+        frame.setSize(800, 600);
+        frame.setVisible(true);
     }
 }
