@@ -84,27 +84,23 @@ public class NutrientChartApplication extends JFrame {
             }
         }
         
-        /**
-         * Helper method to draw axis labels on the chart.
-         * @param g The Graphics object used for drawing.
-         * @param xOrigin The x-origin of the chart.
-         * @param yOrigin The y-origin of the chart.
-         * @param xScale The scale used for the x-axis.
-         * @param yScale The scale used for the y-axis.
-         */
         private void drawAxisLabels(Graphics g, int xOrigin, int yOrigin, int xScale, int yScale) {
-            // Drawing x-axis labels
+        	// Draw x-axis labels
             for (int i = 0; i < data.size(); i++) {
-                String label = String.valueOf(i + 1); // Days
+                String label = String.valueOf(i + 1); // ÌìÊý
                 g.drawString(label, xOrigin + i * xScale - 5, yOrigin + 15);
             }
+         // Add "Days" label at the end of the x-axis
+            g.drawString("Days", getWidth() - 60, yOrigin + 20);
 
-            // Drawing y-axis labels
+         // Draw y-axis labels
             double maxProtein = data.stream().mapToDouble(NutrientIntake::getProtein).max().orElse(0.0);
             for (int i = 0; i <= maxProtein; i += 10) {
                 String label = String.valueOf(i);
                 g.drawString(label, xOrigin - 30, yOrigin - i * yScale + 5);
             }
+         // Add "Protein (grams)" label at the top of the y-axis
+            g.drawString("Protein (grams)", xOrigin - 50, 45);
         }
     }
 
