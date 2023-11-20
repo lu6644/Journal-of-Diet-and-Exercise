@@ -1,17 +1,16 @@
 package View.ProfileUI;
 
-import Controller.DataLoggingHandler.ProfileAddingController;
+import Controller.DataRequestHandler.ProfilesQueryController;
+import Controller.DataUpdateHandler.ProfileUpdateController;
 import View.MainUI.NavigateUI;
 
-import java.awt.GridLayout;
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.*;
+public class ProfileEditPage extends JFrame {
 
-
-public class ProfileCreationPage extends JFrame {
-    private int profileId;
+    private ProfileUIData user;
     private JTextField usernameField, passwordField, firstNameField, lastNameField, ageField, heightField,
             weightField, specialPeriodField;
     private JCheckBox hasWeightScaleCheckBox;
@@ -21,13 +20,13 @@ public class ProfileCreationPage extends JFrame {
 
     private JRadioButton kgRadioButton, lbsRadioButton, cmRadioButton, inchRadioButton, hasSpecialPeriod;
 
-    public ProfileCreationPage() {
+    public ProfileEditPage(ProfileUIData user) {
+        this.user = user;
         createComponents();
     }
 
-
     private void createComponents() {
-        setTitle("Profile Creation");
+        setTitle("Profile Edit");
         setSize(600, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
@@ -36,11 +35,13 @@ public class ProfileCreationPage extends JFrame {
         int startY = 30;
         int ySpacing = 30;
 
-        addField("Username:", usernameField = new JTextField(), labelX, textFieldX, startY, ySpacing);
-        addField("Password:", passwordField = new JPasswordField(), labelX, textFieldX, startY + ySpacing, ySpacing);
-        addField("First Name:", firstNameField = new JTextField(), labelX, textFieldX, startY + 2 * ySpacing, ySpacing);
-        addField("Last Name:", lastNameField = new JTextField(), labelX, textFieldX, startY + 3 * ySpacing, ySpacing);
-        addField("Age:", ageField = new JTextField(), labelX, textFieldX, startY + 4 * ySpacing, ySpacing);
+        addField("Username:", usernameField = new JTextField(user.getUsername()), labelX, textFieldX, startY, ySpacing);
+        usernameField.setEnabled(false);
+        addField("Password:", passwordField = new JPasswordField(user.getPassword()), labelX, textFieldX, startY + ySpacing, ySpacing);
+        passwordField.setEnabled(false);
+        addField("First Name:", firstNameField = new JTextField(user.getFirstName()), labelX, textFieldX, startY + 2 * ySpacing, ySpacing);
+        addField("Last Name:", lastNameField = new JTextField(user.getLastName()), labelX, textFieldX, startY + 3 * ySpacing, ySpacing);
+        addField("Age:", ageField = new JTextField("" + user.getAge()), labelX, textFieldX, startY + 4 * ySpacing, ySpacing);
         addField("Gender:", null, labelX, textFieldX, startY + 5 * ySpacing, ySpacing);
         maleButton = new JRadioButton("male");
         maleButton.setBounds(textFieldX, startY + 5 * ySpacing, 70, 20);
@@ -54,7 +55,13 @@ public class ProfileCreationPage extends JFrame {
         genderGroup.add(maleButton);
         genderGroup.add(femaleButton);
 
-        addField("Height:", heightField = new JTextField(), labelX, textFieldX, startY + 6 * ySpacing, ySpacing);
+        if (user.getGender().equals("male")) {
+            maleButton.setSelected(true);
+        } else {
+            femaleButton.setSelected(true);
+        }
+
+        addField("Height:", heightField = new JTextField("" + user.getHeight()), labelX, textFieldX, startY + 6 * ySpacing, ySpacing);
 
         cmRadioButton = new JRadioButton("cm");
         cmRadioButton.setBounds(textFieldX + 160, startY + 6 * ySpacing, 60, 20);
@@ -69,9 +76,13 @@ public class ProfileCreationPage extends JFrame {
         ButtonGroup heightUnitGroup = new ButtonGroup();
         heightUnitGroup.add(cmRadioButton);
         heightUnitGroup.add(inchRadioButton);
-        cmRadioButton.setSelected(true);
+        if (user.getHeightUnit().equals("cm")) {
+            cmRadioButton.setSelected(true);
+        } else {
+            inchRadioButton.setSelected(true);
+        }
 
-        addField("Weight:", weightField = new JTextField(), labelX, textFieldX, startY + 7 * ySpacing, ySpacing);
+        addField("Weight:", weightField = new JTextField("" + user.getWeight()), labelX, textFieldX, startY + 7 * ySpacing, ySpacing);
 
         kgRadioButton = new JRadioButton("kg");
         kgRadioButton.setBounds(textFieldX + 160, startY + 7 * ySpacing, 60, 20);
@@ -84,9 +95,13 @@ public class ProfileCreationPage extends JFrame {
         ButtonGroup weightUnitGroup = new ButtonGroup();
         weightUnitGroup.add(kgRadioButton);
         weightUnitGroup.add(lbsRadioButton);
-        kgRadioButton.setSelected(true);
+        if (user.getWeightUnit().equals("kg")) {
+            kgRadioButton.setSelected(true);
+        } else {
+            lbsRadioButton.setSelected(true);
+        }
 
-        addField("Special Period:", specialPeriodField = new JTextField(), labelX, textFieldX, startY + 8 * ySpacing, ySpacing);
+        addField("Special Period:", specialPeriodField = new JTextField(user.getSpecialPeriod()), labelX, textFieldX, startY + 8 * ySpacing, ySpacing);
 
         hasSpecialPeriod = new JRadioButton("None");
         hasSpecialPeriod.setBounds(textFieldX + 160, startY + 8 * ySpacing, 90, 20);
@@ -102,17 +117,47 @@ public class ProfileCreationPage extends JFrame {
         hasWeightScaleCheckBox = new JCheckBox("Do you have a weight scale?");
         hasWeightScaleCheckBox.setBounds(labelX, startY + 9 * ySpacing, 300, 20);
         add(hasWeightScaleCheckBox);
+        if (user.isHasWeightScale()) {
+            hasWeightScaleCheckBox.setSelected(true);
+        }
 
-        JButton submitButton = new JButton("Submit");
-        submitButton.setBounds(labelX, startY + 10 * ySpacing, 100, 30);
-        submitButton.addActionListener(new ActionListener() {
+        JButton saveButton = new JButton("Save");
+        saveButton.setBounds(labelX, startY + 10 * ySpacing, 100, 30);
+        saveButton.addActionListener(new ActionListener() {
+            @Override
             public void actionPerformed(ActionEvent e) {
-                submitAction();
+                saveAction();
             }
         });
-        add(submitButton);
+
+        add(saveButton);
 
         setVisible(true);
+    }
+
+    public void saveAction() {
+        String username = usernameField.getText();
+        String password = new String(((JPasswordField) passwordField).getPassword());
+        String firstName = firstNameField.getText();
+        String lastName = lastNameField.getText();
+        int age = Integer.parseInt(ageField.getText());
+        String gender = maleButton.isSelected() ? "male" : "female";
+        double height = Double.parseDouble(heightField.getText());
+        String heightUnit = cmRadioButton.isSelected() ? "cm" : "inches";
+        double weight = Double.parseDouble(weightField.getText());
+        String weightUnit = kgRadioButton.isSelected() ? "kg" : "lbs";
+        String specialPeriod = hasSpecialPeriod.isSelected() ? null : specialPeriodField.getText();
+        boolean hasWeightScale = hasWeightScaleCheckBox.isSelected();
+
+        ProfileUpdateController.getInstance().updateProfile(user.getId(), firstName, lastName, age, gender, height, heightUnit, weight, weightUnit, specialPeriod, hasWeightScale);
+
+        JOptionPane.showMessageDialog(this, "Profile update successfully!\n");
+
+        this.dispose();
+
+        NavigateUI.launch(ProfilesQueryController.getInstance().getProfile(user.getId()));
+
+
     }
 
     private void addField(String label, JTextField field, int labelX, int textFieldX, int y, int ySpacing) {
@@ -123,37 +168,10 @@ public class ProfileCreationPage extends JFrame {
             field.setBounds(textFieldX, y, 150, 20);
             add(field);
         }
-    }
-
-
-    private void submitAction() {
-        String username = usernameField.getText();
-        String password = new String(((JPasswordField) passwordField).getPassword());
-        String firstName = firstNameField.getText();
-        String lastName = lastNameField.getText();
-        int age = Integer.parseInt(ageField.getText());
-        String gender = maleButton.isSelected()? "male":"female";
-        double height = Double.parseDouble(heightField.getText());
-        String heightUnit = cmRadioButton.isSelected() ? "cm" : "inches";
-        double weight = Double.parseDouble(weightField.getText());
-        String weightUnit = kgRadioButton.isSelected() ? "kg" : "lbs";
-        String specialPeriod = hasSpecialPeriod.isSelected() ? null : specialPeriodField.getText();
-        boolean hasWeightScale = hasWeightScaleCheckBox.isSelected();
-
-        profileId = ProfileAddingController.getInstance().addNewProfile(username, password, firstName, lastName, age, gender, height, heightUnit,weight,weightUnit,specialPeriod, hasWeightScale);
-
-        JOptionPane.showMessageDialog(this, "Profile created sucessfully!\nprofileID generated: " + profileId, "Success", JOptionPane.INFORMATION_MESSAGE);
-
-        this.dispose();
-
-        ProfileUIData user = new ProfileUIData(username, password, firstName, lastName, age, gender, height, heightUnit,weight,weightUnit,specialPeriod, hasWeightScale);
-        user.setId(profileId);
-        NavigateUI.launch(user);
 
     }
 
-    public static void launch() {
-        new ProfileCreationPage();
+    public static void launch(ProfileUIData user) {
+        new ProfileEditPage(user);
     }
-
 }

@@ -18,9 +18,9 @@ public class ProfileAddingController {
     }
 
     public int addNewProfile(String username, String password, String firstName, String lastName,
-                             int age, String gender, double height, double weight,
+                             int age, String gender, double height, String heightUnit, double weight, String weightUnit,
                              String specialPeriod, boolean hasWeightScale) {
-        UserProfile profile = new UserProfile(username,password,firstName,lastName,age,gender,height,weight,
+        UserProfile profile = new UserProfile(username,password,firstName,lastName,age,gender,height,heightUnit,weight, weightUnit,
                 specialPeriod,hasWeightScale);
         int profileId = ProfileDAO.getInstance().insertNewProfile(profile);
         return profileId;

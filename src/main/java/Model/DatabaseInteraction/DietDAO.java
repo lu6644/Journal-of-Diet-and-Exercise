@@ -1,11 +1,9 @@
 package Model.DatabaseInteraction;
 
-import Model.Diet.Diet;
-import Model.Diet.Food;
-import Model.Diet.MealType;
-import Model.Diet.Nutrient;
+import Model.Diet.*;
 
 import java.sql.*;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -178,4 +176,6 @@ public class DietDAO {
         }
         return diet;
     }
+
+
 }

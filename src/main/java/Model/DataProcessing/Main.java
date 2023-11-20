@@ -1,13 +1,20 @@
 package Model.DataProcessing;
 
+<<<<<<< HEAD
 import Model.DatabaseInteraction.DatabaseConnector;
 import Model.DatabaseInteraction.DietAnalyzer;
+=======
+import Model.DatabaseInteraction.ProfileDAO;
+>>>>>>> 16d3cfe1cf87c642cf9a2e506a8460518a33b2bc
 import Model.Diet.Diet;
 import Model.Diet.Food;
 import Model.Diet.MealType;
+import Model.Profile.UserProfile;
+
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
 
 public class Main {
@@ -58,6 +65,7 @@ public class Main {
         System.out.println("Diet Analysis with Alternative Strategy: ");
         Map<String, Double> analysisResultAlternative = analyzer.calculateDietAlignment(accountId, startDate, endDate);
         System.out.println(analysisResultAlternative);
+<<<<<<< HEAD
         
         FatLossCalculator fatLossCalculator = new FatLossCalculator();
 
@@ -74,6 +82,8 @@ public class Main {
             e.printStackTrace();
             System.out.println("Failed to calculate expected fat loss due to a database error.");
         }
+=======
+>>>>>>> 16d3cfe1cf87c642cf9a2e506a8460518a33b2bc
 
     }
 }

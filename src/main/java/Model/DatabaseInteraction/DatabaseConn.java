@@ -3,9 +3,10 @@ import Controller.DataLoggingHandler.DietLoggingController;
 
 import java.sql.*;
 public class DatabaseConn {
-    private static final String url = "jdbc:mysql://localhost:3306/fitnessjournal?useSSL=false&serverTimezone=UTC";
+    private static final String url = "jdbc:mysql://localhost:3306/fitnessjournal?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     private static final String username = "root";
-    private static final String password = "jinhuiguang0519";
+    private static final String password = "Abby6!644";
+
     private static Connection con = null;
 
     static {
