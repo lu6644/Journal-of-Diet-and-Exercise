@@ -1,4 +1,4 @@
-package Model.DataProcessing;
+package Model.DatabaseInteraction;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
+
+import Model.DataProcessing.DietAnalysisStrategy;
 
 /**
  * Class responsible for analyzing diet compositions.

@@ -3,6 +3,8 @@ package Model.DataProcessing;
 import java.sql.Date;
 import java.util.List;
 
+import Model.DatabaseInteraction.NutrientIntakeModel;
+
 /**
  * Controller class for managing nutrient data.
  */

@@ -1,7 +1,10 @@
-package Model.DataProcessing;
+package View.DietExerciseDataUI;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+
+import Model.DatabaseInteraction.DatabaseConnector;
+
 import java.awt.*;
 import java.sql.*;
 import java.sql.Date;

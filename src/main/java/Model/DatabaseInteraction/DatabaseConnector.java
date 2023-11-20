@@ -1,4 +1,4 @@
-package Model.DataProcessing;
+package Model.DatabaseInteraction;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

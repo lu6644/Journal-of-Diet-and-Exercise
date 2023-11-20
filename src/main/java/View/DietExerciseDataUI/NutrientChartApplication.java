@@ -1,4 +1,4 @@
-package Model.DataProcessing;
+package View.DietExerciseDataUI;
 
 import java.awt.*;
 import java.sql.Connection;
@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.*;
+
+import Model.DataProcessing.NutrientIntake;
+import Model.DatabaseInteraction.NutrientIntakeModel;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
