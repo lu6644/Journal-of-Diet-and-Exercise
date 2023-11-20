@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class ProfileEditPage extends JFrame {
 
-    private UserProfile user;
+    private int account_id;
     private JTextField usernameField, passwordField, firstNameField, lastNameField, ageField, heightField,
             weightField, specialPeriodField;
     private JCheckBox hasWeightScaleCheckBox;
@@ -20,8 +20,8 @@ public class ProfileEditPage extends JFrame {
 
     private JRadioButton kgRadioButton, lbsRadioButton, cmRadioButton, inchRadioButton, hasSpecialPeriod;
 
-    public ProfileEditPage(UserProfile user) {
-        this.user = user;
+    public ProfileEditPage(int account_id) {
+        this.account_id = account_id;
         createComponents();
     }
 
@@ -35,13 +35,13 @@ public class ProfileEditPage extends JFrame {
         int startY = 30;
         int ySpacing = 30;
 
-        addField("Username:", usernameField = new JTextField(user.getUsername()), labelX, textFieldX, startY, ySpacing);
+        addField("Username:", usernameField = new JTextField(ProfilesQueryController.getInstance().getProfile(account_id).getUsername()), labelX, textFieldX, startY, ySpacing);
         usernameField.setEnabled(false);
-        addField("Password:", passwordField = new JPasswordField(user.getPassword()), labelX, textFieldX, startY + ySpacing, ySpacing);
+        addField("Password:", passwordField = new JPasswordField(ProfilesQueryController.getInstance().getProfile(account_id).getPassword()), labelX, textFieldX, startY + ySpacing, ySpacing);
         passwordField.setEnabled(false);
-        addField("First Name:", firstNameField = new JTextField(user.getFirstName()), labelX, textFieldX, startY + 2 * ySpacing, ySpacing);
-        addField("Last Name:", lastNameField = new JTextField(user.getLastName()), labelX, textFieldX, startY + 3 * ySpacing, ySpacing);
-        addField("Age:", ageField = new JTextField("" + user.getAge()), labelX, textFieldX, startY + 4 * ySpacing, ySpacing);
+        addField("First Name:", firstNameField = new JTextField(ProfilesQueryController.getInstance().getProfile(account_id).getFirstName()), labelX, textFieldX, startY + 2 * ySpacing, ySpacing);
+        addField("Last Name:", lastNameField = new JTextField(ProfilesQueryController.getInstance().getProfile(account_id).getLastName()), labelX, textFieldX, startY + 3 * ySpacing, ySpacing);
+        addField("Age:", ageField = new JTextField("" + ProfilesQueryController.getInstance().getProfile(account_id).getAge()), labelX, textFieldX, startY + 4 * ySpacing, ySpacing);
         addField("Gender:", null, labelX, textFieldX, startY + 5 * ySpacing, ySpacing);
         maleButton = new JRadioButton("male");
         maleButton.setBounds(textFieldX, startY + 5 * ySpacing, 70, 20);
@@ -55,13 +55,13 @@ public class ProfileEditPage extends JFrame {
         genderGroup.add(maleButton);
         genderGroup.add(femaleButton);
 
-        if (user.getGender().equals("male")) {
+        if (ProfilesQueryController.getInstance().getProfile(account_id).getGender().equals("male")) {
             maleButton.setSelected(true);
         } else {
             femaleButton.setSelected(true);
         }
 
-        addField("Height:", heightField = new JTextField("" + user.getHeight()), labelX, textFieldX, startY + 6 * ySpacing, ySpacing);
+        addField("Height:", heightField = new JTextField("" + ProfilesQueryController.getInstance().getProfile(account_id).getHeight()), labelX, textFieldX, startY + 6 * ySpacing, ySpacing);
 
         cmRadioButton = new JRadioButton("cm");
         cmRadioButton.setBounds(textFieldX + 160, startY + 6 * ySpacing, 60, 20);
@@ -76,13 +76,13 @@ public class ProfileEditPage extends JFrame {
         ButtonGroup heightUnitGroup = new ButtonGroup();
         heightUnitGroup.add(cmRadioButton);
         heightUnitGroup.add(inchRadioButton);
-        if (user.getHeightUnit().equals("cm")) {
+        if (ProfilesQueryController.getInstance().getProfile(account_id).getHeightUnit().equals("cm")) {
             cmRadioButton.setSelected(true);
         } else {
             inchRadioButton.setSelected(true);
         }
 
-        addField("Weight:", weightField = new JTextField("" + user.getWeight()), labelX, textFieldX, startY + 7 * ySpacing, ySpacing);
+        addField("Weight:", weightField = new JTextField("" + ProfilesQueryController.getInstance().getProfile(account_id).getWeight()), labelX, textFieldX, startY + 7 * ySpacing, ySpacing);
 
         kgRadioButton = new JRadioButton("kg");
         kgRadioButton.setBounds(textFieldX + 160, startY + 7 * ySpacing, 60, 20);
@@ -95,13 +95,13 @@ public class ProfileEditPage extends JFrame {
         ButtonGroup weightUnitGroup = new ButtonGroup();
         weightUnitGroup.add(kgRadioButton);
         weightUnitGroup.add(lbsRadioButton);
-        if (user.getWeightUnit().equals("kg")) {
+        if (ProfilesQueryController.getInstance().getProfile(account_id).getWeightUnit().equals("kg")) {
             kgRadioButton.setSelected(true);
         } else {
             lbsRadioButton.setSelected(true);
         }
 
-        addField("Special Period:", specialPeriodField = new JTextField(user.getSpecialPeriod()), labelX, textFieldX, startY + 8 * ySpacing, ySpacing);
+        addField("Special Period:", specialPeriodField = new JTextField(ProfilesQueryController.getInstance().getProfile(account_id).getSpecialPeriod()), labelX, textFieldX, startY + 8 * ySpacing, ySpacing);
 
         hasSpecialPeriod = new JRadioButton("None");
         hasSpecialPeriod.setBounds(textFieldX + 160, startY + 8 * ySpacing, 90, 20);
@@ -117,7 +117,7 @@ public class ProfileEditPage extends JFrame {
         hasWeightScaleCheckBox = new JCheckBox("Do you have a weight scale?");
         hasWeightScaleCheckBox.setBounds(labelX, startY + 9 * ySpacing, 300, 20);
         add(hasWeightScaleCheckBox);
-        if (user.isHasWeightScale()) {
+        if (ProfilesQueryController.getInstance().getProfile(account_id).isHasWeightScale()) {
             hasWeightScaleCheckBox.setSelected(true);
         }
 
@@ -149,13 +149,13 @@ public class ProfileEditPage extends JFrame {
         String specialPeriod = hasSpecialPeriod.isSelected() ? null : specialPeriodField.getText();
         boolean hasWeightScale = hasWeightScaleCheckBox.isSelected();
 
-        ProfileUpdateController.getInstance().updateProfile(user.getId(), firstName, lastName, age, gender, height, heightUnit, weight, weightUnit, specialPeriod, hasWeightScale);
+        ProfileUpdateController.getInstance().updateProfile(ProfilesQueryController.getInstance().getProfile(account_id).getId(), firstName, lastName, age, gender, height, heightUnit, weight, weightUnit, specialPeriod, hasWeightScale);
 
         JOptionPane.showMessageDialog(this, "Profile update successfully!\n");
 
         this.dispose();
 
-        ProfileDetailsPage.launch(ProfilesQueryController.getInstance().getProfile(user.getId()));
+        ProfileDetailsPage.launch(account_id);
 
 
     }
@@ -171,7 +171,7 @@ public class ProfileEditPage extends JFrame {
 
     }
 
-    public static void launch(UserProfile user) {
-        new ProfileEditPage(user);
+    public static void launch(int account_id) {
+        new ProfileEditPage(account_id);
     }
 }

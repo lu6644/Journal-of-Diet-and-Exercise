@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Locale;
 
 public class DietLoggingPage extends JFrame implements ActionListener {
-    private int accountId=1;
+    private int accountId;
     private Container c;
     private JLabel title;
     private JLabel date;
@@ -77,14 +77,15 @@ public class DietLoggingPage extends JFrame implements ActionListener {
             "Bread, whole grain (whole-wheat), commercial" ,
             "Apple, Fuji, raw, with skin"};
 
-    public static void launch(){
-        DietLoggingPage dlp = new DietLoggingPage();
+    public static void launch(int accountId){
+        DietLoggingPage dlp = new DietLoggingPage(accountId);
         dlp.setSize(1280,720);
         dlp.setVisible(true);
     }
 
-    public DietLoggingPage()
+    public DietLoggingPage(int accountId)
     {
+        this.accountId = accountId;
         setTitle("Log Your Diet");
         setBounds(300, 90, 900, 600);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

@@ -75,7 +75,7 @@ public class MainUI extends JFrame {
 
         if(ProfilesQueryController.getInstance().verifyPassword(username, password) == 1){
             this.dispose();
-            NavigateUI.launch(ProfilesQueryController.getInstance().getProfileByUsername(username, password));
+            NavigateUI.launch(ProfilesQueryController.getInstance().getProfileByUsername(username, password).getId());
         }
         else{
             JOptionPane.showMessageDialog(this,"Logging Information is incorrect!", "Wrong username or password",JOptionPane.INFORMATION_MESSAGE);

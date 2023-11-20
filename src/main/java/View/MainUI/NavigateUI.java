@@ -1,5 +1,6 @@
 package View.MainUI;
 
+import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.Profile.UserProfile;
 import View.DataVisulizationUI.CFGComparisionPage;
 import View.DietExerciseDataUI.DietLoggingPage;
@@ -10,10 +11,10 @@ import javax.swing.*;
 
 public class NavigateUI extends JFrame {
 
-    private UserProfile user;
+    private int account_id;
 
-    public NavigateUI(UserProfile user) {
-        this.user = user;
+    public NavigateUI(int account_id) {
+        this.account_id = account_id;
         createComponents();
     }
 
@@ -24,20 +25,21 @@ public class NavigateUI extends JFrame {
         setLayout(null);
 
         int labelX = 440;
-        int textFieldX = 250;
         int startY = 50;
         int ySpacing = 50;
 
-        JLabel l = new JLabel("Welcome! " + user.getUsername());
+        JLabel l = new JLabel("Welcome! " + ProfilesQueryController.getInstance().getUsername(account_id));
         l.setBounds(labelX+130, startY, 200, 40);
         add(l);
 
         JButton infoButton = new JButton("Account Information");
         infoButton.setBounds(labelX, startY + 2 * ySpacing, 400, 40);
+        infoButton.addActionListener(e -> infoAction());
         add(infoButton);
 
         JButton exLoggingButton = new JButton("Exercise Logging");
         exLoggingButton.setBounds(labelX, startY + 3 * ySpacing, 400, 40);
+        exLoggingButton.addActionListener(e->exLoggingAction());
         add(exLoggingButton);
 
         JButton dietLoggingButton = new JButton("Diet Logging");
@@ -55,24 +57,24 @@ public class NavigateUI extends JFrame {
 
     public void dietloggingAction(){
         this.dispose();
-        DietLoggingPage.launch();
+        DietLoggingPage.launch(account_id);
     }
     public void infoAction(){
         this.dispose();
-        ProfileDetailsPage.launch(user);
+        ProfileDetailsPage.launch(account_id);
     }
 
     public void exLoggingAction(){
         this.dispose();
-        ExerciseLoggingUI.launch(user.getId());
+        ExerciseLoggingUI.launch(account_id);
     }
 
     public void CFGCompareAction() {
         this.dispose();
-        CFGComparisionPage.launch(user.getId());
+        CFGComparisionPage.launch(account_id);
     }
 
-    public static void launch(UserProfile user) {
-        new NavigateUI(user);
+    public static void launch(int account_id) {
+        new NavigateUI(account_id);
     }
 }

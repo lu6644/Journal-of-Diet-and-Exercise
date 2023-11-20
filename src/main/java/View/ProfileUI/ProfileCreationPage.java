@@ -148,7 +148,7 @@ public class ProfileCreationPage extends JFrame {
 
         UserProfile user = new UserProfile(username, password, firstName, lastName, age, gender, height, heightUnit,weight,weightUnit,specialPeriod, hasWeightScale);
         user.setId(profileId);
-        ProfileDetailsPage.launch(user);
+        ProfileDetailsPage.launch(profileId);
 
     }
 

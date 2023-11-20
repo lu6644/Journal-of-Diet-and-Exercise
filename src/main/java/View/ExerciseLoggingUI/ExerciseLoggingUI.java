@@ -105,7 +105,7 @@ public class ExerciseLoggingUI extends JFrame {
 		timeNotice = new JLabel("*Please enter time (HH:mm) with 24-hour clock");
 		timeInput = new JTextField();
 
-		setSize(1000, 1000);
+		setSize(1280, 720);
 		head.setBounds(350, 10, 500, 100);
 		accountInfo.setBounds(750, 100, 250, 40);
 		date.setBounds(25, 150, 100, 40);
