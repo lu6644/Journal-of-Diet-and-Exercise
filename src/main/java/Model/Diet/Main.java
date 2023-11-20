@@ -1,8 +1,11 @@
 package Model.Diet;
 
+import Model.DatabaseInteraction.ProfileDAO;
+import Model.Profile.UserProfile;
 import View.DietExerciseDataUI.DietLoggingPage;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 public class Main {
@@ -32,6 +35,19 @@ public class Main {
         System.out.println("\nSummary of Nutrient Intake:");
         for (Map.Entry<Nutrient,Double> entry:diet.getNutrientsValue().entrySet()){
             System.out.println(String.format("%f%s of %s", entry.getValue(), entry.getKey().getUnit(), entry.getKey().getName()));
+        }
+
+        String[] categories = new String[]{"Vegetables and Fruit", "Grain Products", "Meat and Alternatives", "Milk and Alternatives"};
+        FoodCategoryFactory fcf = new FoodCategoryFactory();
+        List<UserProfile> profiles = ProfileDAO.getInstance().getProfileList();
+        for (String c:categories){
+            FoodCategory fc = fcf.createFoodCategory(c);
+            for (UserProfile profile:profiles){
+                System.out.println(profile);
+                System.out.println(fc);
+                System.out.println(fc.getRecommendedCfg(profile));
+                System.out.println();
+            }
         }
 
 

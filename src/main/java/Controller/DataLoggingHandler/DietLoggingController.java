@@ -6,10 +6,7 @@ import java.util.Map;
 
 import Model.DataProcessing.NutrientsCalculator;
 import Model.DatabaseInteraction.DietDAO;
-import Model.Diet.Diet;
-import Model.Diet.Food;
-import Model.Diet.MealType;
-import Model.Diet.Nutrient;
+import Model.Diet.*;
 
 public class DietLoggingController {
 	private static DietLoggingController instance = null;

@@ -1,10 +1,14 @@
 package Model.DataProcessing;
 
+import Model.DatabaseInteraction.ProfileDAO;
 import Model.Diet.Diet;
 import Model.Diet.Food;
 import Model.Diet.MealType;
+import Model.Profile.UserProfile;
+
 import java.sql.Date;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -61,5 +65,6 @@ public class Main {
         System.out.println("Diet Analysis with Alternative Strategy: ");
         Map<String, Double> analysisResultAlternative = analyzer.calculateDietAlignment(accountId, startDate, endDate);
         System.out.println(analysisResultAlternative);
+
     }
 }

@@ -7,7 +7,6 @@ public class DatabaseConn {
     private static final String username = "root";
     private static final String password = "Wuhuan0515.";
 
-
     private static Connection con = null;
 
     static {
