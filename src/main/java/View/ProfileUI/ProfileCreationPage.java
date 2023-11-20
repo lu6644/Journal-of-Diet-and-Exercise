@@ -1,6 +1,7 @@
 package View.ProfileUI;
 
 import Controller.DataLoggingHandler.ProfileAddingController;
+import View.MainUI.NavigateUI;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -8,7 +9,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import Model.Profile.UserProfile;
 
 public class ProfileCreationPage extends JFrame {
     private int profileId;
@@ -146,9 +146,9 @@ public class ProfileCreationPage extends JFrame {
 
         this.dispose();
 
-        UserProfile user = new UserProfile(username, password, firstName, lastName, age, gender, height, heightUnit,weight,weightUnit,specialPeriod, hasWeightScale);
+        ProfileUIData user = new ProfileUIData(username, password, firstName, lastName, age, gender, height, heightUnit,weight,weightUnit,specialPeriod, hasWeightScale);
         user.setId(profileId);
-        ProfileDetailsPage.launch(user);
+        NavigateUI.launch(user);
 
     }
 

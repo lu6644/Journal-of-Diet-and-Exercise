@@ -1,18 +1,18 @@
 package View.MainUI;
 
-import Model.Profile.UserProfile;
 import View.DataVisulizationUI.CFGComparisionPage;
 import View.DietExerciseDataUI.DietLoggingPage;
 import View.ExerciseLoggingUI.ExerciseLoggingUI;
 import View.ProfileUI.ProfileDetailsPage;
+import View.ProfileUI.ProfileUIData;
 
 import javax.swing.*;
 
 public class NavigateUI extends JFrame {
 
-    private UserProfile user;
+    private ProfileUIData user;
 
-    public NavigateUI(UserProfile user) {
+    public NavigateUI(ProfileUIData user) {
         this.user = user;
         createComponents();
     }
@@ -34,6 +34,7 @@ public class NavigateUI extends JFrame {
 
         JButton infoButton = new JButton("Account Information");
         infoButton.setBounds(labelX, startY + 2 * ySpacing, 400, 40);
+        infoButton.addActionListener(e -> infoAction());
         add(infoButton);
 
         JButton exLoggingButton = new JButton("Exercise Logging");
@@ -72,7 +73,7 @@ public class NavigateUI extends JFrame {
         CFGComparisionPage.launch(user.getId());
     }
 
-    public static void launch(UserProfile user) {
+    public static void launch(ProfileUIData user) {
         new NavigateUI(user);
     }
 }

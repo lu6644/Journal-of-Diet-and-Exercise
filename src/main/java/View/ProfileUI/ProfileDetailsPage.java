@@ -1,6 +1,6 @@
 package View.ProfileUI;
 
-import Model.Profile.UserProfile;
+import View.MainUI.NavigateUI;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,9 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ProfileDetailsPage extends JFrame {
-    private UserProfile userProfile;
+    private ProfileUIData userProfile;
 
-    public ProfileDetailsPage(UserProfile userProfile) {
+    public ProfileDetailsPage(ProfileUIData userProfile) {
         this.userProfile = userProfile;
         createComponents();
     }
@@ -39,7 +39,7 @@ public class ProfileDetailsPage extends JFrame {
         addField("Have weight scale:", new JLabel(userProfile.isHasWeightScale() ? "Yes" : "No"), labelX, textFieldX, startY + 9 * ySpacing, ySpacing);
 
         JButton editButton = new JButton("Edit");
-        JButton cancelButton = new JButton("Cancel");
+        JButton cancelButton = new JButton("Back");
         editButton.setBounds(labelX, startY + 10 * ySpacing, 100, 30);
         cancelButton.setBounds(labelX + 150, startY + 10 *ySpacing, 100, 30);
         editButton.addActionListener(new ActionListener() {
@@ -47,6 +47,11 @@ public class ProfileDetailsPage extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 editAction();
             }
+        });
+
+        cancelButton.addActionListener(e -> {
+            this.dispose();
+            NavigateUI.launch(userProfile);
         });
 
         add(editButton);
@@ -69,21 +74,21 @@ public class ProfileDetailsPage extends JFrame {
         add(data);
     }
 
-    public static void launch(UserProfile user){new ProfileDetailsPage(user);}
+    public static void launch(ProfileUIData user){new ProfileDetailsPage(user);}
 
-    public static void main(String args[]) {
-        UserProfile user = new UserProfile();
-        user.setId(8);
-        user.setFirstName("test");
-        user.setLastName("test");
-        user.setAge(25);
-        user.setGender("male");
-        user.setHeight(60);
-        user.setHeightUnit("inches");
-        user.setWeight(170);
-        user.setWeightUnit("lbs");
-        user.setSpecialPeriod("Test");
-        user.setHasWeightScale(false);
-        new ProfileDetailsPage(user);
-    }
+//    public static void main(String args[]) {
+//        UserProfile user = new UserProfile();
+//        user.setId(8);
+//        user.setFirstName("test");
+//        user.setLastName("test");
+//        user.setAge(25);
+//        user.setGender("male");
+//        user.setHeight(60);
+//        user.setHeightUnit("inches");
+//        user.setWeight(170);
+//        user.setWeightUnit("lbs");
+//        user.setSpecialPeriod("Test");
+//        user.setHasWeightScale(false);
+//        new ProfileDetailsPage(user);
+//    }
 }

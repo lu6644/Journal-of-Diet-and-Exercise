@@ -2,7 +2,7 @@ package View.ProfileUI;
 
 import Controller.DataRequestHandler.ProfilesQueryController;
 import Controller.DataUpdateHandler.ProfileUpdateController;
-import Model.Profile.UserProfile;
+import View.MainUI.NavigateUI;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class ProfileEditPage extends JFrame {
 
-    private UserProfile user;
+    private ProfileUIData user;
     private JTextField usernameField, passwordField, firstNameField, lastNameField, ageField, heightField,
             weightField, specialPeriodField;
     private JCheckBox hasWeightScaleCheckBox;
@@ -20,7 +20,7 @@ public class ProfileEditPage extends JFrame {
 
     private JRadioButton kgRadioButton, lbsRadioButton, cmRadioButton, inchRadioButton, hasSpecialPeriod;
 
-    public ProfileEditPage(UserProfile user) {
+    public ProfileEditPage(ProfileUIData user) {
         this.user = user;
         createComponents();
     }
@@ -155,7 +155,7 @@ public class ProfileEditPage extends JFrame {
 
         this.dispose();
 
-        ProfileDetailsPage.launch(ProfilesQueryController.getInstance().getProfile(user.getId()));
+        NavigateUI.launch(ProfilesQueryController.getInstance().getProfile(user.getId()));
 
 
     }
@@ -171,7 +171,7 @@ public class ProfileEditPage extends JFrame {
 
     }
 
-    public static void launch(UserProfile user) {
+    public static void launch(ProfileUIData user) {
         new ProfileEditPage(user);
     }
 }
