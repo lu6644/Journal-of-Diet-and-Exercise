@@ -4,6 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.sql.Date;
+import java.text.ParseException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,10 +20,12 @@ import javax.swing.JTextField;
 import Controller.DataLoggingHandler.ExerciseLogging;
 import Model.Profile.UserProfile;
 
-public class ExerciseLoggingUI extends JFrame implements ActionListener {
+import java.text.SimpleDateFormat;
+
+public class ExerciseLoggingUI extends JFrame {
 	JComboBox<String> exerciseComboBox;
 	JComboBox<String> intensityComboBox;
-	UserProfile user;
+	int account_id;
 	JLabel exerciseTypeInput;
 	JLabel intensityInput;
 	JLabel durationInput;
@@ -37,9 +41,9 @@ public class ExerciseLoggingUI extends JFrame implements ActionListener {
 	JTextField durationField;
 	JTextField dateInput;
 
-	ExerciseLoggingUI(UserProfile user) {
-		this.user = user;
-		accountInfo = new JLabel("AccountID: 000001");
+	ExerciseLoggingUI(int account_id) {
+		this.account_id = account_id;
+		accountInfo = new JLabel("AccountID: "+account_id);
 		head = new JLabel("Excercise Logging System");
 		String[] exerciseOptions = { "Swimming", "Running", "Biking", "Walking", "Calisthenics", "Basketball" };
 		notice = new JLabel("*Please select exercise type first");
@@ -87,7 +91,12 @@ public class ExerciseLoggingUI extends JFrame implements ActionListener {
 
 		b = new JButton("Submit");
 		b.setBounds(350, 700, 150, 50);
-		b.addActionListener(this);
+		b.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				action();
+			}
+		});
 		date = new JLabel("Date: ");
 		dateExample = new JLabel("*Date input example: YYYY-MM-DD");
 		dateInput = new JTextField();
@@ -137,8 +146,8 @@ public class ExerciseLoggingUI extends JFrame implements ActionListener {
 
 	}
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
+
+	public void action() {
 		// TODO Auto-generated method stub
 
 		// Exception handle
@@ -190,31 +199,33 @@ public class ExerciseLoggingUI extends JFrame implements ActionListener {
 
 		double duration = Double.parseDouble(durationField.getText());
 
-		ExerciseLogging info = new ExerciseLogging(enteredDate, enteredTime, duration, intensity, user);
+        double caloriesBurnt = ExerciseLogging.getInstance().logExercise(account_id, selectedOption, convertToSqlDate(enteredDate,enteredTime), intensity, duration);
 
-		if (selectedOption.equals("Swimming")) {
-			info.setStrategy(info.new SwimmingStrategy());
-		} else if (selectedOption.equals("Running")) {
-			info.setStrategy(info.new RunningStrategy());
-		} else if (selectedOption.equals("Biking")) {
-			info.setStrategy(info.new BikingStrategy());
-		} else if (selectedOption.equals("Walking")) {
-			info.setStrategy(info.new WalkingStrategy());
-		} else if (selectedOption.equals("Calisthenics")) {
-			info.setStrategy(info.new CalisthenicsStrategy());
-		} else if (selectedOption.equals("Basketball")) {
-			info.setStrategy(info.new BasketballStrategy());
-		}
 
-		String res = String.format("%.2f", info.calcualteCalories());
+		String res = String.format("%.2f", caloriesBurnt);
 
 		JOptionPane.showMessageDialog(this, "Exercise Log Successfully!\nThis exercise burned " + res + " calories.");
 
 	}
 
-	public static void launch() {
-		// Only for test
-//		UserProfile user = new UserProfile("test1", "test2", "Test", "Test", 20, "male", 180.0, 75, "", false);
-//		new ExerciseLoggingUI(user);
+	public Date convertToSqlDate(String date, String time){
+		SimpleDateFormat sdf = new SimpleDateFormat();
+		sdf.applyPattern("yyyy-MM-dd HH:mm:ss");
+		String date_time = date + " " + time + ":00";
+		try {
+			java.util.Date utilDate = sdf.parse(date_time);
+			java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+			return sqlDate;
+
+		} catch (ParseException ex) {
+			throw new RuntimeException(ex);
+		}
+	}
+	public static void launch(int account_id) {
+		new ExerciseLoggingUI(account_id);
+	}
+
+	public static void main(String args[]){
+		launch(1);
 	}
 }

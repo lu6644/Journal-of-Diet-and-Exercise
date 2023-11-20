@@ -58,7 +58,7 @@ public class NavigateUI extends JFrame {
 
     public void exLoggingAction(){
         this.dispose();
-        ExerciseLoggingUI.launch();
+        ExerciseLoggingUI.launch(user.getId());
     }
 
     public static void launch(UserProfile user) {
