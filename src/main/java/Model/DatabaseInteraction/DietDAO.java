@@ -1,9 +1,6 @@
 package Model.DatabaseInteraction;
 
-import Model.Diet.Diet;
-import Model.Diet.Food;
-import Model.Diet.MealType;
-import Model.Diet.Nutrient;
+import Model.Diet.*;
 
 import java.sql.*;
 import java.util.HashMap;
@@ -180,21 +177,5 @@ public class DietDAO {
         return diet;
     }
 
-    //Return a map of food category and total amount intake in double from the diet history
-    public Map<FoodCategory, Double> queryFoodCategoryTotal(){
-        Map<Food, Double> foodsDetail = new HashMap<>();
-        String sql = "select fd.food_id, fn.Food_Description, fn.food_group_id, fg.FoodGroupName, " +
-                "fg.CategoryName, fd.Quantity, fd.Quantity/fn.value_per_serving as value_CFG " +
-                "from fitnessjournal.diet d join fitnessjournal.food_in_diet fd on d.id = fd.diet_id " +
-                "join fitnessjournal.food_name fn on fd.food_id = fn.Food_ID join " +
-                "fitnessjournal.food_group fg on fn.food_group_id = fg.FoodGroupID where d.id = ?;";
 
-        return  foodsDetail;
-    }
-
-    //Return a map of food category and daily number of Food Guide Servings in double
-    // from the diet history
-    public Map<FoodCategory, Double> queryFoodCategoryDailyCFG(){
-
-    }
 }
