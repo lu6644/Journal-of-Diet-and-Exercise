@@ -19,13 +19,14 @@ import javax.swing.JTextField;
 
 import Controller.DataLoggingHandler.ExerciseLogging;
 import Model.Profile.UserProfile;
+import View.ProfileUI.ProfileUIData;
 
 import java.text.SimpleDateFormat;
 
 public class ExerciseLoggingUI extends JFrame {
 	JComboBox<String> exerciseComboBox;
 	JComboBox<String> intensityComboBox;
-	int account_id;
+	ProfileUIData user;
 	JLabel exerciseTypeInput;
 	JLabel intensityInput;
 	JLabel durationInput;
@@ -41,9 +42,9 @@ public class ExerciseLoggingUI extends JFrame {
 	JTextField durationField;
 	JTextField dateInput;
 
-	ExerciseLoggingUI(int account_id) {
-		this.account_id = account_id;
-		accountInfo = new JLabel("AccountID: "+account_id);
+	ExerciseLoggingUI(ProfileUIData user) {
+		this.user = user;
+		accountInfo = new JLabel("AccountID: "+user.getId());
 		head = new JLabel("Excercise Logging System");
 		String[] exerciseOptions = { "Swimming", "Running", "Biking", "Walking", "Calisthenics", "Basketball" };
 		notice = new JLabel("*Please select exercise type first");
@@ -199,7 +200,7 @@ public class ExerciseLoggingUI extends JFrame {
 
 		double duration = Double.parseDouble(durationField.getText());
 
-        double caloriesBurnt = ExerciseLogging.getInstance().logExercise(account_id, selectedOption, convertToSqlDate(enteredDate,enteredTime), intensity, duration);
+        double caloriesBurnt = ExerciseLogging.getInstance().logExercise(user.getId(), selectedOption, convertToSqlDate(enteredDate,enteredTime), intensity, duration);
 
 
 		String res = String.format("%.2f", caloriesBurnt);
@@ -221,11 +222,11 @@ public class ExerciseLoggingUI extends JFrame {
 			throw new RuntimeException(ex);
 		}
 	}
-	public static void launch(int account_id) {
-		new ExerciseLoggingUI(account_id);
+	public static void launch(ProfileUIData user) {
+		new ExerciseLoggingUI(user);
 	}
 
 	public static void main(String args[]){
-		launch(1);
+		//launch(1);
 	}
 }

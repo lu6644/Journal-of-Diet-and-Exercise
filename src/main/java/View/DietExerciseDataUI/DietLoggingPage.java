@@ -299,7 +299,8 @@ public class DietLoggingPage extends JFrame implements ActionListener {
             result.setText(nutrientInfo);
             //result.setText("<html>" + nutrientInfo.replaceAll("\n", "<br>"));
         } else if (comm.equals("viewDietsHistory")) {
-            DietJournalPage.launch(user.getId());
+            this.dispose();
+            DietJournalPage.launch(user);
         }
     }
 

@@ -40,6 +40,7 @@ public class NavigateUI extends JFrame {
 
         JButton exLoggingButton = new JButton("Exercise Logging");
         exLoggingButton.setBounds(labelX, startY + 3 * ySpacing, 400, 40);
+        exLoggingButton.addActionListener(e -> exLoggingAction());
         add(exLoggingButton);
 
         JButton dietLoggingButton = new JButton("Diet Logging");
@@ -48,12 +49,12 @@ public class NavigateUI extends JFrame {
         add(dietLoggingButton);
 
         JButton dietHistoryButton = new JButton("Diet History");
-        dietHistoryButton.setBounds(labelX, startY + 4 * ySpacing, 400, 40);
+        dietHistoryButton.setBounds(labelX, startY + 5 * ySpacing, 400, 40);
         dietHistoryButton.addActionListener(e -> dietHistoryAction());
         add(dietHistoryButton);
 
         JButton CFGCompareButton = new JButton("Compare My Food Intake With CFG Recommendations");
-        CFGCompareButton.setBounds(labelX, startY + 5 * ySpacing, 400, 40);
+        CFGCompareButton.setBounds(labelX, startY + 6 * ySpacing, 400, 40);
         CFGCompareButton.addActionListener(e -> CFGCompareAction());
         add(CFGCompareButton);
 
@@ -72,12 +73,12 @@ public class NavigateUI extends JFrame {
 
     public void exLoggingAction(){
         this.dispose();
-        ExerciseLoggingUI.launch(user.getId());
+        ExerciseLoggingUI.launch(user);
     }
 
     public void dietHistoryAction(){
         this.dispose();
-        DietJournalPage.launch(user.getId());
+        DietJournalPage.launch(user);
     }
 
     public void CFGCompareAction() {
