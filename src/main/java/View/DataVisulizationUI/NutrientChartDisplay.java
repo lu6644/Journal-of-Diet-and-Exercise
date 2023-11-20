@@ -109,8 +109,8 @@ public class NutrientChartDisplay extends JFrame {
                 String label = String.valueOf(i);
                 g.drawString(label, xOrigin - 30, yOrigin - i * yScale + 5);
             }
-         // Add "Protein (grams)" label at the top of the y-axis
-            g.drawString("Protein (grams)", xOrigin - 50, 45);
+         // Add "Calories Intake (kcal)" label at the top of the y-axis
+            g.drawString("Calories Intake (kcal)", xOrigin - 60, 45);
         }
     }
 
