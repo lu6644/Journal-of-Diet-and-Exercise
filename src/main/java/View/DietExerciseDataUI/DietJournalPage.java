@@ -1,6 +1,7 @@
 package View.DietExerciseDataUI;
 
 import Controller.DataRequestHandler.DietsQueryController;
+import View.MainUI.NavigateUI;
 import View.ProfileUI.ProfileUIData;
 
 import javax.swing.*;
@@ -87,6 +88,7 @@ public class DietJournalPage extends JFrame implements ActionListener {
         else if (comm.equals("back")){
             // Handle back button click
             this.dispose();
+            NavigateUI.launch(user);
         }
     }
 

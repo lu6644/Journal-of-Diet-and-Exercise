@@ -2,7 +2,10 @@ package View.DataVisulizationUI;
 
 import javax.swing.*;
 
+import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.DatabaseInteraction.DatabaseConnector;
+import View.ExerciseLoggingUI.ExerciseLoggingUI;
+import View.MainUI.NavigateUI;
 import View.ProfileUI.ProfileUIData;
 
 import java.awt.*;
@@ -21,15 +24,23 @@ public class AverageNutrientDisplay extends JFrame {
         this.user = user;
 
         setTitle("Nutrient Intake and Notification");
-        setSize(1200, 800);
+        setSize(1200, 720);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         NutrientPieChartPanel pieChartPanel = new NutrientPieChartPanel();
         NutrientNotificationPanel notificationPanel = new NutrientNotificationPanel();
 
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            this.dispose();
+            NavigateUI.launch(user);
+        });
+
+        notificationPanel.add(backButton);
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(pieChartPanel, BorderLayout.CENTER);
         getContentPane().add(notificationPanel, BorderLayout.SOUTH);
+
     }
 
     private class NutrientPieChartPanel extends JPanel {
@@ -66,7 +77,7 @@ public class AverageNutrientDisplay extends JFrame {
                 int labelX = x + width / 2 + (int) (width / 2.5 * Math.cos(midAngle));
                 int labelY = y + height / 2 + (int) (height / 2.5 * Math.sin(midAngle));
                 g.setColor(Color.BLACK);
-                g.drawString(String.format("%.1f%%", (value / total * 100)), labelX, labelY);
+                //g.drawString(String.format("%.1f%%", (value / total * 100)), labelX, labelY);
                 startAngle += angle;
             }
         }
@@ -80,10 +91,28 @@ public class AverageNutrientDisplay extends JFrame {
                 g.setColor(nutrientColors.get(nutrient));
                 g.fillRect(legendX, legendY, legendWidth, legendHeight);
                 g.setColor(Color.BLACK);
-                g.drawString(nutrient + " (" + String.format("%.1f%%", (value / total * 100)) + ")", legendX + legendWidth + 5, legendY + 15);
+                String unit = getUnitForNutrient(nutrient);
+                g.drawString(nutrient + " (" + String.format("%.1f%%", (value / total * 100)) + " " + unit + ")", legendX + legendWidth + 5, legendY + 15);
                 legendY += legendHeight + 5;
             }
         }
+        
+        private String getUnitForNutrient(String nutrient) {
+            String unit = "";
+            String query = "SELECT Nutrient_Unit FROM nutrient_name WHERE Nutrient_Name = ?";
+            try (Connection conn = DatabaseConnector.getConnection();
+                 PreparedStatement pstmt = conn.prepareStatement(query)) {
+                pstmt.setString(1, nutrient);
+                ResultSet rs = pstmt.executeQuery();
+                if (rs.next()) {
+                    unit = rs.getString("Nutrient_Unit");
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return unit;
+        }
+
 
         private Map<String, Double> getNutrientAverages() {
             Map<String, Double> averages = new HashMap<>();
@@ -91,9 +120,8 @@ public class AverageNutrientDisplay extends JFrame {
                            "FROM nutrient_in_diet NID " +
                            "JOIN diet D ON NID.Diet_ID = D.id " +
                            "JOIN nutrient_name NN ON NID.Nutrient_ID = NN.Nutrient_ID " +
-                           "WHERE D.date BETWEEN ? AND ? " +
+                           "WHERE D.date BETWEEN ? AND ? AND NN.Nutrient_Unit IN ('g', 'mg') " + // 仅选择以克或毫克为单位的物质
                            "GROUP BY NN.Nutrient_Name";
-
             Calendar calendar = Calendar.getInstance();
             Date endDate = new Date(calendar.getTimeInMillis());
             calendar.add(Calendar.DAY_OF_MONTH, -30);
@@ -205,9 +233,8 @@ public class AverageNutrientDisplay extends JFrame {
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            int accountId = 1;
-            //AverageNutrientDisplay frame = new AverageNutrientDisplay(accountId);
-            //frame.setVisible(true);
+            ProfileUIData user = ProfilesQueryController.getInstance().getProfile(1);
+            AverageNutrientDisplay.launch(user);
         });
     }
 }

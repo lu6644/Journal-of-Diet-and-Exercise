@@ -111,7 +111,7 @@ public class NavigateUI extends JFrame {
 
     public void CFGCompareAction() {
         this.dispose();
-        CFGComparisionPage.launch(user.getId());
+        CFGComparisionPage.launch(user);
     }
 
 

@@ -3,8 +3,11 @@ package View.DataVisulizationUI;
 import java.awt.*;
 import javax.swing.*;
 
+import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.DataProcessing.NutrientIntake;
 import Model.DatabaseInteraction.NutrientIntakeModel;
+import View.ExerciseLoggingUI.ExerciseLoggingUI;
+import View.MainUI.NavigateUI;
 import View.ProfileUI.ProfileUIData;
 
 import java.util.Calendar;
@@ -26,7 +29,16 @@ public class NutrientChartDisplay extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         NutrientPanel panel = new NutrientPanel();
-        setContentPane(panel);
+        Container c = getContentPane();
+        c.setLayout(new BorderLayout());
+        c.add(panel,BorderLayout.CENTER);
+
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            this.dispose();
+            NavigateUI.launch(user);
+        });
+        c.add(backButton,BorderLayout.SOUTH);
     }
 
     /**
@@ -82,27 +94,23 @@ public class NutrientChartDisplay extends JFrame {
             }
         }
         
-        /**
-         * Helper method to draw axis labels on the chart.
-         * @param g The Graphics object used for drawing.
-         * @param xOrigin The x-origin of the chart.
-         * @param yOrigin The y-origin of the chart.
-         * @param xScale The scale used for the x-axis.
-         * @param yScale The scale used for the y-axis.
-         */
         private void drawAxisLabels(Graphics g, int xOrigin, int yOrigin, int xScale, int yScale) {
-            // Drawing x-axis labels
+        	// Draw x-axis labels
             for (int i = 0; i < data.size(); i++) {
-                String label = String.valueOf(i + 1); // Days
+                String label = String.valueOf(i + 1); // ÌìÊý
                 g.drawString(label, xOrigin + i * xScale - 5, yOrigin + 15);
             }
+         // Add "Days" label at the end of the x-axis
+            g.drawString("Days", getWidth() - 60, yOrigin + 20);
 
-            // Drawing y-axis labels
+         // Draw y-axis labels
             double maxProtein = data.stream().mapToDouble(NutrientIntake::getProtein).max().orElse(0.0);
             for (int i = 0; i <= maxProtein; i += 10) {
                 String label = String.valueOf(i);
                 g.drawString(label, xOrigin - 30, yOrigin - i * yScale + 5);
             }
+         // Add "Calories Intake (kcal)" label at the top of the y-axis
+            g.drawString("Calories Intake (kcal)", xOrigin - 60, 45);
         }
     }
 
@@ -111,8 +119,8 @@ public class NutrientChartDisplay extends JFrame {
      */
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            //NutrientChartDisplay frame = new NutrientChartDisplay();
-            //frame.setVisible(true);
+            ProfileUIData user = ProfilesQueryController.getInstance().getProfile(1);
+            NutrientChartDisplay.launch(user);
         });
     }
 

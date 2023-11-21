@@ -9,7 +9,11 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.sql.Date;
 import java.util.stream.Collectors;
+
+import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.DatabaseInteraction.DatabaseConnector;
+import View.ExerciseLoggingUI.ExerciseLoggingUI;
+import View.MainUI.NavigateUI;
 import View.ProfileUI.ProfileUIData;
 
 public class CalorieBurnChartDisplay extends JPanel {
@@ -58,6 +62,7 @@ public class CalorieBurnChartDisplay extends JPanel {
         super.paintComponent(g);
         // Draw the graph
         drawGraph(g);
+
     }
 
     private void drawGraph(Graphics g) {
@@ -111,6 +116,8 @@ public class CalorieBurnChartDisplay extends JPanel {
         }
     }
 
+
+
     // Inner class to represent data points
     private static class DataPoint {
         Date date;
@@ -125,8 +132,16 @@ public class CalorieBurnChartDisplay extends JPanel {
     public static void launch(ProfileUIData user){
         JFrame frame = new JFrame("Calorie Burn Chart");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(new CalorieBurnChartDisplay(user));
-        frame.setSize(800, 600);
+        Container c = frame.getContentPane();
+        c.setLayout(new BorderLayout());
+        c.add(new CalorieBurnChartDisplay(user),BorderLayout.CENTER);
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            frame.dispose();
+            NavigateUI.launch(user);
+        });
+        frame.add(backButton,BorderLayout.SOUTH);
+        frame.setSize(1280, 720);
         frame.setVisible(true);
     }
 
@@ -134,8 +149,9 @@ public class CalorieBurnChartDisplay extends JPanel {
         // Setting up the frame for the application
         JFrame frame = new JFrame("Calorie Burn Chart");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //frame.add(new CalorieBurnChartDisplay());
-        //frame.setSize(800, 600);
-        //frame.setVisible(true);
+        ProfileUIData user = ProfilesQueryController.getInstance().getProfile(1);
+        frame.add(new CalorieBurnChartDisplay(user));
+        frame.setSize(800, 600);
+        frame.setVisible(true);
     }
 }

@@ -3,7 +3,10 @@ package View.DataVisulizationUI;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.DatabaseInteraction.DatabaseConnector;
+import View.ExerciseLoggingUI.ExerciseLoggingUI;
+import View.MainUI.NavigateUI;
 import View.ProfileUI.ProfileUIData;
 
 import java.awt.*;
@@ -23,8 +26,8 @@ public class CalorieChartDisplay extends JFrame {
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
             try {
-                //CalorieChartDisplay frame = new CalorieChartDisplay();
-                //frame.setVisible(true); // Make the frame visible
+                ProfileUIData user = ProfilesQueryController.getInstance().getProfile(1);
+                CalorieChartDisplay.launch(user);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -55,6 +58,13 @@ public class CalorieChartDisplay extends JFrame {
 
         barPanel = new BarPanel(); // Create a panel for the bar chart
         contentPane.add(barPanel, BorderLayout.CENTER); // Add the bar panel to the content pane
+
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            this.dispose();
+            NavigateUI.launch(user);
+        });
+        contentPane.add(backButton,BorderLayout.SOUTH);
     }
 
     // Method to load data based on the input days
