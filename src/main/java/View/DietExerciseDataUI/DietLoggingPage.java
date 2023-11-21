@@ -242,7 +242,6 @@ public class DietLoggingPage extends JFrame implements ActionListener {
         JScrollPane scroll = new JScrollPane (result);
         scroll.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
         scroll.setBounds(100, 450, 850, 150); // Set the bounds for the scroll pane, not the text area.
-        //c.add(result);
         c.add(scroll);
 
         caloriesInfo = new JLabel("");
@@ -315,7 +314,6 @@ public class DietLoggingPage extends JFrame implements ActionListener {
             caloriesInfo.setText("Calories: " + calories);
             resultHeading.setVisible(true);
             result.setText(nutrientInfo);
-            //result.setText("<html>" + nutrientInfo.replaceAll("\n", "<br>"));
         } else if (comm.equals("viewDietsHistory")) {
             this.dispose();
             DietJournalPage.launch(user);

@@ -15,6 +15,7 @@ public class DietLoggingController {
 
 	}
 
+	//Singleton
 	public static DietLoggingController getInstance() {
 		if (instance == null) {
 			instance = new DietLoggingController();
@@ -40,6 +41,7 @@ public class DietLoggingController {
 				diet.getCalories()+"kCal"};
 	}
 
+	//map value to string for front-end display
 	private String nutrientsValueToString(HashMap<Nutrient, Double> nutrientsValue) {
 		String str = "";
 		for (Map.Entry<Nutrient, Double> entry : nutrientsValue.entrySet()) {

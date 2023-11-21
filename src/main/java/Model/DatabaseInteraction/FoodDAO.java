@@ -30,6 +30,7 @@ public class FoodDAO {
         return instance;
     }
 
+    //search food id give the food name
     public int queryId(String name){
         int foodId = -1; // Default value if not found
         try {

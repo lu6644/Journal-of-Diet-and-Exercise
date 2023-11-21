@@ -32,6 +32,7 @@ public class FoodsQueryController {
         return profile;
     }
 
+    //get a summary of food intake in terms of category
     public Map<String, Double> getActualFoodPortions(int profileId){
         Map<FoodCategory, Double> foodCategoryDailyCFG =
                 FoodDAO.getInstance().queryFoodCategoryDailyCFG(profileId);
@@ -41,6 +42,7 @@ public class FoodsQueryController {
         ));
     }
 
+    //get CFG recommended servings number for each food category
     public Map<String, Double> getRecommendedFoodPortions(int profileId){
         String[] foodCategories = new String[]{
                 "Vegetables and Fruit",

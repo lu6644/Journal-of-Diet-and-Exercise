@@ -28,6 +28,7 @@ public class ProfileDAO {
         return instance;
     }
 
+    //Insert a new profile into the database and return its account id.
     public int insertNewProfile(UserProfile profile){
         //insert user table
         int profileId = -1;
@@ -78,6 +79,7 @@ public class ProfileDAO {
     }
 
 
+    //Update the profile detailed information with the given account id and given new information.
     public void updateProfile(int id, String firstname, String lastname, int age, String gender, double height, String heightUnit, double weight, String weightUnit, String specialPeriod, boolean hasWeightScale){
         String sql = "update fitnessjournal.account set first_name = ?, last_name = ?, age = ?, gender = ?, height = ?, weight = ?, special_period = ?, has_weight_scale = ?, height_unit = ?, weight_unit = ? where account_id = ?;";
         try{
@@ -106,6 +108,7 @@ public class ProfileDAO {
         }
     }
 
+    //get all the profiles
     public List<UserProfile> getProfileList(){
         List<UserProfile> profiles = new LinkedList<UserProfile>();
         String sql = "SELECT * FROM fitnessjournal.account;";

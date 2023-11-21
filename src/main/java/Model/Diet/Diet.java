@@ -5,14 +5,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Diet {
-    int id;
+    int id; //diet id
     int accountId;
     Date date;
     MealType meal;
 
-    HashMap<Food,Double> ingredients = new HashMap<>();
+    HashMap<Food,Double> ingredients = new HashMap<>(); //a map of foods and their amount in diet
 
-    HashMap<Nutrient,Double> nutrientsValue = new HashMap<>();
+    HashMap<Nutrient,Double> nutrientsValue = new HashMap<>(); //a map of nutrients and their amount intake in diet
     Double calories = 0.0;
 
     public Double getCalories() {
@@ -48,6 +48,7 @@ public class Diet {
         ingredients.put(food,quantity);
     }
 
+    //add nutrient to this diet
     public void addToNutrient(Nutrient nutrient, Double amount){
         if (nutrientsValue.containsKey(nutrient)){
             double updatedAmount = nutrientsValue.get(nutrient) + amount;
@@ -58,6 +59,7 @@ public class Diet {
         }
     }
 
+    //search calorie for this diet
     public void findCalories(){
         calories = nutrientsValue.entrySet().stream()
                 .filter(entry -> entry.getKey().getName().equals("ENERGY (KILOCALORIES)"))

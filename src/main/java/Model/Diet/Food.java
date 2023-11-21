@@ -18,6 +18,7 @@ public class Food {
         this.id = queryId(name);
     }
 
+    //search id using food name
     public int queryId(String name){
         FoodDAO foodDAO =FoodDAO.getInstance();
         return foodDAO.queryId(name);
