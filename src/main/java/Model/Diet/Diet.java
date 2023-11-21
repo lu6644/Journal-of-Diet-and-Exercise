@@ -81,11 +81,6 @@ public class Diet {
         return nutrientsValue;
     }
 
-    public boolean snackAllowed(){
-        //TODO: Implement querying last meal type from db and give condition for allowing snack
-        return true;
-    }
-
     public int getId() {
         return id;
     }
