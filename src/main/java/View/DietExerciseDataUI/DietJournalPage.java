@@ -1,6 +1,8 @@
 package View.DietExerciseDataUI;
 
 import Controller.DataRequestHandler.DietsQueryController;
+import View.MainUI.NavigateUI;
+import View.ProfileUI.ProfileUIData;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -14,19 +16,18 @@ import java.util.Map;
 public class DietJournalPage extends JFrame implements ActionListener {
 
     private List<Map<String,String>> dietsHistory;
-    private int profileId = 1;
+    private ProfileUIData user;
     private JTable dietsHistoryTable;
 
-    public DietJournalPage(int profileId) {
-        this.profileId = profileId; // Store the profileId as an instance variable
+    public DietJournalPage(ProfileUIData user) {
+        this.user = user; // Store the profileId as an instance variable
 
         // Set up the JFrame
         setTitle("Diet History Table");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setSize(800, 400);
 
         // Call the queryDietsHistory method to get nutrient data
-        dietsHistory = DietsQueryController.getInstance().requestDietsHistory(profileId);
+        dietsHistory = DietsQueryController.getInstance().requestDietsHistory(user.getId());
 
         // Create a table model and set column names
         DefaultTableModel tableModel = new DefaultTableModel();
@@ -86,11 +87,12 @@ public class DietJournalPage extends JFrame implements ActionListener {
         else if (comm.equals("back")){
             // Handle back button click
             this.dispose();
+            NavigateUI.launch(user);
         }
     }
 
-    public static void launch(int profileId){
-        DietJournalPage djp = new DietJournalPage(profileId);
+    public static void launch(ProfileUIData user){
+        DietJournalPage djp = new DietJournalPage(user);
         djp.setSize(1280,720);
         djp.setVisible(true);
     }

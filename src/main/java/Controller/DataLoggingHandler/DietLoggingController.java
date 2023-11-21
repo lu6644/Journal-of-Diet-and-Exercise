@@ -6,10 +6,7 @@ import java.util.Map;
 
 import Model.DataProcessing.NutrientsCalculator;
 import Model.DatabaseInteraction.DietDAO;
-import Model.Diet.Diet;
-import Model.Diet.Food;
-import Model.Diet.MealType;
-import Model.Diet.Nutrient;
+import Model.Diet.*;
 
 public class DietLoggingController {
 	private static DietLoggingController instance = null;
@@ -18,6 +15,7 @@ public class DietLoggingController {
 
 	}
 
+	//Singleton
 	public static DietLoggingController getInstance() {
 		if (instance == null) {
 			instance = new DietLoggingController();
@@ -43,6 +41,7 @@ public class DietLoggingController {
 				diet.getCalories()+"kCal"};
 	}
 
+	//map value to string for front-end display
 	private String nutrientsValueToString(HashMap<Nutrient, Double> nutrientsValue) {
 		String str = "";
 		for (Map.Entry<Nutrient, Double> entry : nutrientsValue.entrySet()) {

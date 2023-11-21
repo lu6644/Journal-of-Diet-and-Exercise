@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Nutrient {
     int id;
     String name;
-    String unit;
+    String unit; //g,mg,ug,kCal,etc.
 
 
     public Nutrient(int id, String name, String unit){
