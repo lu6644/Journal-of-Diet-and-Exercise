@@ -143,7 +143,7 @@ public class NavigateUI extends JFrame {
 
     private void fatLossAction(){
         this.dispose();
-        (new FatLossPredictorUI(user.getId())).setVisible(true);
+        (new FatLossPredictorUI(user)).setVisible(true);
     }
 
     public static void launch(ProfileUIData user) {

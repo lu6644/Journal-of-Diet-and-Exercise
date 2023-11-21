@@ -37,8 +37,6 @@ public class DietDetailPage extends JFrame implements ActionListener {
 
         title = new JLabel("A Breakdown of Selected Meal's Nutrients");
         title.setFont(new Font("Arial", Font.PLAIN, 20));
-        //title.setSize(500, 30);
-        //title.setLocation(250, 30);
         labelsPanel.add(title, gbc);
 
         gbc.gridx = 0;

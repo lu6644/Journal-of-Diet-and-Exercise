@@ -2,7 +2,10 @@ package View.FatLossPredictorUI;
 
 import javax.swing.*;
 
+import Controller.DataRequestHandler.ProfilesQueryController;
 import Model.DataProcessing.FatLossCalculator;
+import View.MainUI.NavigateUI;
+import View.ProfileUI.ProfileUIData;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,10 +18,12 @@ public class FatLossPredictorUI extends JFrame {
     private JTextField dateField;
     private JButton predictButton;
     private JLabel resultLabel;
-    private int accountId; // Assume this is the account ID for which we are calculating
+    private ProfileUIData user; // Assume this is the account for which we are calculating
 
-    public FatLossPredictorUI(int accountId) {
-        this.accountId = accountId;
+    private JButton backButton;
+
+    public FatLossPredictorUI(ProfileUIData user) {
+        this.user = user;
         createUI();
     }
 
@@ -26,15 +31,25 @@ public class FatLossPredictorUI extends JFrame {
         setTitle("Fat Loss Predictor");
         setSize(400, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new FlowLayout());
+        setLayout(new BorderLayout());
 
         dateField = new JTextField(10);
         predictButton = new JButton("Predict");
         resultLabel = new JLabel("Enter a future date and click Predict");
 
-        add(dateField);
-        add(predictButton);
-        add(resultLabel);
+        JPanel topRow = new JPanel(new FlowLayout());
+        topRow.add(dateField);
+        topRow.add(predictButton);
+        topRow.add(resultLabel);
+        add(topRow,BorderLayout.CENTER);
+
+        backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+            this.dispose();
+            NavigateUI.launch(user);
+        });
+
+        add(backButton,BorderLayout.SOUTH);
 
         predictButton.addActionListener(new ActionListener() {
             @Override
@@ -49,7 +64,7 @@ public class FatLossPredictorUI extends JFrame {
             String dateString = dateField.getText();
             Date futureDate = new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
             FatLossCalculator calculator = new FatLossCalculator();
-            double predictedLoss = calculator.calculateExpectedFatLoss(futureDate, accountId);
+            double predictedLoss = calculator.calculateExpectedFatLoss(futureDate, user.getId());
             String formattedResult = String.format("%.2f", predictedLoss);
             resultLabel.setText("Expected Fat Loss: " + formattedResult + " kg");
         } catch (Exception ex) {
@@ -59,8 +74,8 @@ public class FatLossPredictorUI extends JFrame {
     }
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            int accountId = 1; // Example account ID
-            FatLossPredictorUI frame = new FatLossPredictorUI(accountId);
+            ProfileUIData user = ProfilesQueryController.getInstance().getProfile(1);; // Example account ID 1
+            FatLossPredictorUI frame = new FatLossPredictorUI(user);
             frame.setVisible(true);
         });
     }
