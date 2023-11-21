@@ -13,7 +13,7 @@ public class ProfileDAO {
 
     private ProfileDAO(){
         try {
-            con = DatabaseConn.getDatabaseConn();
+            con = DatabaseConnector.getConnection();
         }
         catch (Exception e) {
             // Handle the exception or log it as needed

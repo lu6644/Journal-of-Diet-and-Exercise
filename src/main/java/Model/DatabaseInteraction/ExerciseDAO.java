@@ -14,7 +14,7 @@ public class ExerciseDAO {
     // Private constructor to initialize the database connection
     private ExerciseDAO() {
         try {
-            con = DatabaseConn.getDatabaseConn();
+            con = DatabaseConnector.getConnection();
         } catch (Exception e) {
             e.printStackTrace();
         }
