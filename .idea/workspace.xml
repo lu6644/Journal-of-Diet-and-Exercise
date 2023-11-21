@@ -9,29 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a59fc82-856a-4044-b161-f7a089627c37" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="2a59fc82-856a-4044-b161-f7a089627c37" name="Changes" comment="refactor for database connection">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Journal-of-Diet-and-Exercise.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Journal-of-Diet-and-Exercise.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/mysql-connector-j-8.2.0 2.33.31 AM.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/DataLoggingHandler/DietLoggingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/DataLoggingHandler/DietLoggingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/DataRequestHandler/DietsQueryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/DataRequestHandler/DietsQueryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/DataRequestHandler/FoodsQueryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/DataRequestHandler/FoodsQueryController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DataProcessing/AdultCfgCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DataProcessing/AdultCfgCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DataProcessing/CfgCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DataProcessing/CfgCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DataProcessing/ChildCfgCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DataProcessing/ChildCfgCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DataProcessing/TeenCfgCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DataProcessing/TeenCfgCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DatabaseInteraction/DietDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DatabaseInteraction/DietDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DatabaseInteraction/FoodDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DatabaseInteraction/FoodDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DatabaseInteraction/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DatabaseInteraction/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DatabaseInteraction/NutrientsDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DatabaseInteraction/NutrientsDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DatabaseInteraction/ProfileDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DatabaseInteraction/ProfileDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Diet/Diet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Diet/Diet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Diet/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Diet/Food.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/Diet/Nutrient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/Diet/Nutrient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietDetailPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietDetailPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietJournalPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietJournalPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietLoggingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietLoggingPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/FatLossPredictorUI/FatLossPredictorUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/FatLossPredictorUI/FatLossPredictorUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/MainUI/NavigateUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/MainUI/NavigateUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,23 +34,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dev",
-    "last_opened_file_path": "D:/Documents/Project_Git/Journal-of-Diet-and-Exercise/lib/mysql-connector-j-8.2.0.jar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Documents/Project_Git/Journal-of-Diet-and-Exercise/lib/mysql-connector-j-8.2.0.jar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.MainUI">
     <configuration name="FatLossPredictorUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="View.FatLossPredictorUI.FatLossPredictorUI" />
@@ -117,8 +99,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.MainUI" />
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.FatLossPredictorUI" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -131,10 +113,15 @@
       <option name="presentableId" value="Default" />
       <updated>1700510881380</updated>
       <workItem from="1700510882420" duration="2609000" />
+      <workItem from="1700595635725" duration="1479000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="refactor for database connection" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor for database connection" />
   </component>
 </project>
