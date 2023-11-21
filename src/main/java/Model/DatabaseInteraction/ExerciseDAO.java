@@ -6,12 +6,12 @@ import java.sql.*;
 import java.util.LinkedList;
 import java.util.List;
 
-
 public class ExerciseDAO {
     private Connection con = null;
 
     private static ExerciseDAO instance = null;
 
+    // Private constructor to initialize the database connection
     private ExerciseDAO() {
         try {
             con = DatabaseConn.getDatabaseConn();
@@ -20,6 +20,7 @@ public class ExerciseDAO {
         }
     }
 
+    // Singleton pattern: getInstance method to get the instance of ExerciseDAO
     public static ExerciseDAO getInstance() {
         if (instance == null) {
             instance = new ExerciseDAO();
@@ -27,13 +28,9 @@ public class ExerciseDAO {
         return instance;
     }
 
-    public void addExerceise(Exercise exercise) {
-
-    }
-
-    // return the number of exercises of specified account id.
+    // Count the number of exercises for a specified account ID
     public int searchExercises(int id) {
-        String sql = "select * from fitnessjournal.exercise_log where account_id = ?;";
+        String sql = "SELECT * FROM fitnessjournal.exercise_log WHERE account_id = ?;";
         int counter = 0;
         try {
             PreparedStatement p = con.prepareStatement(sql);
@@ -50,9 +47,9 @@ public class ExerciseDAO {
         return counter;
     }
 
+    // Insert a new exercise into the database
     public Exercise insertExercise(Exercise ex) {
-
-        String insertSQL = "insert into fitnessjournal.exercise_log (account_id, exercise_id, exercise_date, exercise_type, intensity, duration) values (?, ?, ?, ?, ?, ?)";
+        String insertSQL = "INSERT INTO fitnessjournal.exercise_log (account_id, exercise_id, exercise_date, exercise_type, intensity, duration) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             int ex_id = searchExercises(ex.getAccoount_id()) + 1;
             PreparedStatement p = con.prepareStatement(insertSQL);
@@ -79,8 +76,9 @@ public class ExerciseDAO {
         return ex;
     }
 
+    // Insert calories burnt information for a specific exercise
     public void insertExerciseCaloriesBurnt(int account_id, int exercise_id, double calories_burnt) {
-        String sql = "insert into fitnessjournal.exercise_calories_burnt(exercise_id, account_id, calories_burnt) values(?, ?, ?);";
+        String sql = "INSERT INTO fitnessjournal.exercise_calories_burnt(exercise_id, account_id, calories_burnt) VALUES (?, ?, ?);";
         try {
             PreparedStatement p = con.prepareStatement(sql);
             p.setInt(1, exercise_id);
@@ -99,9 +97,10 @@ public class ExerciseDAO {
         }
     }
 
+    // Retrieve a list of exercises for a specified account ID
     public List<Exercise> getExercises(int id) {
         List<Exercise> exercises = new LinkedList<>();
-        String sql = "select * from fitnessjournal.exercise_log where account_id = ?;";
+        String sql = "SELECT * FROM fitnessjournal.exercise_log WHERE account_id = ?;";
         try {
             PreparedStatement p = con.prepareStatement(sql);
             p.setInt(1, id);
@@ -130,5 +129,4 @@ public class ExerciseDAO {
         System.out.println(String.format("get exercises list success: " + exercises));
         return exercises;
     }
-
 }

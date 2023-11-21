@@ -1,6 +1,8 @@
 package Model.Profile;
 
 public class UserProfile {
+
+	// Attributes of the user profile
 	private int id = -1;
 	private String username = "";
 	private String password = "";
@@ -17,10 +19,12 @@ public class UserProfile {
 	private String specialPeriod;
 	private boolean hasWeightScale;
 
+	// Default constructor
 	public UserProfile() {
 		
 	}
-	
+
+	// Parameterized constructor to initialize the profile data
 	public UserProfile(String username, String password, String firstName, String lastName, int age, String gender,
 			double height,String heightUnit, double weight,String weightUnit, String specialPeriod, boolean hasWeightScale) {
 		this.username = username;
@@ -37,6 +41,7 @@ public class UserProfile {
 		this.hasWeightScale = hasWeightScale;
 	}
 
+	// Another parameterized constructor for a simplified profile data
 	public UserProfile(String firstName, String lastName, int age, String gender, double height,
 					   double weight, String specialPeriod, boolean hasWeightScale){
 		this.firstName = firstName;
@@ -49,6 +54,7 @@ public class UserProfile {
 		this.hasWeightScale = hasWeightScale;
 	}
 
+	// Getter and setter methods for each attribute
 	public int getId() {
 		return id;
 	}
@@ -149,12 +155,27 @@ public class UserProfile {
 		this.hasWeightScale = hasWeightScale;
 	}
 
+	// Method to calculate Basal Metabolic Rate (BMR)
 	public double calculateBMR() {
-		return gender.equals("male") ? (10 * weight + 6.25 * height - 5 * age + 5)
-				: (10 * weight + 6.25 * height - 5 * age - 161);
+		double h, w;
+		if(heightUnit.equals("inches")){
+			h = height * 2.54;
+		}
+		else{
+			h = height;
+		}
+		if(weightUnit.equals("lbs")){
+			w = weight * 0.453592;
+		}
+		else{
+			w = weight;
+		}
+		return gender.equals("male") ? (10 * w + 6.25 * h - 5 * age + 5)
+				: (10 * w + 6.25 * h - 5 * age - 161);
 		// The equation of Mifflin-St.Jeor
 	}
 
+	// Override toString() method for debugging or logging purposes
 	@Override
 	public String toString() {
 		return "UserProfile{" +

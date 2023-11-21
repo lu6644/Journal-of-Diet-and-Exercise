@@ -46,8 +46,10 @@ public class ExerciseLoggingUI extends JFrame {
 	JTextField durationField;
 	JTextField dateInput;
 
+	// Constructor that takes a ProfileUIData object as a parameter
 	ExerciseLoggingUI(ProfileUIData user) {
 		this.user = user;
+		// Initialize UI components
 		accountInfo = new JLabel("AccountID: " + user.getId());
 		head = new JLabel("Excercise Logging System");
 		String[] exerciseOptions = {"Swimming", "Running", "Biking", "Walking", "Calisthenics", "Basketball"};
@@ -121,6 +123,7 @@ public class ExerciseLoggingUI extends JFrame {
 		timeNotice = new JLabel("*Please enter time (HH:mm) with 24-hour clock");
 		timeInput = new JTextField();
 
+		// Set layout, visibility, and default close operation
 		setSize(1280, 720);
 		head.setBounds(450, 10, 500, 100);
 		accountInfo.setBounds(850, 100, 250, 40);
@@ -162,12 +165,13 @@ public class ExerciseLoggingUI extends JFrame {
 
 	}
 
+	// Method to handle the "Back" button action
 	public void backAction() {
 		this.dispose();
 		NavigateUI.launch(user);
 	}
 
-
+	// Method to handle the "Submit" button action
 	public void action() {
 
 
@@ -175,6 +179,9 @@ public class ExerciseLoggingUI extends JFrame {
 		String intensity = (String) intensityComboBox.getSelectedItem();
 		String enteredDate = dateInput.getText();
 		String enteredTime = timeInput.getText();
+
+		// Validate and process user inputs
+		// Check date format
 		String datePattern = "\\d{4}-\\d{2}-\\d{2}";
 		String timePattern = "\\d{2}:\\d{2}";
 		Pattern pattern1 = Pattern.compile(datePattern);
@@ -227,6 +234,7 @@ public class ExerciseLoggingUI extends JFrame {
 
 	}
 
+	// Method to convert a date and time string to a SQL Date object
 	public Date convertToSqlDate(String date, String time) {
 		SimpleDateFormat sdf = new SimpleDateFormat();
 		sdf.applyPattern("yyyy-MM-dd HH:mm:ss");
@@ -241,6 +249,7 @@ public class ExerciseLoggingUI extends JFrame {
 		}
 	}
 
+	// Static method to launch the ExerciseLoggingUI
 	public static void launch(ProfileUIData user) {
 		new ExerciseLoggingUI(user);
 	}

@@ -26,13 +26,18 @@ public class ExerciseLogging {
 		return instance;
 	}
 
-
+	// Method to log exercise and calculate burnt calories
 	public double logExercise(int account_id, String exercise_type, Date date, String intensity, double duration){
+		// Create an Exercise object
 		Exercise ex = new Exercise(account_id, date, duration, intensity, exercise_type);
 
+		// Insert exercise into the database and get the updated Exercise object
 		ex = ExerciseDAO.getInstance().insertExercise(ex);
+
+		// Get the user's BMR value from the profile
 		double bmr_value = ProfileDAO.getInstance().getProfile(account_id).calculateBMR();
 
+		// Set the strategy based on the exercise type
 		switch(exercise_type){
 			case "Swimming":
 				setStrategy(new SwimmingStrategy());
@@ -58,12 +63,15 @@ public class ExerciseLogging {
 		ex.setCaloriesBurnt(caloriesBurnt);
 		ExerciseDAO.getInstance().insertExerciseCaloriesBurnt(ex.getAccoount_id(), ex.getExercise_id(), caloriesBurnt);
 
+		// Return the calculated calories burnt
 		return caloriesBurnt;
 	}
+	// Set the strategy for calories calculation
 	public void setStrategy(CaloriesCalculationStrategy strategy) {
 		this.strategy = strategy;
 	}
 
+	// Calculate calories based on the selected strategy
 	public double calcualteCalories(Double duration, String intensity, double bmr_value) {
 		double caloriesBurnt = strategy.calculate(duration, intensity, bmr_value);
 		return caloriesBurnt;
@@ -73,6 +81,7 @@ public class ExerciseLogging {
 		double calculate(double duration, String intensity, double bmr);
 	}
 
+	// Calories calculation strategy for swimming
 	public class SwimmingStrategy implements CaloriesCalculationStrategy {
 		public double calculate(double duration, String intensity, double bmr) {
 			double MET;
@@ -85,6 +94,7 @@ public class ExerciseLogging {
 		}
 	}
 
+	// Calories calculation strategy for running
 	public class RunningStrategy implements CaloriesCalculationStrategy {
 
 		@Override
@@ -100,6 +110,7 @@ public class ExerciseLogging {
 
 	}
 
+	// Calories calculation strategy for biking
 	public class BikingStrategy implements CaloriesCalculationStrategy {
 
 		@Override
@@ -112,11 +123,10 @@ public class ExerciseLogging {
 			map.put("racing or vigorous effort", 12.0);
 			MET = map.get(intensity);
 			return bmr * MET / 24 * duration;
-
 		}
-
 	}
 
+	// Calories calculation strategy for walking
 	public class WalkingStrategy implements CaloriesCalculationStrategy {
 
 		@Override
@@ -132,6 +142,7 @@ public class ExerciseLogging {
 
 	}
 
+	// Calories calculation strategy for calisthenics
 	public class CalisthenicsStrategy implements CaloriesCalculationStrategy {
 
 		@Override
@@ -147,6 +158,7 @@ public class ExerciseLogging {
 
 	}
 
+	// Calories calculation strategy for basketball
 	public class BasketballStrategy implements CaloriesCalculationStrategy {
 
 		@Override
@@ -159,6 +171,5 @@ public class ExerciseLogging {
 			MET = map.get(intensity);
 			return bmr * MET / 24 * duration;
 		}
-
 	}
 }

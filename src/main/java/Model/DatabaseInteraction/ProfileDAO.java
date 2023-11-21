@@ -78,7 +78,7 @@ public class ProfileDAO {
     }
 
 
-    public void updateProfile(int id, String firstname, String lastname, int age, String gender, Double height, String heightUnit, Double weight, String weightUnit, String specialPeriod, Boolean hasWeightScale){
+    public void updateProfile(int id, String firstname, String lastname, int age, String gender, double height, String heightUnit, double weight, String weightUnit, String specialPeriod, boolean hasWeightScale){
         String sql = "update fitnessjournal.account set first_name = ?, last_name = ?, age = ?, gender = ?, height = ?, weight = ?, special_period = ?, has_weight_scale = ?, height_unit = ?, weight_unit = ? where account_id = ?;";
         try{
             PreparedStatement p = con.prepareStatement(sql);

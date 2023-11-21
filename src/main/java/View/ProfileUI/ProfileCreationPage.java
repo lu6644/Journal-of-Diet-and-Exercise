@@ -12,6 +12,8 @@ import javax.swing.*;
 
 
 public class ProfileCreationPage extends JFrame {
+
+    // Fields for various user inputs
     private int profileId;
     private JTextField usernameField, passwordField, firstNameField, lastNameField, ageField, heightField,
             weightField, specialPeriodField;
@@ -26,17 +28,21 @@ public class ProfileCreationPage extends JFrame {
         createComponents();
     }
 
-
+    // Method to create UI components
     private void createComponents() {
+        // Setting up JFrame properties
         setTitle("Profile Creation");
         setSize(600, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
+
+        // Coordinates for positioning components
         int labelX = 50;
         int textFieldX = 200;
         int startY = 30;
         int ySpacing = 30;
 
+        // Adding various input fields and labels
         addField("Username:", usernameField = new JTextField(), labelX, textFieldX, startY, ySpacing);
         addField("Password:", passwordField = new JPasswordField(), labelX, textFieldX, startY + ySpacing, ySpacing);
         addField("First Name:", firstNameField = new JTextField(), labelX, textFieldX, startY + 2 * ySpacing, ySpacing);
@@ -125,7 +131,7 @@ public class ProfileCreationPage extends JFrame {
 
         setVisible(true);
     }
-
+    // Method to add labels and input fields
     private void addField(String label, JTextField field, int labelX, int textFieldX, int y, int ySpacing) {
         JLabel jLabel = new JLabel(label);
         jLabel.setBounds(labelX, y, 150, 20);
@@ -136,8 +142,9 @@ public class ProfileCreationPage extends JFrame {
         }
     }
 
-
+    // Method to handle submit action
     private void submitAction() {
+        // Retrieving user inputs
         String username = usernameField.getText();
         String password = new String(((JPasswordField) passwordField).getPassword());
         String firstName = firstNameField.getText();
@@ -151,12 +158,15 @@ public class ProfileCreationPage extends JFrame {
         String specialPeriod = hasSpecialPeriod.isSelected() ? null : specialPeriodField.getText();
         boolean hasWeightScale = hasWeightScaleCheckBox.isSelected();
 
+        // Adding a new profile using the controller
         profileId = ProfileAddingController.getInstance().addNewProfile(username, password, firstName, lastName, age, gender, height, heightUnit,weight,weightUnit,specialPeriod, hasWeightScale);
 
+        // Displaying success message
         JOptionPane.showMessageDialog(this, "Profile created sucessfully!\nprofileID generated: " + profileId, "Success", JOptionPane.INFORMATION_MESSAGE);
 
         this.dispose();
 
+        // Creating a ProfileUIData object with user details
         ProfileUIData user = new ProfileUIData(username, password, firstName, lastName, age, gender, height, heightUnit,weight,weightUnit,specialPeriod, hasWeightScale);
         user.setId(profileId);
 
@@ -165,9 +175,9 @@ public class ProfileCreationPage extends JFrame {
 
     }
 
+    // Method to handle back action
     public void backAction(){
         this.dispose();
-
         MainUI.launch();
     }
 

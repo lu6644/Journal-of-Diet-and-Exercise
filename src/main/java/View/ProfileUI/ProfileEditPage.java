@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class ProfileEditPage extends JFrame {
 
-
+    // Declare UI components and user data
     private ProfileUIData user;
     private JTextField usernameField, passwordField, firstNameField, lastNameField, ageField, heightField,
             weightField, specialPeriodField;
@@ -27,16 +27,20 @@ public class ProfileEditPage extends JFrame {
         createComponents();
     }
 
+    // Method to create UI components
     private void createComponents() {
         setTitle("Profile Edit");
         setSize(600, 500);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(null);
+
+        // Define layout parameters
         int labelX = 50;
         int textFieldX = 200;
         int startY = 30;
         int ySpacing = 30;
 
+        // Add various fields and input components
         addField("Username:", usernameField = new JTextField(user.getUsername()), labelX, textFieldX, startY, ySpacing);
         usernameField.setEnabled(false);
         addField("Password:", passwordField = new JPasswordField(user.getPassword()), labelX, textFieldX, startY + ySpacing, ySpacing);
@@ -123,6 +127,7 @@ public class ProfileEditPage extends JFrame {
             hasWeightScaleCheckBox.setSelected(true);
         }
 
+        // Add Save and Back buttons with action listeners
         JButton saveButton = new JButton("Save");
         saveButton.setBounds(labelX, startY + 10 * ySpacing, 100, 30);
         saveButton.addActionListener(new ActionListener() {
@@ -147,12 +152,14 @@ public class ProfileEditPage extends JFrame {
         setVisible(true);
     }
 
+    // Method to handle the "Back" button action
     public void backAction() {
         this.dispose();
 
         ProfileDetailsPage.launch(user);
     }
 
+    // Method to handle the "Save" button action
     public void saveAction() {
 
         String firstName = firstNameField.getText();
@@ -166,16 +173,17 @@ public class ProfileEditPage extends JFrame {
         String specialPeriod = hasSpecialPeriod.isSelected() ? null : specialPeriodField.getText();
         boolean hasWeightScale = hasWeightScaleCheckBox.isSelected();
 
+        // Update the user profile using the ProfileUpdateController
         ProfileUpdateController.getInstance().updateProfile(user.getId(), firstName, lastName, age, gender, height, heightUnit, weight, weightUnit, specialPeriod, hasWeightScale);
 
         JOptionPane.showMessageDialog(this, "Profile update successfully!\n");
 
+        // Close the current JFrame and launch the main navigation page with updated user data
         this.dispose();
-
-
         NavigateUI.launch(ProfilesQueryController.getInstance().getProfile(user.getId()));
     }
 
+    // Method to add a label and corresponding text field to the JFrame
     private void addField(String label, JTextField field, int labelX, int textFieldX, int y, int ySpacing) {
         JLabel jLabel = new JLabel(label);
         jLabel.setBounds(labelX, y, 150, 20);
@@ -187,8 +195,8 @@ public class ProfileEditPage extends JFrame {
 
     }
 
+    // Static method to launch the ProfileEditPage
     public static void launch(ProfileUIData user) {
         new ProfileEditPage(user);
-
     }
 }
