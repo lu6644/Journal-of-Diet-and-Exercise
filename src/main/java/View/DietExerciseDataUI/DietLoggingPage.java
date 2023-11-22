@@ -53,6 +53,7 @@ public class DietLoggingPage extends JFrame implements ActionListener {
     private JLabel resultHeading;
     private JTextArea result;
     private JLabel caloriesInfo;
+    private JScrollPane scroll;
 
     private String meals[]
             = {"breakfast", "lunch", "dinner", "snack"};
@@ -215,7 +216,7 @@ public class DietLoggingPage extends JFrame implements ActionListener {
         resultHeading.setForeground(Color.GREEN);
         resultHeading.setSize(600, 30);
         resultHeading.setLocation(100, 420);
-        resultHeading.setVisible(true);
+        resultHeading.setVisible(false);
         c.add(resultHeading);
 
         result = new JTextArea("");
@@ -224,10 +225,12 @@ public class DietLoggingPage extends JFrame implements ActionListener {
         result.setSize(850, 150);
         result.setLocation(100, 450);
         result.setEditable(false);
+        result.setVisible(false);
 
-        JScrollPane scroll = new JScrollPane(result);
+        scroll = new JScrollPane(result);
         scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setBounds(100, 450, 850, 150); // Set the bounds for the scroll pane, not the text area.
+        scroll.setVisible(false);
         c.add(scroll);
 
         caloriesInfo = new JLabel("");
@@ -235,7 +238,7 @@ public class DietLoggingPage extends JFrame implements ActionListener {
         caloriesInfo.setForeground(Color.ORANGE);
         caloriesInfo.setSize(600, 30);
         caloriesInfo.setLocation(100, 610);
-        caloriesInfo.setVisible(true);
+        caloriesInfo.setVisible(false);
         c.add(caloriesInfo);
 
         JButton viewHistoryDiets = new JButton("View Diets History");
@@ -316,8 +319,11 @@ public class DietLoggingPage extends JFrame implements ActionListener {
                 String nutrientInfo = nutrientsDataPack[0];
                 String calories = nutrientsDataPack[1];
                 caloriesInfo.setText("Calories: " + calories);
+                caloriesInfo.setVisible(true);
                 resultHeading.setVisible(true);
                 result.setText(nutrientInfo);
+                result.setVisible(true);
+                scroll.setVisible(true);
             }
         } else if (comm.equals("viewDietsHistory")) {
             this.dispose();
