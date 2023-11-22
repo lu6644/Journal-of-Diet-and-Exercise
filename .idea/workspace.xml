@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a59fc82-856a-4044-b161-f7a089627c37" name="Changes" comment="refactor for database connection">
+    <list default="true" id="2a59fc82-856a-4044-b161-f7a089627c37" name="Changes" comment="modify UI layout and wrong input handling">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietLoggingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietLoggingPage.java" afterDir="false" />
     </list>
@@ -113,8 +113,16 @@
       <updated>1700510881380</updated>
       <workItem from="1700510882420" duration="2609000" />
       <workItem from="1700595635725" duration="2234000" />
-      <workItem from="1700630068600" duration="1687000" />
+      <workItem from="1700630068600" duration="3040000" />
     </task>
+    <task id="LOCAL-00001" summary="modify UI layout and wrong input handling">
+      <created>1700632009442</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700632009442</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,6 +130,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactor for database connection" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor for database connection" />
+    <MESSAGE value="modify UI layout and wrong input handling" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify UI layout and wrong input handling" />
   </component>
 </project>
