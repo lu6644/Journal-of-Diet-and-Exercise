@@ -40,6 +40,7 @@ public class AverageNutrientDisplay extends JFrame {
         getContentPane().setLayout(new BorderLayout());
         getContentPane().add(pieChartPanel, BorderLayout.CENTER);
         getContentPane().add(notificationPanel, BorderLayout.SOUTH);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
 

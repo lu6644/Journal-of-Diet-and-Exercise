@@ -92,6 +92,7 @@ public class NavigateUI extends JFrame {
         add(fatLossButton);
 
         setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
 

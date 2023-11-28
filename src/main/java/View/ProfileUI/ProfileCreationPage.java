@@ -130,6 +130,7 @@ public class ProfileCreationPage extends JFrame {
         add(backButton);
 
         setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     // Method to add labels and input fields
     private void addField(String label, JTextField field, int labelX, int textFieldX, int y, int ySpacing) {

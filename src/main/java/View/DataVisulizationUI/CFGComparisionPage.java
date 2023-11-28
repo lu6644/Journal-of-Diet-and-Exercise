@@ -59,6 +59,7 @@ public class CFGComparisionPage extends JFrame {
         });
         backButton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         c.add(backButton, BorderLayout.SOUTH);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
 

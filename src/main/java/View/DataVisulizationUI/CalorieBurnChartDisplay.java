@@ -16,6 +16,8 @@ import View.ExerciseLoggingUI.ExerciseLoggingUI;
 import View.MainUI.NavigateUI;
 import View.ProfileUI.ProfileUIData;
 
+import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
+
 public class CalorieBurnChartDisplay extends JPanel {
     private List<DataPoint> dataPoints = new ArrayList<>();
     private ProfileUIData user;
@@ -24,6 +26,7 @@ public class CalorieBurnChartDisplay extends JPanel {
         // Load data from the database when the application starts
         loadDataFromDatabase();
         this.user = user;
+
     }
 
     private void loadDataFromDatabase() {
@@ -131,7 +134,7 @@ public class CalorieBurnChartDisplay extends JPanel {
 
     public static void launch(ProfileUIData user){
         JFrame frame = new JFrame("Calorie Burn Chart");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         Container c = frame.getContentPane();
         c.setLayout(new BorderLayout());
         c.add(new CalorieBurnChartDisplay(user),BorderLayout.CENTER);
@@ -143,12 +146,13 @@ public class CalorieBurnChartDisplay extends JPanel {
         frame.add(backButton,BorderLayout.SOUTH);
         frame.setSize(1280, 720);
         frame.setVisible(true);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public static void main(String[] args) {
         // Setting up the frame for the application
         JFrame frame = new JFrame("Calorie Burn Chart");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         ProfileUIData user = ProfilesQueryController.getInstance().getProfile(1);
         frame.add(new CalorieBurnChartDisplay(user));
         frame.setSize(800, 600);

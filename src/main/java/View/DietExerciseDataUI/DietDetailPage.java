@@ -84,6 +84,7 @@ public class DietDetailPage extends JFrame implements ActionListener {
 
 
         setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     public void actionPerformed(ActionEvent e) {
