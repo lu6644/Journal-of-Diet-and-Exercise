@@ -9,6 +9,7 @@ import View.DataVisulizationUI.*;
 import View.DietExerciseDataUI.DietJournalPage;
 import View.DietExerciseDataUI.DietLoggingPage;
 import View.ExerciseLoggingUI.ExerciseLoggingUI;
+import View.FatLossPredictorUI.FatLossPredictorUI;
 import View.ProfileUI.ProfileDetailsPage;
 import View.ProfileUI.ProfileUIData;
 
@@ -85,6 +86,11 @@ public class NavigateUI extends JFrame {
         topNutrientsButton.addActionListener(e -> topNutrientAction());
         add(topNutrientsButton);
 
+        JButton fatLossButton = new JButton("Fat Loss Predict");
+        fatLossButton.setBounds(labelX, startY + 11 * ySpacing, 400, 40);
+        fatLossButton.addActionListener(e -> fatLossAction());
+        add(fatLossButton);
+
         setVisible(true);
     }
 
@@ -132,6 +138,11 @@ public class NavigateUI extends JFrame {
     public void topNutrientAction(){
         this.dispose();
         CalorieChartDisplay.launch(user);
+    }
+
+    private void fatLossAction(){
+        this.dispose();
+        (new FatLossPredictorUI(user)).setVisible(true);
     }
 
     public static void launch(ProfileUIData user) {

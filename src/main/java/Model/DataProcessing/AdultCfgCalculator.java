@@ -36,6 +36,7 @@ public class AdultCfgCalculator extends CfgCalculator{
             }
         }
         else if (successor != null){
+            //pass request to successor
             servingsNum = successor.calculateServings(foodCategory, profile);
         }
         return servingsNum;

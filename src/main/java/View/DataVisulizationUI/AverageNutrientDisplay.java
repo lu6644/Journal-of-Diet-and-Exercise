@@ -120,7 +120,7 @@ public class AverageNutrientDisplay extends JFrame {
                            "FROM nutrient_in_diet NID " +
                            "JOIN diet D ON NID.Diet_ID = D.id " +
                            "JOIN nutrient_name NN ON NID.Nutrient_ID = NN.Nutrient_ID " +
-                           "WHERE D.date BETWEEN ? AND ? AND NN.Nutrient_Unit IN ('g', 'mg') " + // 仅选择以克或毫克为单位的物质
+                           "WHERE D.date BETWEEN ? AND ? AND NN.Nutrient_Unit IN ('g', 'mg') " +
                            "GROUP BY NN.Nutrient_Name";
             Calendar calendar = Calendar.getInstance();
             Date endDate = new Date(calendar.getTimeInMillis());

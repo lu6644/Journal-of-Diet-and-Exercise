@@ -1,4 +1,5 @@
 package View.DietExerciseDataUI;
+
 import Controller.DataLoggingHandler.DietLoggingController;
 import View.MainUI.NavigateUI;
 import View.ProfileUI.ProfileUIData;
@@ -52,44 +53,44 @@ public class DietLoggingPage extends JFrame implements ActionListener {
     private JLabel resultHeading;
     private JTextArea result;
     private JLabel caloriesInfo;
+    private JScrollPane scroll;
 
     private String meals[]
             = {"breakfast", "lunch", "dinner", "snack"};
 
     private String food_options[] = {"",
-            "Butter, unsalted" ,
-            "Egg, chicken, whole, cooked, boiled in shell, hard-cooked" ,
-            "Chicken, broiler, drumstick, meat and skin, flour coated, fried" ,
-            "Chicken, broiler, breast, meat, stewed" ,
-            "Avocado, raw, florida" ,
-            "Pork, cured, back bacon, grilled" ,
-            "Pork, cured, ham, whole, lean" ,
-            "Broccoli, boiled, drained" ,
-            "Carrot, boiled, drained" ,
-            "Beef, ground, regular" ,
-            "Fish, tuna, yellowfin, fresh, raw" ,
-            "English muffin, whole wheat" ,
-            "Sweets, jellies" ,
-            "Dessert, pudding, banana, dry mix, instant, unprepared" ,
-            "Candied foods, cherries" ,
-            "Pasta, spaghetti, unenriched, cooked" ,
-            "Cabbage, napa, cooked" ,
-            "Candies, chocolate covered, dietetic or low calorie" ,
-            "Sausage, Italian, turkey, smoked" ,
-            "Zucchini, battered and fried" ,
-            "Yogourt, vanilla flavoured, low fat (0.5-1.9% M.F.)" ,
-            "Bread, whole grain (whole-wheat), commercial" ,
+            "Butter, unsalted",
+            "Egg, chicken, whole, cooked, boiled in shell, hard-cooked",
+            "Chicken, broiler, drumstick, meat and skin, flour coated, fried",
+            "Chicken, broiler, breast, meat, stewed",
+            "Avocado, raw, florida",
+            "Pork, cured, back bacon, grilled",
+            "Pork, cured, ham, whole, lean",
+            "Broccoli, boiled, drained",
+            "Carrot, boiled, drained",
+            "Beef, ground, regular",
+            "Fish, tuna, yellowfin, fresh, raw",
+            "English muffin, whole wheat",
+            "Sweets, jellies",
+            "Dessert, pudding, banana, dry mix, instant, unprepared",
+            "Candied foods, cherries",
+            "Pasta, spaghetti, unenriched, cooked",
+            "Cabbage, napa, cooked",
+            "Candies, chocolate covered, dietetic or low calorie",
+            "Sausage, Italian, turkey, smoked",
+            "Zucchini, battered and fried",
+            "Yogourt, vanilla flavoured, low fat (0.5-1.9% M.F.)",
+            "Bread, whole grain (whole-wheat), commercial",
             "Apple, Fuji, raw, with skin"};
 
 
-    public static void launch(ProfileUIData user){
+    public static void launch(ProfileUIData user) {
         DietLoggingPage dlp = new DietLoggingPage(user);
-        dlp.setSize(1280,720);
+        dlp.setSize(1280, 720);
         dlp.setVisible(true);
     }
 
-    public DietLoggingPage(ProfileUIData user)
-    {
+    public DietLoggingPage(ProfileUIData user) {
         this.user = user;
 
         setTitle("Log Your Diet");
@@ -106,16 +107,16 @@ public class DietLoggingPage extends JFrame implements ActionListener {
         title.setLocation(400, 30);
         c.add(title);
 
-        date = new JLabel("Date:");
+        date = new JLabel("Date(yyyy-mm-dd):");
         date.setFont(new Font("Arial", Font.PLAIN, 20));
-        date.setSize(100, 30);
+        date.setSize(200, 30);
         date.setLocation(100, 100);
         c.add(date);
 
         tdate = new JTextField();
         tdate.setFont(new Font("Arial", Font.PLAIN, 15));
         tdate.setSize(190, 30);
-        tdate.setLocation(250, 100);
+        tdate.setLocation(300, 100);
         c.add(tdate);
 
         meal = new JLabel("Meal Type:");
@@ -202,34 +203,20 @@ public class DietLoggingPage extends JFrame implements ActionListener {
         qty3t.setLocation(850, 300);
         c.add(qty3t);
 
-        term = new JCheckBox("Accept Terms And Conditions.");
-        term.setFont(new Font("Arial", Font.PLAIN, 15));
-        term.setSize(250, 20);
-        term.setLocation(150, 350);
-        c.add(term);
-
         sub = new JButton("Submit");
         sub.setFont(new Font("Arial", Font.PLAIN, 15));
-        sub.setSize(100, 20);
-        sub.setLocation(150, 380);
+        sub.setSize(200, 60);
+        sub.setLocation(150, 350);
         sub.setActionCommand("submit");
         sub.addActionListener(this);
         c.add(sub);
-
-        reset = new JButton("Reset");
-        reset.setFont(new Font("Arial", Font.PLAIN, 15));
-        reset.setSize(100, 20);
-        reset.setLocation(270, 380);
-        reset.setActionCommand("reset");
-        reset.addActionListener(this);
-        c.add(reset);
 
         resultHeading = new JLabel("Your nutrients intake for this meal:");
         resultHeading.setFont(new Font("Arial", Font.BOLD, 18));
         resultHeading.setForeground(Color.GREEN);
         resultHeading.setSize(600, 30);
         resultHeading.setLocation(100, 420);
-        resultHeading.setVisible(true);
+        resultHeading.setVisible(false);
         c.add(resultHeading);
 
         result = new JTextArea("");
@@ -238,11 +225,12 @@ public class DietLoggingPage extends JFrame implements ActionListener {
         result.setSize(850, 150);
         result.setLocation(100, 450);
         result.setEditable(false);
+        result.setVisible(false);
 
-        JScrollPane scroll = new JScrollPane (result);
-        scroll.setVerticalScrollBarPolicy ( ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS );
+        scroll = new JScrollPane(result);
+        scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scroll.setBounds(100, 450, 850, 150); // Set the bounds for the scroll pane, not the text area.
-        //c.add(result);
+        scroll.setVisible(false);
         c.add(scroll);
 
         caloriesInfo = new JLabel("");
@@ -250,7 +238,7 @@ public class DietLoggingPage extends JFrame implements ActionListener {
         caloriesInfo.setForeground(Color.ORANGE);
         caloriesInfo.setSize(600, 30);
         caloriesInfo.setLocation(100, 610);
-        caloriesInfo.setVisible(true);
+        caloriesInfo.setVisible(false);
         c.add(caloriesInfo);
 
         JButton viewHistoryDiets = new JButton("View Diets History");
@@ -276,54 +264,72 @@ public class DietLoggingPage extends JFrame implements ActionListener {
 
     }
 
-    public void backAction(){
+    public void backAction() {
         this.dispose();
         NavigateUI.launch(user);
     }
 
-    public void actionPerformed(ActionEvent e){
+    public void actionPerformed(ActionEvent e) {
         String comm = e.getActionCommand();
         if (comm.equals("submit")) {
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA);
             Date inputDate = null;
+            boolean inputCorrect = true;
             try {
                 inputDate = formatter.parse(tdate.getText().strip());
             } catch (ParseException ex) {
+                inputCorrect = false;
                 JOptionPane.showMessageDialog(this, "wrong date type");
             }
             String inputMeal = cmeal.getSelectedItem().toString();
             HashMap<String, Double> foods = new HashMap<>();
             String inputFood1 = food1c.getSelectedItem().toString();
-            if (!inputFood1.isEmpty()){
-                Double inputQty1 = Double.parseDouble(qty1t.getText());
-                foods.put(inputFood1, inputQty1);
+            if (!inputFood1.isEmpty()) {
+                try {
+                    Double inputQty1 = Double.parseDouble(qty1t.getText());
+                    foods.put(inputFood1, inputQty1);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "quantity should be a number");
+                    inputCorrect = false;
+                }
             }
             String inputFood2 = food2c.getSelectedItem().toString();
-            if (!inputFood2.isEmpty()){
-                Double inputQty2 = Double.parseDouble(qty2t.getText());
-                foods.put(inputFood2, inputQty2);
+            if (!inputFood2.isEmpty()) {
+                try {
+                    Double inputQty2 = Double.parseDouble(qty2t.getText());
+                    foods.put(inputFood2, inputQty2);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "quantity should be a number");
+                    inputCorrect = false;
+                }
             }
             String inputFood3 = food3c.getSelectedItem().toString();
-            if (!inputFood3.isEmpty()){
-                Double inputQty3 = Double.parseDouble(qty3t.getText());
-                foods.put(inputFood3, inputQty3);
+            if (!inputFood3.isEmpty()) {
+                try {
+                    Double inputQty3 = Double.parseDouble(qty3t.getText());
+                    foods.put(inputFood3, inputQty3);
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, "quantity should be a number");
+                    inputCorrect = false;
+                }
             }
-            DietLoggingController c = DietLoggingController.getInstance();
-            String[] nutrientsDataPack= c.logDiet(user.getId(), inputDate,inputMeal,foods);
-            String nutrientInfo = nutrientsDataPack[0];
-            String calories = nutrientsDataPack[1];
-            caloriesInfo.setText("Calories: " + calories);
-            resultHeading.setVisible(true);
-            result.setText(nutrientInfo);
-            //result.setText("<html>" + nutrientInfo.replaceAll("\n", "<br>"));
+            if (inputCorrect) {
+                DietLoggingController c = DietLoggingController.getInstance();
+                String[] nutrientsDataPack = c.logDiet(user.getId(), inputDate, inputMeal, foods);
+                String nutrientInfo = nutrientsDataPack[0];
+                String calories = nutrientsDataPack[1];
+                caloriesInfo.setText("Calories: " + calories);
+                caloriesInfo.setVisible(true);
+                resultHeading.setVisible(true);
+                result.setText(nutrientInfo);
+                result.setVisible(true);
+                scroll.setVisible(true);
+            }
         } else if (comm.equals("viewDietsHistory")) {
             this.dispose();
             DietJournalPage.launch(user);
         }
     }
-
-
-
 
 
 }

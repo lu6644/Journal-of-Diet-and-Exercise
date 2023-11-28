@@ -15,7 +15,7 @@ public class FoodDAO {
 
     private FoodDAO(){
         try {
-            con = DatabaseConn.getDatabaseConn();
+            con = DatabaseConnector.getConnection();
         }
         catch (Exception e) {
             // Handle the exception or log it as needed
@@ -30,6 +30,7 @@ public class FoodDAO {
         return instance;
     }
 
+    //search food id give the food name
     public int queryId(String name){
         int foodId = -1; // Default value if not found
         try {

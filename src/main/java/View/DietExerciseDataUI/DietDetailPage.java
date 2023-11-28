@@ -37,8 +37,6 @@ public class DietDetailPage extends JFrame implements ActionListener {
 
         title = new JLabel("A Breakdown of Selected Meal's Nutrients");
         title.setFont(new Font("Arial", Font.PLAIN, 20));
-        //title.setSize(500, 30);
-        //title.setLocation(250, 30);
         labelsPanel.add(title, gbc);
 
         gbc.gridx = 0;
@@ -46,22 +44,16 @@ public class DietDetailPage extends JFrame implements ActionListener {
         gbc.anchor = GridBagConstraints.CENTER;
         dietNumberLabel = new JLabel("Diet Number: " + dietId);
         dietNumberLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        //dietNumberLabel.setSize(300, 20);
-        //dietNumberLabel.setLocation(50, 80);
         labelsPanel.add(dietNumberLabel,gbc);
 
         gbc.gridx = 1;
         dateLabel = new JLabel("Date: " + date);
         dateLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        //dateLabel.setSize(300, 20);
-        //dateLabel.setLocation(50, 110);
         labelsPanel.add(dateLabel, gbc);
 
         gbc.gridx = 2;
         mealTypeLabel = new JLabel("Meal Type: " + mealType);
         mealTypeLabel.setFont(new Font("Arial", Font.PLAIN, 16));
-        //mealTypeLabel.setSize(300, 20);
-        //mealTypeLabel.setLocation(50, 140);
         labelsPanel.add(mealTypeLabel, gbc);
 
         c.add(labelsPanel, BorderLayout.NORTH);
@@ -76,7 +68,6 @@ public class DietDetailPage extends JFrame implements ActionListener {
         nutrientTable = new JTable(nutrientsTableModel);
         JTableHeader header = nutrientTable.getTableHeader();
         header.setFont(new Font("Arial", Font.BOLD, 16));
-        //nutrientTable.setBounds(50, 180, 800, 250);
         JScrollPane scrollPane = new JScrollPane(nutrientTable);
         JPanel tablePanel = new JPanel(new BorderLayout());
         tablePanel.setBorder(BorderFactory.createEmptyBorder(10, 30, 20, 30));
@@ -87,14 +78,10 @@ public class DietDetailPage extends JFrame implements ActionListener {
 
         backButton = new JButton("Back");
         backButton.setFont(new Font("Arial", Font.PLAIN, 15));
-        //backButton.setSize(100, 20);
-        //backButton.setLocation(50, 650);
         backButton.addActionListener(this);
         backButton.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         c.add(backButton, BorderLayout.SOUTH);
 
-        //pack(); // Pack components to ensure proper layout
-        //setLocationRelativeTo(null);
 
         setVisible(true);
     }

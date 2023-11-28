@@ -25,7 +25,6 @@ public class DietJournalPage extends JFrame implements ActionListener {
         // Set up the JFrame
         setTitle("Diet History Table");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setSize(800, 400);
 
         // Call the queryDietsHistory method to get nutrient data
         dietsHistory = DietsQueryController.getInstance().requestDietsHistory(user.getId());

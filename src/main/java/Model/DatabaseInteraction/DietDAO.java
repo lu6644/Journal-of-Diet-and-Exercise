@@ -14,7 +14,7 @@ public class DietDAO {
 
     private DietDAO(){
         try {
-            con = DatabaseConn.getDatabaseConn();
+            con = DatabaseConnector.getConnection();
         }
         catch (Exception e) {
             // Handle the exception or log it as needed
@@ -29,6 +29,7 @@ public class DietDAO {
         return instance;
     }
 
+    //insert diet into db
     public void addDiet2Db(Diet diet){
         insertDiet(diet);
         insertFoodsInDiet(diet);
@@ -36,6 +37,7 @@ public class DietDAO {
 
     }
 
+    //insert into diet table
     public void insertDiet(Diet diet){
         String stmt1 = "insert into fitnessjournal.diet(account_id,date,mealtype) values(?,?,?)";
         try {
@@ -60,6 +62,7 @@ public class DietDAO {
         }
     }
 
+    //insert into Foods_In_Diet relation table
     public void insertFoodsInDiet(Diet diet){
         String stmt1 = "insert into fitnessjournal.food_in_diet(diet_id,food_id,Quantity) values(?,?,?)";
 
@@ -84,6 +87,7 @@ public class DietDAO {
         }
     }
 
+    //insert into Nutrient_in_diet relation table
     public void insertNutrientsInDiet(Diet diet){
         String stmt1 = "insert into fitnessjournal.nutrient_in_diet(Diet_ID,Nutrient_ID,Value) values(?,?,?)";
 
@@ -141,6 +145,7 @@ public class DietDAO {
         return dietsHistory;
     }
 
+    //query all the nutrients intake for a diet
     public Diet queryDietNutrientsDetail(int dietId){
         Diet diet = null;
         String sql = "SELECT d.id, d.account_id, d.date, d.mealtype, nn.Nutrient_ID, nn.Nutrient_Name, nn.Nutrient_Unit, nd.Value FROM " +

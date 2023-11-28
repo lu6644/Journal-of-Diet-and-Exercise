@@ -97,7 +97,7 @@ public class NutrientChartDisplay extends JFrame {
         private void drawAxisLabels(Graphics g, int xOrigin, int yOrigin, int xScale, int yScale) {
         	// Draw x-axis labels
             for (int i = 0; i < data.size(); i++) {
-                String label = String.valueOf(i + 1); // ÌìÊý
+                String label = String.valueOf(i + 1);
                 g.drawString(label, xOrigin + i * xScale - 5, yOrigin + 15);
             }
          // Add "Days" label at the end of the x-axis
