@@ -261,6 +261,7 @@ public class DietLoggingPage extends JFrame implements ActionListener {
         add(backButton);
 
         setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
 

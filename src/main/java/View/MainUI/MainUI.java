@@ -59,6 +59,8 @@ public class MainUI extends JFrame {
 
         setVisible(true);
 
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 
     }
     // Method to add labels and text fields

@@ -68,6 +68,7 @@ public class ProfileDetailsPage extends JFrame {
 
         // Making the frame visible
         setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     private void editAction() {

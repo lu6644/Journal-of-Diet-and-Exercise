@@ -162,7 +162,7 @@ public class ProfileDAO {
     public UserProfile getProfile(int id){
         UserProfile user = new UserProfile();
         user.setId(id);
-        String sql = "select * from fitnessjournal.account where account_id = ?;";
+        String sql = "select * from fitnessjournal.account a join fitnessjournal.user u on a.account_id = u.account_id where a.account_id = ?;";
         try{
             PreparedStatement p = con.prepareStatement(sql);
             p.setInt(1, id);
