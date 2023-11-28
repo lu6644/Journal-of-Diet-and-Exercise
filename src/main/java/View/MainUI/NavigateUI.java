@@ -91,7 +91,6 @@ public class NavigateUI extends JFrame {
 
     public void dietloggingAction(){
         this.dispose();
-
         DietLoggingPage.launch(user);
     }
     public void infoAction(){
