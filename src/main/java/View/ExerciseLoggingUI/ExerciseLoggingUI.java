@@ -129,7 +129,7 @@ public class ExerciseLoggingUI extends JFrame {
 		accountInfo.setBounds(850, 100, 250, 40);
 		date.setBounds(125, 150, 100, 40);
 		dateInput.setBounds(250, 150, 150, 40);
-		dateExample.setBounds(450, 150, 200, 40);
+		dateExample.setBounds(450, 150, 300, 40);
 		time.setBounds(125, 250, 100, 40);
 		timeInput.setBounds(250, 250, 150, 40);
 		timeNotice.setBounds(450, 250, 300, 40);
@@ -137,7 +137,7 @@ public class ExerciseLoggingUI extends JFrame {
 		exerciseComboBox.setBounds(250, 350, 150, 40);
 		intensityInput.setBounds(125, 450, 100, 40);
 		intensityComboBox.setBounds(250, 450, 150, 40);
-		notice.setBounds(450, 450, 200, 40);
+		notice.setBounds(450, 450, 300, 40);
 		durationInput.setBounds(125, 550, 150, 40);
 		durationField.setBounds(250, 550, 150, 40);
 
