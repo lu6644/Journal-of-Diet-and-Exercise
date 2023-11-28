@@ -9,9 +9,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a59fc82-856a-4044-b161-f7a089627c37" name="Changes" comment="modify UI layout and wrong input handling">
+    <list default="true" id="2a59fc82-856a-4044-b161-f7a089627c37" name="Changes" comment="modify UI visibolity logic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DatabaseInteraction/ProfileDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DatabaseInteraction/ProfileDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/AverageNutrientDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/AverageNutrientDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/CFGComparisionPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/CFGComparisionPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/CalorieBurnChartDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/CalorieBurnChartDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/CalorieChartDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/CalorieChartDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/NutrientChartDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/NutrientChartDisplay.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietDetailPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietDetailPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietJournalPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietJournalPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietLoggingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietLoggingPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/FatLossPredictorUI/FatLossPredictorUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/FatLossPredictorUI/FatLossPredictorUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/MainUI/MainUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/MainUI/MainUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/MainUI/NavigateUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/MainUI/NavigateUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/ProfileUI/ProfileCreationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/ProfileUI/ProfileCreationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/ProfileUI/ProfileDetailsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/ProfileUI/ProfileDetailsPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/View/ProfileUI/ProfileEditPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/ProfileUI/ProfileEditPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,7 +52,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;dev&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Documents/Project_Git/Journal-of-Diet-and-Exercise/lib/mysql-connector-j-8.2.0.jar&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Documents/Project_Git/Journal-of-Diet-and-Exercise&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -113,7 +127,10 @@
       <updated>1700510881380</updated>
       <workItem from="1700510882420" duration="2609000" />
       <workItem from="1700595635725" duration="2234000" />
-      <workItem from="1700630068600" duration="3040000" />
+      <workItem from="1700630068600" duration="3609000" />
+      <workItem from="1700755657761" duration="47000" />
+      <workItem from="1700949763472" duration="691000" />
+      <workItem from="1701205287406" duration="1997000" />
     </task>
     <task id="LOCAL-00001" summary="modify UI layout and wrong input handling">
       <created>1700632009442</created>
@@ -122,7 +139,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700632009442</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="modify UI visibolity logic">
+      <created>1700633247645</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1700633247645</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +155,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactor for database connection" />
     <MESSAGE value="modify UI layout and wrong input handling" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify UI layout and wrong input handling" />
+    <MESSAGE value="modify UI visibolity logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify UI visibolity logic" />
   </component>
 </project>

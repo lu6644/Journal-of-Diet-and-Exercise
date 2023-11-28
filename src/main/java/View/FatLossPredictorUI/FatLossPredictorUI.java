@@ -57,6 +57,7 @@ public class FatLossPredictorUI extends JFrame {
                 predictFatLoss();
             }
         });
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     private void predictFatLoss() {

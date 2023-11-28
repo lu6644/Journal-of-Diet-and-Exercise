@@ -63,7 +63,7 @@ public class DietJournalPage extends JFrame implements ActionListener {
         buttonPanel.add(backButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
-
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     @Override

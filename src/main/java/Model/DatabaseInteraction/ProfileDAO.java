@@ -169,6 +169,8 @@ public class ProfileDAO {
             ResultSet rs = p.executeQuery();
 
             while(rs.next()){
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
                 user.setFirstName(rs.getString("first_name"));
                 user.setLastName(rs.getString("last_name"));
                 user.setAge(rs.getInt("age"));
