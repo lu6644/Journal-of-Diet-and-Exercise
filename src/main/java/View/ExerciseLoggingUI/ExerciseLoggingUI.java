@@ -264,7 +264,7 @@ public class ExerciseLoggingUI extends JFrame {
 
         JOptionPane.showMessageDialog(this, "Exercise Log Successfully!\nThis exercise burned " + res + " calories.");
     }
-    
+
     // Method to convert a date and time string to a SQL Date object
     public Date convertToSqlDate(String date, String time) {
         SimpleDateFormat sdf = new SimpleDateFormat();

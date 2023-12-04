@@ -9,28 +9,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a59fc82-856a-4044-b161-f7a089627c37" name="Changes" comment="modify UI visibolity logic">
+    <list default="true" id="2a59fc82-856a-4044-b161-f7a089627c37" name="Changes" comment="code smell 1 refactoring">
+      <change afterPath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietLoggingData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/DatabaseInteraction/ProfileDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/DatabaseInteraction/ProfileDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/AverageNutrientDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/AverageNutrientDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/CFGComparisionPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/CFGComparisionPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/CalorieBurnChartDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/CalorieBurnChartDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/CalorieChartDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/CalorieChartDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/NutrientChartDisplay.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DataVisulizationUI/NutrientChartDisplay.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietDetailPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietDetailPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietJournalPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietJournalPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Controller/DataLoggingHandler/DietLoggingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controller/DataLoggingHandler/DietLoggingController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietLoggingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/DietExerciseDataUI/DietLoggingPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/FatLossPredictorUI/FatLossPredictorUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/FatLossPredictorUI/FatLossPredictorUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/MainUI/MainUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/MainUI/MainUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/MainUI/NavigateUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/MainUI/NavigateUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/ProfileUI/ProfileCreationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/ProfileUI/ProfileCreationPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/ProfileUI/ProfileDetailsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/ProfileUI/ProfileDetailsPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/View/ProfileUI/ProfileEditPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/View/ProfileUI/ProfileEditPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -48,6 +43,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;CLASS_PANEL_SPLIT_PROPORTION&quot;: &quot;0.28228477&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
@@ -61,6 +57,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -131,6 +128,13 @@
       <workItem from="1700755657761" duration="47000" />
       <workItem from="1700949763472" duration="691000" />
       <workItem from="1701205287406" duration="1997000" />
+      <workItem from="1701295380012" duration="1532000" />
+      <workItem from="1701453607919" duration="80000" />
+      <workItem from="1701453698911" duration="938000" />
+      <workItem from="1701454655448" duration="1182000" />
+      <workItem from="1701547998581" duration="603000" />
+      <workItem from="1701590241507" duration="6587000" />
+      <workItem from="1701718266516" duration="2623000" />
     </task>
     <task id="LOCAL-00001" summary="modify UI layout and wrong input handling">
       <created>1700632009442</created>
@@ -146,7 +150,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700633247645</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="code smell 1 refactoring">
+      <created>1701677174621</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701677174621</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,6 +167,7 @@
     <MESSAGE value="refactor for database connection" />
     <MESSAGE value="modify UI layout and wrong input handling" />
     <MESSAGE value="modify UI visibolity logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="modify UI visibolity logic" />
+    <MESSAGE value="code smell 1 refactoring" />
+    <option name="LAST_COMMIT_MESSAGE" value="code smell 1 refactoring" />
   </component>
 </project>

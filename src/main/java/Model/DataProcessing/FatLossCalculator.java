@@ -27,30 +27,29 @@ public class FatLossCalculator {
         }
     }
 
-    // Method to get daily calorie intake from the database for a specific account
     private double getDailyCalorieIntake(Connection conn, int accountId) throws SQLException {
-        String sql = "SELECT AVG(Value) FROM nutrient_in_diet nid JOIN diet d ON nid.Diet_ID = d.id WHERE account_id = ? AND Nutrient_ID = 208"; // SQL query to fetch average daily calorie intake
-        try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, accountId);
-            ResultSet rs = pstmt.executeQuery();
-            if (rs.next()) {
-                return rs.getDouble(1); // Return average daily calorie intake
-            }
-        }
-        return 0; // Return 0 if no data found
+        String sql = "SELECT AVG(Value) FROM nutrient_in_diet nid JOIN diet d ON nid.Diet_ID = d.id WHERE account_id = ? AND Nutrient_ID = 208";
+        return executeAverageQuery(conn, sql, accountId);
     }
 
-    // Method to get daily calories burned from the database for a specific account
+
+    // Refactored method to get daily calories burned
     private double getDailyCaloriesBurned(Connection conn, int accountId) throws SQLException {
-        String sql = "SELECT AVG(calories_burnt) FROM exercise_calories_burnt WHERE account_id = ?"; // SQL query to fetch average daily calories burned
+        String sql = "SELECT AVG(calories_burnt) FROM exercise_calories_burnt WHERE account_id = ?";
+        return executeAverageQuery(conn, sql, accountId);
+    }
+
+
+    // New method to execute a query and return the average value
+    private double executeAverageQuery(Connection conn, String sql, int accountId) throws SQLException {
         try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, accountId);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                return rs.getDouble(1); // Return average daily calories burned
+                return rs.getDouble(1);
             }
         }
-        return 0; // Return 0 if no data found
+        return 0;
     }
 
     // Method to get user's weight from the database

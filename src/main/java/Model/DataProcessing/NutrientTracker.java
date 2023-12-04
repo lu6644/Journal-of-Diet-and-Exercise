@@ -33,10 +33,7 @@ public class NutrientTracker {
         dailyIntakes.add(intake);
     }
 
-    /**
-     * Calculates and prints the percentage of each nutrient based on total intake.
-     */
-    public void calculatePercentages() {
+   public void calculatePercentages() {
         double totalProtein = 0;
         double totalCarbohydrates = 0;
         double totalOtherNutrients = 0;
@@ -52,17 +49,39 @@ public class NutrientTracker {
 
         // Calculating and printing the percentage of each nutrient
         for (Nutrient nutrient : nutrients) {
-            String name = nutrient.getName();
-            double percentage = 0;
-            if (name.equals("Protein")) {
-                percentage = (totalProtein / totalNutrients) * 100;
-            } else if (name.equals("Carbohydrates")) {
-                percentage = (totalCarbohydrates / totalNutrients) * 100;
-            } else if (name.equals("Other Nutrients")) {
-                percentage = (totalOtherNutrients / totalNutrients) * 100;
+            double amount = 0;
+            switch (nutrient.getName()) {
+                case "Protein":
+                    amount = totalProtein;
+                    break;
+                case "Carbohydrates":
+                    amount = totalCarbohydrates;
+                    break;
+                case "Other Nutrients":
+                    amount = totalOtherNutrients;
+                    break;
             }
-            System.out.println(name + ": " + String.format("%.2f%%", percentage));
+            printPercentage(nutrient.getName(), calculatePercentage(amount, totalNutrients));
         }
+    }
+
+    /**
+     * Calculates the percentage of a nutrient.
+     * @param amount The total amount of the nutrient.
+     * @param total The total amount of all nutrients.
+     * @return The percentage of the nutrient.
+     */
+    private double calculatePercentage(double amount, double total) {
+        return (amount / total) * 100;
+    }
+
+    /**
+     * Prints the percentage of a nutrient.
+     * @param nutrientName The name of the nutrient.
+     * @param percentage The percentage of the nutrient.
+     */
+    private void printPercentage(String nutrientName, double percentage) {
+        System.out.println(nutrientName + ": " + String.format("%.2f%%", percentage));
     }
 
     /**
