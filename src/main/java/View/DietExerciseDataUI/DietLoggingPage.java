@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class DietLoggingPage extends JFrame implements ActionListener {
 
@@ -270,6 +271,20 @@ public class DietLoggingPage extends JFrame implements ActionListener {
         NavigateUI.launch(user);
     }
 
+    private boolean handleFoodInput(JComboBox foodComboBox, JTextField qtyTextfield, Map<String, Double> foods){
+        String inputFood = foodComboBox.getSelectedItem().toString();
+        if (!inputFood.isEmpty()) {
+            try {
+                Double inputQty = Double.parseDouble(qtyTextfield.getText());
+                foods.put(inputFood, inputQty);
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, "quantity should be a number");
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void actionPerformed(ActionEvent e) {
         String comm = e.getActionCommand();
         if (comm.equals("submit")) {
@@ -284,39 +299,16 @@ public class DietLoggingPage extends JFrame implements ActionListener {
             }
             String inputMeal = cmeal.getSelectedItem().toString();
             HashMap<String, Double> foods = new HashMap<>();
-            String inputFood1 = food1c.getSelectedItem().toString();
-            if (!inputFood1.isEmpty()) {
-                try {
-                    Double inputQty1 = Double.parseDouble(qty1t.getText());
-                    foods.put(inputFood1, inputQty1);
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, "quantity should be a number");
-                    inputCorrect = false;
-                }
-            }
-            String inputFood2 = food2c.getSelectedItem().toString();
-            if (!inputFood2.isEmpty()) {
-                try {
-                    Double inputQty2 = Double.parseDouble(qty2t.getText());
-                    foods.put(inputFood2, inputQty2);
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, "quantity should be a number");
-                    inputCorrect = false;
-                }
-            }
-            String inputFood3 = food3c.getSelectedItem().toString();
-            if (!inputFood3.isEmpty()) {
-                try {
-                    Double inputQty3 = Double.parseDouble(qty3t.getText());
-                    foods.put(inputFood3, inputQty3);
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(this, "quantity should be a number");
-                    inputCorrect = false;
-                }
-            }
+            inputCorrect = handleFoodInput(food1c,qty1t,foods) &&
+                    handleFoodInput(food2c,qty2t,foods) && handleFoodInput(food3c,qty3t,foods);
             if (inputCorrect) {
                 DietLoggingController c = DietLoggingController.getInstance();
-                String[] nutrientsDataPack = c.logDiet(user.getId(), inputDate, inputMeal, foods);
+                DietLoggingData dietLoggingData = new DietLoggingData();
+                dietLoggingData.setAccountId(user.getId());
+                dietLoggingData.setDate(inputDate);
+                dietLoggingData.setMeal(inputMeal);
+                dietLoggingData.setFoods(foods);
+                String[] nutrientsDataPack = c.logDiet(dietLoggingData);
                 String nutrientInfo = nutrientsDataPack[0];
                 String calories = nutrientsDataPack[1];
                 caloriesInfo.setText("Calories: " + calories);

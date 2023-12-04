@@ -7,6 +7,7 @@ import java.util.Map;
 import Model.DataProcessing.NutrientsCalculator;
 import Model.DatabaseInteraction.DietDAO;
 import Model.Diet.*;
+import View.DietExerciseDataUI.DietLoggingData;
 
 public class DietLoggingController {
 	private static DietLoggingController instance = null;
@@ -23,10 +24,10 @@ public class DietLoggingController {
 		return instance;
 	}
 
-	public String[] logDiet(int accountId, Date date, String meal, Map<String, Double> foods) {
-		MealType mealType = MealType.valueOf(meal.toUpperCase());
-		Diet diet = new Diet(accountId, date, mealType);
-		for (Map.Entry<String, Double> entry : foods.entrySet()) {
+	public String[] logDiet(DietLoggingData dietLoggingData) {
+		MealType mealType = MealType.valueOf(dietLoggingData.getMeal().toUpperCase());
+		Diet diet = new Diet(dietLoggingData.getAccountId(), dietLoggingData.getDate(), mealType);
+		for (Map.Entry<String, Double> entry : dietLoggingData.getFoods().entrySet()) {
 			if (!entry.getKey().isEmpty()) {
 				Food f = new Food(entry.getKey());
 				Double qty = entry.getValue();
