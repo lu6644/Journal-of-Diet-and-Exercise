@@ -66,28 +66,6 @@ public class ExerciseLoggingUI extends JFrame {
                     String selectedOption = (String) exerciseComboBox.getSelectedItem();
                     intensityComboBox.setEnabled(true);
                     notice.setVisible(false);
-//					if (selectedOption.equals("Swimming")) {
-//						// Take freestyle swimming as an example.
-//						String[] intensityOptions = {"vigorous effort", "light or moderate effort"};
-//						intensityComboBox.setModel(new DefaultComboBoxModel<>(intensityOptions));
-//					} else if (selectedOption.equals("Running")) {
-//						String[] intensityOptions = {"5 mph (12 min/mile)", "7 mph (8.5 min/mile)",
-//								"10 mph (6 min/mile)"};
-//						intensityComboBox.setModel(new DefaultComboBoxModel<>(intensityOptions));
-//					} else if (selectedOption.equals("Biking")) {
-//						String[] intensityOptions = {"for pleasure", "light effort", "moderate effort",
-//								"racing or vigorous effort"};
-//						intensityComboBox.setModel(new DefaultComboBoxModel<>(intensityOptions));
-//					} else if (selectedOption.equals("Walking")) {
-//						String[] intensityOptions = {"moderate pace", "for exercise", "very brisk pace"};
-//						intensityComboBox.setModel(new DefaultComboBoxModel<>(intensityOptions));
-//					} else if (selectedOption.equals("Calisthenics")) {
-//						String[] intensityOptions = {"light effort", "moderate effort", "vigorous effort"};
-//						intensityComboBox.setModel(new DefaultComboBoxModel<>(intensityOptions));
-//					} else if (selectedOption.equals("Basketball")) {
-//						String[] intensityOptions = {"game", "general", "shooting baskets"};
-//						intensityComboBox.setModel(new DefaultComboBoxModel<>(intensityOptions));
-//					}
 
                     Map<String, String[]> intensityOptionsMap = new HashMap<>();
                     intensityOptionsMap.put("Swimming", new String[]{"vigorous effort", "light or moderate effort"});
