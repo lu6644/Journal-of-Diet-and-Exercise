@@ -48,21 +48,13 @@ public class NutrientTracker {
         double totalNutrients = totalProtein + totalCarbohydrates + totalOtherNutrients;
 
         // Calculating and printing the percentage of each nutrient
-        for (Nutrient nutrient : nutrients) {
-            double amount = 0;
-            switch (nutrient.getName()) {
-                case "Protein":
-                    amount = totalProtein;
-                    break;
-                case "Carbohydrates":
-                    amount = totalCarbohydrates;
-                    break;
-                case "Other Nutrients":
-                    amount = totalOtherNutrients;
-                    break;
-            }
-            printPercentage(nutrient.getName(), calculatePercentage(amount, totalNutrients));
-        }
+       System.out.println("Protein: " + formatPercentage(totalProtein, totalNutrients));
+       System.out.println("Carbohydrates: " + formatPercentage(totalCarbohydrates, totalNutrients));
+       System.out.println("OtherNutrients: " + formatPercentage(totalOtherNutrients, totalNutrients));
+    }
+
+    private String formatPercentage(double nutrientValue, double total) {
+        return String.format("%.2f%%", (nutrientValue / total) * 100);
     }
 
     /**
