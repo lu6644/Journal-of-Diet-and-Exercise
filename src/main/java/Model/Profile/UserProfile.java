@@ -157,23 +157,22 @@ public class UserProfile {
 
 	// Method to calculate Basal Metabolic Rate (BMR)
 	public double calculateBMR() {
-		double h, w;
-		if(heightUnit.equals("inches")){
-			h = height * 2.54;
-		}
-		else{
-			h = height;
-		}
-		if(weightUnit.equals("lbs")){
-			w = weight * 0.453592;
-		}
-		else{
-			w = weight;
-		}
+		double h = convertHeightToCentimeters();
+		double w = convertWeightToKilograms();
 		return gender.equals("male") ? (10 * w + 6.25 * h - 5 * age + 5)
 				: (10 * w + 6.25 * h - 5 * age - 161);
-		// The equation of Mifflin-St.Jeor
 	}
+
+
+	private double convertHeightToCentimeters() {
+		return heightUnit.equals("inches") ? height * 2.54 : height;
+	}
+
+
+	private double convertWeightToKilograms() {
+		return weightUnit.equals("lbs") ? weight * 0.453592 : weight;
+	}
+
 
 	// Override toString() method for debugging or logging purposes
 	@Override

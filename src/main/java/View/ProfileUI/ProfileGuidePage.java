@@ -72,6 +72,7 @@ public class ProfileGuidePage extends JFrame {
 
         // Make the JFrame visible
         setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     // Main method to launch the ProfileGuidePage

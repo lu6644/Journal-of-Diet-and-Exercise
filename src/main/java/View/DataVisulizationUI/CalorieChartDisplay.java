@@ -167,5 +167,6 @@ public class CalorieChartDisplay extends JFrame {
     public static void launch(ProfileUIData user){
         CalorieChartDisplay frame = new CalorieChartDisplay(user);
         frame.setVisible(true);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 }

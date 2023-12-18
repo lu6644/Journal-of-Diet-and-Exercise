@@ -92,12 +92,12 @@ public class NavigateUI extends JFrame {
         add(fatLossButton);
 
         setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
 
     public void dietloggingAction(){
         this.dispose();
-
         DietLoggingPage.launch(user);
     }
     public void infoAction(){

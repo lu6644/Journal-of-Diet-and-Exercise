@@ -58,6 +58,7 @@ public class MainUI extends JFrame {
 
 
         setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 
     }

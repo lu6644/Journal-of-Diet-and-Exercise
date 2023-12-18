@@ -63,7 +63,27 @@ public class DietJournalPage extends JFrame implements ActionListener {
         buttonPanel.add(backButton);
 
         add(buttonPanel, BorderLayout.SOUTH);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
 
+    private void handleViewBreakdown(){
+        int selectedRow = dietsHistoryTable.getSelectedRow();
+
+        if (selectedRow != -1) { // Check if a row is selected
+            DefaultTableModel model = (DefaultTableModel) dietsHistoryTable.getModel();
+            String dietId = (String) model.getValueAt(selectedRow, 0);
+            String date = (String) model.getValueAt(selectedRow, 1);
+            String mealType = (String) model.getValueAt(selectedRow, 2);
+            DietDetailPage.launch(dietId,date,mealType);
+        } else {
+            // No row is selected
+            JOptionPane.showMessageDialog(this, "No row selected.", "Information", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+
+    private void handleBack(){
+        this.dispose();
+        NavigateUI.launch(user);
     }
 
     @Override
@@ -71,23 +91,11 @@ public class DietJournalPage extends JFrame implements ActionListener {
         String comm = e.getActionCommand();
         if (comm.equals("viewBreakdown")){
             //Handles viewing nutrients breakdown
-            int selectedRow = dietsHistoryTable.getSelectedRow();
-
-            if (selectedRow != -1) { // Check if a row is selected
-                DefaultTableModel model = (DefaultTableModel) dietsHistoryTable.getModel();
-                String dietId = (String) model.getValueAt(selectedRow, 0);
-                String date = (String) model.getValueAt(selectedRow, 1);
-                String mealType = (String) model.getValueAt(selectedRow, 2);
-                DietDetailPage.launch(dietId,date,mealType);
-            } else {
-                // No row is selected
-                JOptionPane.showMessageDialog(this, "No row selected.", "Information", JOptionPane.INFORMATION_MESSAGE);
-            }
+            handleViewBreakdown();
         }
         else if (comm.equals("back")){
             // Handle back button click
-            this.dispose();
-            NavigateUI.launch(user);
+            handleBack();
         }
     }
 

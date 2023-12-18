@@ -150,6 +150,7 @@ public class ProfileEditPage extends JFrame {
         add(saveButton);
 
         setVisible(true);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
     // Method to handle the "Back" button action

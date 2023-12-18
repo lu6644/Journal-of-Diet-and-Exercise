@@ -36,28 +36,28 @@ public class ProfilesQueryController {
         )).collect(Collectors.toList());
     }
 
-    // Get a ProfileUIData object by profile ID
-    public ProfileUIData getProfile(int id){
+    public ProfileUIData getProfile(int id) {
         UserProfile profile = ProfileDAO.getInstance().getProfile(id);
-        ProfileUIData profileUIData = new ProfileUIData(profile.getUsername(), profile.getPassword(),
-                profile.getFirstName(), profile.getLastName(), profile.getAge(), profile.getGender(),
-                profile.getHeight(), profile.getHeightUnit(), profile.getWeight(), profile.getWeightUnit(),
-                profile.getSpecialPeriod(), profile.isHasWeightScale());
-        profileUIData.setId(id);
-        return profileUIData;
+        return createProfileUIData(profile);
     }
 
-    // Get a ProfileUIData object by username and password
-    public ProfileUIData getProfileByUsername(String username, String password){
+    public ProfileUIData getProfileByUsername(String username, String password) {
         UserProfile profile = ProfileDAO.getInstance().getProfileByUsername(username, password);
-        ProfileUIData profileUIData = new ProfileUIData(username,password,profile.getFirstName(),
-                profile.getLastName(), profile.getAge(), profile.getGender(), profile.getHeight(),
-                profile.getHeightUnit(), profile.getWeight(), profile.getWeightUnit(),profile.getSpecialPeriod(),
-                profile.isHasWeightScale());
+        return createProfileUIData(profile);
+    }
+
+    private ProfileUIData createProfileUIData(UserProfile profile) {
+        ProfileUIData profileUIData = new ProfileUIData(
+                profile.getUsername(), profile.getPassword(),
+                profile.getFirstName(), profile.getLastName(), profile.getAge(),
+                profile.getGender(), profile.getHeight(), profile.getHeightUnit(),
+                profile.getWeight(), profile.getWeightUnit(), profile.getSpecialPeriod(),
+                profile.isHasWeightScale()
+        );
         profileUIData.setId(profile.getId());
         return profileUIData;
     }
-
+    
     // Verify the password for a given username
     public int verifyPassword(String username, String password){return ProfileDAO.getInstance().verifyPassword(username, password);}
 

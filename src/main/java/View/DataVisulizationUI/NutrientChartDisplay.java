@@ -127,5 +127,6 @@ public class NutrientChartDisplay extends JFrame {
     public static void launch(ProfileUIData user){
         NutrientChartDisplay frame = new NutrientChartDisplay(user);
         frame.setVisible(true);
+        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 }

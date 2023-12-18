@@ -9,7 +9,7 @@ public class DatabaseConnector {
     // JDBC URL, username and password of MySQL server
     private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/fitnessjournal?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "Abby6!644";
+    private static final String PASSWORD = "Wuhuan0515.";
 
     // Single instance of the class
     private static DatabaseConnector instance;
