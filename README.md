@@ -10,7 +10,11 @@ Develope an application that helps the user to keep a journal of their diet and 
 <br>
 <img width="700" alt="exercise logging" src="https://github.com/lu6644/Journal-of-Diet-and-Exercise/assets/49087023/95422c2e-176f-4c49-b0ad-8c395e567ac6">
 
-
+# Team
+- Lu Shen
+- Ryan Wu
+- James Jin
+- Yiqing Wu
 
 
 
