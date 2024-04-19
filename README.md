@@ -1,12 +1,18 @@
 # Journal-of-Diet-and-Exercise
-Develope an application that helps the user to keep a journal of their diet and exercise
+Develope an application that helps the user to keep a journal of their diet and exercise and gives user intuitive feedback based on their records.
+<br>
+<br>
+<img width="700" alt="CFG compare" src="https://github.com/lu6644/Journal-of-Diet-and-Exercise/assets/49087023/ad585c4b-10c8-4d04-aa43-f9f2e5490fda">
+<br>
+<br>
+<img width="250" alt="Fat Loss Predict" src="https://github.com/lu6644/Journal-of-Diet-and-Exercise/assets/49087023/db168b79-6bd7-490b-9b9b-8c0808a59e2e">
+<br>
+<br>
+<img width="700" alt="exercise logging" src="https://github.com/lu6644/Journal-of-Diet-and-Exercise/assets/49087023/95422c2e-176f-4c49-b0ad-8c395e567ac6">
 
-## To Run the Application
-Please run MainUI.java in MainUI folder to start
 
-## Note
-1. Please import all jar files in the lib folder to project as dependencies
-2. import schema.sql into MySQL database for the schema and initial data
+
+
 
 
 
